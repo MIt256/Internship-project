@@ -3,23 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/walkthroughFragment3">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.taskmanager.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_task"
+        android:name="com.example.taskmanager.ui.task.TaskFragment"
+        android:label="@string/my_task_menu_text"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.taskmanager.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_menu"
+        android:name="com.example.taskmanager.ui.menu.MenuFragment"
+        android:label="@string/menu_menu_text"
+        tools:layout="@layout/fragment_menu" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.taskmanager.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_quick"
+        android:name="com.example.taskmanager.ui.quick.QuickFragment"
+        android:label="@string/quick_menu_text"
+        tools:layout="@layout/fragment_quick" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.taskmanager.ui.profile.ProfileFragment"
+        android:label="@string/profile_menu_text"
+        tools:layout="@layout/fragment_quick" />
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.example.taskmanager.ui.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" />
+    <fragment
+        android:id="@+id/walkthroughFragment3"
+        android:name="com.example.taskmanager.ui.WalkthroughFragment"
+        android:label="fragment_walkthrough"
+        tools:layout="@layout/fragment_walkthrough" >
+        <action
+            android:id="@+id/action_walkthroughFragment3_to_navigation_task"
+            app:destination="@id/navigation_task" />
+    </fragment>
 </navigation>
