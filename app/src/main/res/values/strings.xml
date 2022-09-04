@@ -24,8 +24,8 @@
 
 
     <string name="tasks_and_text">Task and assign them to colleagues.</string>
-    <string name="Get_notified_text">Get notified when work happens.</string>
-    <string name="Whats_going_text">Whats going to happen tomorrow?</string>
+    <string name="get_notified_text">Get notified when work happens.</string>
+    <string name="whats_going_text">Whats going to happen tomorrow?</string>
     <string name="you_change_text"> You have successfully change password. Please use your new passwords when logging in.</string>
     <string name="please_enter_text">Please enter your email below to receive your password reset instructions</string>
     <string name="reset_code_text">Reset code was sent to your email. Please enter the code and create new password</string>
@@ -41,6 +41,8 @@
     <string name="my_task_menu_text">my task</string>
     <string name="profile_menu_text">profile</string>
     <string name="quick_menu_text">quick</string>
+
+    <string name="button_get_started_text">Get Started</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
