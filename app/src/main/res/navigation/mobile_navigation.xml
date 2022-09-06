@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/walkthroughFragment3">
+    app:startDestination="@id/signUpFragment">
 
     <fragment
         android:id="@+id/navigation_task"
@@ -42,4 +42,9 @@
             android:id="@+id/action_walkthroughFragment3_to_navigation_task"
             app:destination="@id/navigation_task" />
     </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.taskmanager.ui.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>
