@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -73,6 +73,7 @@
         android:fontFamily="@font/roboto_medium_italic"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
+        android:textAllCaps="false"
         android:text="Button"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/bottomImageView"
