@@ -28,10 +28,10 @@ class MenuFragment : Fragment() {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textMenu
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+////        val textView: TextView = binding.textMenu
+//        dashboardViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
         return root
     }
 
