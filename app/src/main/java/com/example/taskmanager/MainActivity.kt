@@ -44,8 +44,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_task,
                 R.id.navigation_menu,
                 R.id.navigation_quick,
-                R.id.navigation_profile -> binding.navView.visibility = View.VISIBLE
-                else -> binding.navView.visibility = View.GONE
+                R.id.navigation_profile ->
+                {binding.navView.visibility = View.VISIBLE
+                 binding.buttonAdd.visibility = View.VISIBLE}
+                else -> {binding.navView.visibility = View.GONE
+                         binding.buttonAdd.visibility = View.GONE}
             }
         }
     }
