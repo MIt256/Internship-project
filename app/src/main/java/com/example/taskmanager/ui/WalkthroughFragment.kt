@@ -10,12 +10,16 @@ import com.example.taskmanager.Adapter
 import com.example.taskmanager.R
 import com.example.taskmanager.WalkthroughItem
 import com.example.taskmanager.databinding.FragmentWalkthroughBinding
+import javax.inject.Inject
 
 class WalkthroughFragment : Fragment() {
 
 
     private var _binding: FragmentWalkthroughBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var adapter: Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +37,8 @@ class WalkthroughFragment : Fragment() {
                 resources.getString(R.string.tasks_and_assign_text),resources.getString(R.string.tasks_and_text),R.drawable.ic_third_walkthrough,R.drawable.ic_bottom_three_walkthrough
             )
         )
-        binding.viewPager2.adapter = Adapter(walkthroughs)
+        adapter = Adapter(walkthroughs)
+        binding.viewPager2.adapter = adapter
         binding.viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         return binding.root
