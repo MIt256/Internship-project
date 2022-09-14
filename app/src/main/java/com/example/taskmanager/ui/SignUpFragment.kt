@@ -17,7 +17,7 @@ class SignUpFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        
+
         binding.bottomSignIn.setOnClickListener{onSignInPressed()}
 
         return binding.root

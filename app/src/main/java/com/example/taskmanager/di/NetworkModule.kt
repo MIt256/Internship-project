@@ -1,6 +1,7 @@
 package com.example.taskmanager.di
 
-import com.example.taskmanager.network.ApiService
+import com.example.taskmanager.accounts.AccountsApi
+import com.example.taskmanager.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,6 +34,11 @@ class NetworkModule {
     @Provides
     fun provideApiClient(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    fun provideApiAccountClient(retrofit: Retrofit): AccountsApi {
+        return retrofit.create(AccountsApi::class.java)
     }
 
 }
