@@ -70,5 +70,8 @@
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             app:launchSingleTop="false" />
+        <action
+            android:id="@+id/action_signInFragment_to_navigation_task"
+            app:destination="@id/navigation_task" />
     </fragment>
 </navigation>

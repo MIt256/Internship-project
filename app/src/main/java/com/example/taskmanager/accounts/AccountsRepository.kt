@@ -2,6 +2,7 @@ package com.example.taskmanager.accounts
 
 import com.example.taskmanager.accounts.entities.*
 import com.example.taskmanager.entities.NetworkResult
+import com.example.taskmanager.entities.SignInEntity
 import com.example.taskmanager.entities.SignUpEntity
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -20,6 +21,18 @@ class AccountsRepository  @Inject constructor(private val accountsApi: AccountsA
         //or
         val response = SignUpResponseEntity(SignUpData( "url","TestEmail@gmail.com","123",
            UserSession("token",123,"token refresh","type"), "username"))
+        emit(NetworkResult.Success(response))
+    }.catch { e ->
+        emit(NetworkResult.Failure(e.message ?: "Unknown Error"))
+    }
+
+    suspend fun signIn(userInfo: SignInEntity)  = flow {
+        emit(NetworkResult.Loading(true))
+        val requestEntity = SignInRequestEntity(
+            email = userInfo.email,
+            password = userInfo.password
+        )
+        val response = accountsApi.signIn(requestEntity)
         emit(NetworkResult.Success(response))
     }.catch { e ->
         emit(NetworkResult.Failure(e.message ?: "Unknown Error"))
