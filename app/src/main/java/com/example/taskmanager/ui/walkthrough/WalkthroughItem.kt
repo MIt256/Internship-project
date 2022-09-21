@@ -1,4 +1,4 @@
-package com.example.taskmanager
+package com.example.taskmanager.ui.walkthrough
 
 class WalkthroughItem(
     var mainText: String = "",

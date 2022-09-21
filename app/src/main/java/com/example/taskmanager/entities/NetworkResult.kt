@@ -1,4 +1,4 @@
-package com.example.taskmanager.accounts.entities
+package com.example.taskmanager.entities
 
 sealed class NetworkResult<T> {
     data class Loading<T>(val isLoading: Boolean) : NetworkResult<T>()

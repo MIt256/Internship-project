@@ -17,5 +17,4 @@ interface AccountsApi {
 
     @POST("refresh-token")
     suspend fun signUp(@Body body: RefreshTokenRequest): RefreshTokenResponse
-
 }

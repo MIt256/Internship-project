@@ -1,13 +1,10 @@
 package com.example.taskmanager.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.taskmanager.Repository
+import androidx.lifecycle.*
 import com.example.taskmanager.accounts.AccountsRepository
-import com.example.taskmanager.accounts.entities.NetworkResult
+import com.example.taskmanager.entities.NetworkResult
 import com.example.taskmanager.accounts.entities.SignUpResponseEntity
+import com.example.taskmanager.entities.SignUpEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,18 +13,21 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(private val repository: AccountsRepository): ViewModel() {
 
     private var _signUpResponse = MutableLiveData<NetworkResult<SignUpResponseEntity>>()
-    val signUpResponse: LiveData<NetworkResult<SignUpResponseEntity>> = _signUpResponse
+        val signUpResponse: LiveData<NetworkResult<SignUpResponseEntity>> = _signUpResponse
 
-    init {
-        signUp()
-    }
+    //var repres = repository.signUp().asLiveData()
 
-    private fun signUp() {
+//    init {
+//        signUp()
+//    }
+
+    fun signUp(userInfo: SignUpEntity) {
         viewModelScope.launch {
-            repository.signUp().collect {
-                //todo ?
-                _signUpResponse.value
+            repository.signUp(userInfo).collect {
+                //todo add try/catch for exceptions
+                _signUpResponse.postValue(it)
             }
+
         }
     }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/walkthroughFragment3">
 
     <fragment
         android:id="@+id/navigation_task"
@@ -35,12 +35,12 @@
         tools:layout="@layout/fragment_reset_password" />
     <fragment
         android:id="@+id/walkthroughFragment3"
-        android:name="com.example.taskmanager.ui.WalkthroughFragment"
+        android:name="com.example.taskmanager.ui.walkthrough.WalkthroughFragment"
         android:label="fragment_walkthrough"
         tools:layout="@layout/fragment_walkthrough" >
         <action
-            android:id="@+id/action_walkthroughFragment3_to_navigation_task"
-            app:destination="@id/navigation_task" />
+            android:id="@+id/action_walkthroughFragment3_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -50,6 +50,10 @@
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
             app:destination="@id/signInFragment"
+            app:launchSingleTop="false" />
+        <action
+            android:id="@+id/action_signUpFragment_to_navigation_task"
+            app:destination="@id/navigation_task"
             app:launchSingleTop="false" />
     </fragment>
     <fragment

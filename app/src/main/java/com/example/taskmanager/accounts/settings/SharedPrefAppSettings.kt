@@ -1,4 +1,4 @@
-package com.example.taskmanager
+package com.example.taskmanager.accounts.settings
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class SharedPrefAppSettings @Inject constructor(
     @ApplicationContext appContext: Context
-):AppSettings {
+): AppSettings {
 
     private val sharedPref = appContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
