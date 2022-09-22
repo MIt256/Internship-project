@@ -33,6 +33,7 @@ class SignUpFragment : Fragment() {
         binding.bottomSignIn.setOnClickListener{onSignInPressed()}
         binding.buttonSignUp.setOnClickListener{onSignUpButtonPressed()}
         binding.profileImage.setOnClickListener{onProfileImagePressed()}
+        binding.backArrow.setOnClickListener { onBackArrowPressed() }
 
        // vm.repres.onEach {  }.catch {  }.launchIn(lifecycle.coroutineScope)
 
@@ -68,6 +69,11 @@ class SignUpFragment : Fragment() {
 
     private fun onSignInPressed(){
         val action = SignUpFragmentDirections.actionSignUpFragmentToSignInFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun onBackArrowPressed(){
+        val action = SignUpFragmentDirections.actionSignUpFragmentToWalkthroughFragment()
         findNavController().navigate(action)
     }
 

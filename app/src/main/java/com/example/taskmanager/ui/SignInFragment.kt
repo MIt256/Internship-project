@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.NavUtils
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
@@ -37,6 +39,7 @@ class SignInFragment : Fragment() {
         binding.bottomSignUp.setOnClickListener{onSignUpPressed()}
         binding.buttonSignIn.setOnClickListener{onSignInButtonPressed()}
         binding.forgotText.setOnClickListener{onForgotPasswordPressed()}
+        binding.backArrow.setOnClickListener{onBackArrowPressed()}
 
         //observe response
         viewModel.signInResponse.observe(this.viewLifecycleOwner) {
@@ -72,6 +75,11 @@ class SignInFragment : Fragment() {
             password = binding.editTextTextPassword.text.toString()
         )
         viewModel.signIn(userInfo)
+    }
+
+    private fun onBackArrowPressed(){
+        val action = SignInFragmentDirections.actionSignInFragmentToWalkthroughFragment()
+        findNavController().navigate(action)
     }
 
     private fun onForgotPasswordPressed(){

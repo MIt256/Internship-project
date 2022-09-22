@@ -18,7 +18,7 @@ class AccountsRepository  @Inject constructor(private val accountsApi: AccountsA
             password = userInfo.password
         )
         //val response = accountsApi.signUp(requestEntity)
-        //or
+        //or        //todo delete this code
         val response = SignUpResponseEntity(SignUpData( "url","TestEmail@gmail.com","123",
            UserSession("token",123,"token refresh","type"), "username"))
         emit(NetworkResult.Success(response))
@@ -38,4 +38,11 @@ class AccountsRepository  @Inject constructor(private val accountsApi: AccountsA
         emit(NetworkResult.Failure(e.message ?: "Unknown Error"))
     }
 
+    suspend fun signOut(){
+        //todo implement signOut
+    }
+
+    suspend fun refreshToken(){
+        //todo implement refreshToken function
+    }
 }
