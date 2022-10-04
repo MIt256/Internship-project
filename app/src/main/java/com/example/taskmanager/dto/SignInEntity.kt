@@ -1,4 +1,4 @@
-package com.example.taskmanager.entities
+package com.example.taskmanager.dto
 
 data class SignInEntity(
     val email: String,

@@ -1,5 +1,6 @@
 package com.example.taskmanager.di
 
+import com.example.taskmanager.accounts.settings.AccountManagerAppSettings
 import com.example.taskmanager.accounts.settings.AppSettings
 import com.example.taskmanager.accounts.settings.SharedPrefAppSettings
 import dagger.Binds
@@ -13,6 +14,7 @@ abstract class SettingsModule{
 
     @Binds
     abstract fun bindAppSettings(
-        appSettings: SharedPrefAppSettings
+        //appSettings: SharedPrefAppSettings
+        appSettings: AccountManagerAppSettings
     ): AppSettings
 }

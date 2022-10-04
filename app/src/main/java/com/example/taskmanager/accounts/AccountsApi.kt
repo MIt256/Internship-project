@@ -1,6 +1,6 @@
 package com.example.taskmanager.accounts
 
-import com.example.taskmanager.accounts.entities.*
+import com.example.taskmanager.accounts.dto.*
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -13,8 +13,8 @@ interface AccountsApi {
     suspend fun signUp(@Body body: SignUpRequestEntity): SignUpResponseEntity
 
     @POST("sign-out")
-    suspend fun signUp(@Body body: SignOutRequest): SignOutResponse
+    suspend fun signOut(@Body body: SignOutRequest): SignOutResponse
 
     @POST("refresh-token")
-    suspend fun signUp(@Body body: RefreshTokenRequest): RefreshTokenResponse
+    suspend fun refreshToken(@Body body: RefreshTokenRequest): RefreshTokenResponse
 }

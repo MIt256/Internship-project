@@ -4,39 +4,55 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.taskmanager.databinding.FragmentTaskBinding
+import com.example.taskmanager.dto.NetworkResult
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TaskFragment : Fragment() {
 
-    private var _binding: FragmentTaskBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentTaskBinding
+    private val viewModel: TaskViewModel by viewModels()
+    @Inject
+    lateinit var tasksAdapter: TasksAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(TaskViewModel::class.java)
+        binding = FragmentTaskBinding.inflate(inflater, container, false)
 
-        _binding = FragmentTaskBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        binding.taskList.adapter = tasksAdapter
+        tasksAdapter.setOnItemClickListener {
+            //todo event click
+        }
 
-//        val textView: TextView = binding.textTask
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        return root
+        viewModel.tasks.observe(this.viewLifecycleOwner) {
+            when(it) {
+                is NetworkResult.Loading -> {
+                    //todo add loading
+                }
+
+                is NetworkResult.Failure -> {
+                    //todo add error
+                    Toast.makeText(context, "Something was wrong(", Toast.LENGTH_SHORT).show()
+                }
+
+                is  NetworkResult.Success -> {
+                    //todo add success
+                    tasksAdapter.setTasks(it.data)
+                }
+            }
+        }
+
+
+
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

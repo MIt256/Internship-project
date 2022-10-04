@@ -1,6 +1,7 @@
 package com.example.taskmanager.accounts.settings
 
 import android.content.Context
+import com.example.taskmanager.accounts.entities.UserSettings
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -26,6 +27,10 @@ class SharedPrefAppSettings @Inject constructor(
 //        else
 //            editor.putString(PREF_CURRENT_ACCOUNT_TOKEN, token)
 //        editor.apply()
+    }
+
+    override fun createAccount(accountSettings: UserSettings) {
+        TODO("Not yet implemented")
     }
 
     companion object {

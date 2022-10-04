@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/background_splash.xml" value="0.119" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_active_task.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_bottom_one_walkthrough.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_bottom_three_walkthrough.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_bottom_two_walkthrough.xml" value="0.3675" />
@@ -15,12 +16,14 @@
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_logo.xml" value="0.2685" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_menu.xml" value="0.133" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_mytask.xml" value="0.2685" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_not_active_task.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2685" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_page_1__5_.xml" value="0.1" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_profile.xml" value="0.133" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_quick.xml" value="0.1" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_second_walkthrough.xml" value="0.196" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_settings_button.xml" value="0.2685" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_successful.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_third_walkthrough.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_todo.xml" value="0.2685" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -36,10 +39,12 @@
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_sign_in.xml" value="0.25" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_successful.xml" value="0.33" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_task.xml" value="0.25" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_task.xml" value="0.18" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_walkthrough.xml" value="0.2" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/task_list_item.xml" value="0.36283185840707965" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/walkthrough_item.xml" value="0.3762811127379209" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/xml/task_manager_authentificator.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

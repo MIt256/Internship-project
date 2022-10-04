@@ -1,4 +1,4 @@
-package com.example.taskmanager.accounts.entities
+package com.example.taskmanager.accounts.dto
 
 import com.google.gson.annotations.SerializedName
 

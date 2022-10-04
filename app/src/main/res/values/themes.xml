@@ -27,4 +27,11 @@
         <item name="colorAccent">@color/white</item>
     </style>
 
+    <style name="CustomTextAppearanceTab" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/roboto_light_italic</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

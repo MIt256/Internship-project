@@ -1,13 +1,13 @@
-package com.example.taskmanager.ui
+package com.example.taskmanager.ui.signIn
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taskmanager.accounts.AccountsRepository
-import com.example.taskmanager.accounts.entities.SignInResponseEntity
-import com.example.taskmanager.entities.NetworkResult
-import com.example.taskmanager.entities.SignInEntity
+import com.example.taskmanager.accounts.dto.SignInResponseEntity
+import com.example.taskmanager.dto.NetworkResult
+import com.example.taskmanager.dto.SignInEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
