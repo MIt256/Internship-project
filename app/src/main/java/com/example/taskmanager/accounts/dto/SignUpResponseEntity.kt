@@ -1,5 +1,7 @@
-package com.example.taskmanager.accounts.entities
+package com.example.taskmanager.accounts.dto
 
+import com.example.taskmanager.accounts.entities.UserSettings
+import com.example.taskmanager.ui.task.entities.Task
 import com.google.gson.annotations.SerializedName
 
 data class SignUpResponseEntity(
@@ -18,7 +20,21 @@ data class SignUpData(
     val userSession: UserSession,
     @SerializedName("username")
     val username: String
-)
+){
+    /**
+     * Convert this entity into in-app [UserSession] instance. For AccountManager.
+     */
+    fun toUserSettings() = UserSettings(
+        avatarUrl = avatarUrl,
+        email = email,
+        id = id,
+        username = username,
+        accessToken = userSession.accessToken,
+        expiresIn = userSession.expiresIn,
+        refreshToken = userSession.refreshToken,
+        tokenType = userSession.tokenType
+    )
+}
 
 data class UserSession(
     @SerializedName("access_token")

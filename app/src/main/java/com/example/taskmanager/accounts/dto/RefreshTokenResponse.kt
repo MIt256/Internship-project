@@ -1,12 +1,12 @@
-package com.example.taskmanager.accounts.entities
+package com.example.taskmanager.accounts.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class SignInResponseEntity(
-    val `data`: SignInData
+data class RefreshTokenResponse(
+    val `data`: RefreshTokenData
 )
 
-data class SignInData(
+data class RefreshTokenData(
     @SerializedName("access_token")
     val accessToken: String,
     @SerializedName("expires_in")

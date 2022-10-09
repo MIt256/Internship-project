@@ -60,6 +60,36 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_red"
+            app:tabTextColor="@color/white"
+            app:tabTextAppearance="@style/CustomTextAppearanceTab"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="2dp"
+            >
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/today_text"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/month_text" />
+        </com.google.android.material.tabs.TabLayout>
+
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskList"
+        android:layout_width="409dp"
+        android:layout_height="625dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.taskmanager.ui
+package com.example.taskmanager.ui.signUp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.taskmanager.entities.NetworkResult
+import com.example.taskmanager.dto.NetworkResult
 import com.example.taskmanager.databinding.FragmentSignUpBinding
-import com.example.taskmanager.entities.SignUpEntity
+import com.example.taskmanager.dto.SignUpEntity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,12 +45,13 @@ class SignUpFragment : Fragment() {
                 }
 
                 is NetworkResult.Failure -> {
-                    //todo add error
+                    Toast.makeText(context, it.errorMessage, Toast.LENGTH_SHORT).show()
                 }
 
                 is  NetworkResult.Success -> {
                     //todo add success
-                    val action = SignUpFragmentDirections.actionSignUpFragmentToNavigationTask()
+                    val action =
+                        SignUpFragmentDirections.actionSignUpFragmentToNavigationTask()
                     findNavController().navigate(action)
                 }
             }
@@ -68,12 +69,14 @@ class SignUpFragment : Fragment() {
     }
 
     private fun onSignInPressed(){
-        val action = SignUpFragmentDirections.actionSignUpFragmentToSignInFragment()
+        val action =
+            SignUpFragmentDirections.actionSignUpFragmentToSignInFragment()
         findNavController().navigate(action)
     }
 
     private fun onBackArrowPressed(){
-        val action = SignUpFragmentDirections.actionSignUpFragmentToWalkthroughFragment()
+        val action =
+            SignUpFragmentDirections.actionSignUpFragmentToWalkthroughFragment()
         findNavController().navigate(action)
     }
 

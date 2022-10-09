@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.taskmanager.ui.SignUpFragment"
+        android:name="com.example.taskmanager.ui.signUp.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -70,7 +70,7 @@
         tools:layout="@layout/fragment_successful" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.taskmanager.ui.SignInFragment"
+        android:name="com.example.taskmanager.ui.signIn.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action

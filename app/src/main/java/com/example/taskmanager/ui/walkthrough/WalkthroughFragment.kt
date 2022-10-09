@@ -11,7 +11,7 @@ import com.example.taskmanager.ui.walkthrough.Adapter
 import com.example.taskmanager.R
 import com.example.taskmanager.ui.walkthrough.WalkthroughItem
 import com.example.taskmanager.databinding.FragmentWalkthroughBinding
-import com.example.taskmanager.ui.SignUpFragmentDirections
+
 import javax.inject.Inject
 
 class WalkthroughFragment : Fragment() {
