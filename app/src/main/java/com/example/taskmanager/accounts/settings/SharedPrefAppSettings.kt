@@ -20,6 +20,10 @@ class SharedPrefAppSettings @Inject constructor(
         return null
     }
 
+    override fun getCurrentId(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun setCurrentToken(token: String?) {
 //        val editor = sharedPref.edit()
 //        if (token == null)

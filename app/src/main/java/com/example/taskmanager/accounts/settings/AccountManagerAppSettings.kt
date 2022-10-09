@@ -15,37 +15,68 @@ import javax.inject.Inject
 class AccountManagerAppSettings @Inject constructor(
     @ApplicationContext appContext: Context,
     private val accountManager: AccountManager
-): AppSettings {
+) : AppSettings {
 
     override fun getCurrentToken(): String? {
-    //       return  sharedPref.getString(PREF_CURRENT_ACCOUNT_TOKEN, null)
-        return null
+        val account = getAccount(ACCOUNT_TYPE)
+        return if (account != null)
+            accountManager.getUserData(
+                account,
+                KEY_USER_ACCESS_TOKEN
+            ) else null
     }
 
+    override fun getCurrentId(): String? = accountManager.getUserData(
+        getAccount(ACCOUNT_TYPE),
+        KEY_USER_ID
+    )
+
     override fun setCurrentToken(token: String?) {
-    //        val editor = sharedPref.edit()
-    //        if (token == null)
-    //            editor.remove(PREF_CURRENT_ACCOUNT_TOKEN)
-    //        else
-    //            editor.putString(PREF_CURRENT_ACCOUNT_TOKEN, token)
-    //        editor.apply()
+        //        val editor = sharedPref.edit()
+        //        if (token == null)
+        //            editor.remove(PREF_CURRENT_ACCOUNT_TOKEN)
+        //        else
+        //            editor.putString(PREF_CURRENT_ACCOUNT_TOKEN, token)
+        //        editor.apply()
     }
 
     override fun createAccount(accountSettings: UserSettings) {
-        val bundle = Bundle()
-            bundle.putString("accessToken", accountSettings.accessToken)
-            bundle.putString("avatarUrl",accountSettings.avatarUrl)
-            bundle.putString("email",accountSettings.email)
-            bundle.putString("id",accountSettings.id)
-            bundle.putString("refreshToken",accountSettings.refreshToken)
-            bundle.putString("tokenType",accountSettings.tokenType)
-            bundle.putString("username",accountSettings.username)
-            bundle.putString("expiresIn",accountSettings.expiresIn.toString())
-        accountManager.addAccountExplicitly(Account(accountSettings.email, ACCOUNT_TYPE),null ,null)
+        val account = Account(ACCOUNT_NAME, ACCOUNT_TYPE)
+        accountManager.addAccountExplicitly(account, null, null)
+        addUserInfo(account, accountSettings)
+    }
+
+    private fun getAccount(type: String): Account? {
+        return accountManager.getAccountsByType(type).firstOrNull()
+    }
+
+//    private fun clearAllAccounts(type: String): Account? {
+//        return accountManager.removeAccount()
+//    }
+
+    private fun addUserInfo(account: Account, userSettings: UserSettings) {
+        accountManager.setUserData(account, KEY_USER_ACCESS_TOKEN, userSettings.accessToken)
+        accountManager.setUserData(account, KEY_USER_AVATAR_URL, userSettings.avatarUrl)
+        accountManager.setUserData(account, KEY_USER_EMAIL, userSettings.email)
+        accountManager.setUserData(account, KEY_USER_ID, userSettings.id)
+        accountManager.setUserData(account, KEY_REFRESH_TOKEN, userSettings.refreshToken)
+        accountManager.setUserData(account, KEY_TOKEN_TYPE, userSettings.tokenType)
+        accountManager.setUserData(account, KEY_USER_NAME, userSettings.username)
+        accountManager.setUserData(account, KEY_EXPIRES_IN, userSettings.expiresIn.toString())
     }
 
     companion object {
-        private const val PREF_CURRENT_ACCOUNT_TOKEN = "currentToken"
+        private const val KEY_USER_ID = "KEY_USER_ID"
+        private const val KEY_USER_EMAIL = "KEY_USER_EMAIL"
+        private const val KEY_USER_ACCESS_TOKEN = "KEY_USER_ACCESS_TOKEN"
+        private const val KEY_USER_AVATAR_URL = "KEY_USER_AVATAR_URL"
+        private const val KEY_REFRESH_TOKEN = "KEY_REFRESH_TOKEN"
+        private const val KEY_TOKEN_TYPE = "KEY_TOKEN_TYPE"
+        private const val KEY_USER_NAME = "KEY_USER_NAME"
+        private const val KEY_EXPIRES_IN = "KEY_EXPIRES_IN"
+
         private const val ACCOUNT_TYPE = "com.example.taskmanager"
+
+        private const val ACCOUNT_NAME = "Task manager account"
     }
 }

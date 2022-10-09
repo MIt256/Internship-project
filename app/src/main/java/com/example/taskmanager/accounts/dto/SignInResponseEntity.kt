@@ -1,5 +1,6 @@
 package com.example.taskmanager.accounts.dto
 
+import com.example.taskmanager.accounts.entities.UserSettings
 import com.google.gson.annotations.SerializedName
 
 data class SignInResponseEntity(
@@ -15,4 +16,15 @@ data class SignInData(
     val refreshToken: String,
     @SerializedName("token_type")
     val tokenType: String
-)
+){
+    fun toUserSettings(email:String) = UserSettings(
+        avatarUrl = null,
+        email = email,
+        id = null,
+        username = null,
+        accessToken = accessToken,
+        expiresIn = expiresIn,
+        refreshToken = refreshToken,
+        tokenType = tokenType
+    )
+}

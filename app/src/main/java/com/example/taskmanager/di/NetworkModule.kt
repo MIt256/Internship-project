@@ -2,6 +2,9 @@ package com.example.taskmanager.di
 
 import com.example.taskmanager.accounts.AccountsApi
 import com.example.taskmanager.ApiService
+import com.example.taskmanager.accounts.settings.AccountManagerAppSettings
+import com.example.taskmanager.accounts.settings.AppSettings
+import com.example.taskmanager.accounts.settings.SharedPrefAppSettings
 import com.example.taskmanager.ui.task.TasksApi
 import dagger.Module
 import dagger.Provides
@@ -11,6 +14,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
@@ -19,19 +23,19 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideClient(): OkHttpClient {
+    fun provideClient(settings:AppSettings): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(createAuthorizationInterceptor())
+            .addInterceptor(createAuthorizationInterceptor(settings))
             .build()
     }
 
-    private fun createAuthorizationInterceptor(): Interceptor {
+    private fun createAuthorizationInterceptor (settings:AppSettings): Interceptor {
         return Interceptor { chain ->
             val newBuilder = chain.request().newBuilder()
             //todo add token
-            val token = "token"
+            val token = settings.getCurrentToken().toString()
             if (token != null) {
-                newBuilder.addHeader("Authorization", token)
+                newBuilder.addHeader("Authorization", "Bearer $token")
             }
             return@Interceptor chain.proceed(newBuilder.build())
         }

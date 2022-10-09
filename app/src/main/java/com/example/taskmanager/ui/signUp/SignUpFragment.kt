@@ -45,7 +45,7 @@ class SignUpFragment : Fragment() {
                 }
 
                 is NetworkResult.Failure -> {
-                    //todo add error
+                    Toast.makeText(context, it.errorMessage, Toast.LENGTH_SHORT).show()
                 }
 
                 is  NetworkResult.Success -> {
