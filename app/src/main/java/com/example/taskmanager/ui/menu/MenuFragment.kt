@@ -11,11 +11,7 @@ import com.example.taskmanager.databinding.FragmentMenuBinding
 
 class MenuFragment : Fragment() {
 
-    private var _binding: FragmentMenuBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentMenuBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +21,7 @@ class MenuFragment : Fragment() {
         val dashboardViewModel =
             ViewModelProvider(this).get(MenuViewModel::class.java)
 
-        _binding = FragmentMenuBinding.inflate(inflater, container, false)
+        binding = FragmentMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 ////        val textView: TextView = binding.textMenu
@@ -35,8 +31,5 @@ class MenuFragment : Fragment() {
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

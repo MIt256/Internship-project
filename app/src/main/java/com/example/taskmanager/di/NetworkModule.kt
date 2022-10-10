@@ -23,13 +23,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideClient(settings:AppSettings): OkHttpClient {
+    fun provideClient(settings: AppSettings): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(createAuthorizationInterceptor(settings))
             .build()
     }
 
-    private fun createAuthorizationInterceptor (settings:AppSettings): Interceptor {
+    private fun createAuthorizationInterceptor(settings: AppSettings): Interceptor {
         return Interceptor { chain ->
             val newBuilder = chain.request().newBuilder()
             //todo add token

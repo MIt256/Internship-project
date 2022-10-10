@@ -11,8 +11,7 @@ import com.example.taskmanager.ui.task.entities.Task
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class TasksAdapter @Inject constructor() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>(){
+class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
 
     private var tasks = mutableListOf<Task>()
     private var onItemClickListener: ((Int) -> Unit)? = null
@@ -25,20 +24,21 @@ class TasksAdapter @Inject constructor() : RecyclerView.Adapter<TasksAdapter.Tas
         fun bind(taskItem: Task) = with(binding) {
             //TODO add info
             if (taskItem.isCompleted)
-            statusIcon.setImageResource(R.drawable.ic_not_active)
+                statusIcon.setImageResource(R.drawable.ic_not_active)
             title.text = taskItem.title
             time.text = taskItem.dueDate
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
-        val view  = LayoutInflater.from(parent.context).inflate(R.layout.task_list_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.task_list_item, parent, false)
         return TasksViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-           //todo add click event
+            //todo add click event
             onItemClickListener?.let {
                 it(position)
             }
@@ -51,7 +51,7 @@ class TasksAdapter @Inject constructor() : RecyclerView.Adapter<TasksAdapter.Tas
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setTasks(taskList: List<Task>){
+    fun setTasks(taskList: List<Task>) {
         tasks = taskList.toMutableList()
         notifyDataSetChanged()
     }

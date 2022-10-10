@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class AccountAuth(
     private val curContext: Context
-)  : AbstractAccountAuthenticator(curContext) {
+) : AbstractAccountAuthenticator(curContext) {
 
     override fun editProperties(p0: AccountAuthenticatorResponse?, p1: String?): Bundle {
         TODO("Not yet implemented")
@@ -30,7 +30,7 @@ class AccountAuth(
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, p0)
         intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, p1)
         intent.putExtra(AccountManager.KEY_AUTH_TOKEN_LABEL, p3)
-        intent.putExtra("EXTRA_FROM_SETTINGS_FLAG",true)
+        intent.putExtra("EXTRA_FROM_SETTINGS_FLAG", true)
 
         val result = Bundle()
         result.putParcelable(AccountManager.KEY_INTENT, intent)

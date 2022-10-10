@@ -16,9 +16,11 @@ class TaskViewModel @Inject constructor(private val repository: TaskRepository) 
     private var _tasks = MutableLiveData<NetworkResult<List<Task>>>()
     val tasks: LiveData<NetworkResult<List<Task>>> = _tasks
 
-    init{fetchUserTasks()}
+    init {
+        fetchUserTasks()
+    }
 
-    private fun fetchUserTasks(){
+    private fun fetchUserTasks() {
         viewModelScope.launch {
             //todo add id
             repository.fetchTasks("76d2fab4-fd06-4909-bf8e-875c6b55c1f7").collect {

@@ -16,8 +16,8 @@ data class SignInData(
     val refreshToken: String,
     @SerializedName("token_type")
     val tokenType: String
-){
-    fun toUserSettings(email:String) = UserSettings(
+) {
+    fun toUserSettings(email: String) = UserSettings(
         avatarUrl = null,
         email = email,
         id = null,

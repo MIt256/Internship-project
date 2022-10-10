@@ -20,7 +20,7 @@ data class SignUpData(
     val userSession: UserSession,
     @SerializedName("username")
     val username: String
-){
+) {
     /**
      * Convert this entity into in-app [UserSession] instance. For AccountManager.
      */

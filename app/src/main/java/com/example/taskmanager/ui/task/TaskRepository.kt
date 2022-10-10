@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class TaskRepository @Inject constructor(private val tasksApi: TasksApi) {
 
-    suspend fun fetchTasks(userId: String) = flow{
+    suspend fun fetchTasks(userId: String) = flow {
         emit(NetworkResult.Loading(true))
         val response = tasksApi.fetchUserTasks(userId)
         emit(NetworkResult.Success(response.toTaskList()))

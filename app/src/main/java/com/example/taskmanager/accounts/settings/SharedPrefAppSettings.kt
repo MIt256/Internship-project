@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class SharedPrefAppSettings @Inject constructor(
     @ApplicationContext appContext: Context
-): AppSettings {
+) : AppSettings {
 
     private val sharedPref = appContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
 

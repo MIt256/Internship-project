@@ -17,8 +17,7 @@ class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
     private val viewModel: TaskViewModel by viewModels()
-    @Inject
-    lateinit var tasksAdapter: TasksAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,13 +26,14 @@ class TaskFragment : Fragment() {
     ): View {
         binding = FragmentTaskBinding.inflate(inflater, container, false)
 
+        val tasksAdapter = TasksAdapter()
         binding.taskList.adapter = tasksAdapter
         tasksAdapter.setOnItemClickListener {
             //todo event click
         }
 
         viewModel.tasks.observe(this.viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is NetworkResult.Loading -> {
                     //todo add loading
                 }
@@ -43,7 +43,7 @@ class TaskFragment : Fragment() {
                     Toast.makeText(context, "Something was wrong(", Toast.LENGTH_SHORT).show()
                 }
 
-                is  NetworkResult.Success -> {
+                is NetworkResult.Success -> {
                     //todo add success
                     tasksAdapter.setTasks(it.data)
                 }

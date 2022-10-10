@@ -16,24 +16,20 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val repository: AccountsRepository,
     private val appSettings: AppSettings
-): ViewModel() {
+) : ViewModel() {
 
     private var _signUpResponse = MutableLiveData<NetworkResult<UserSettings>>()
-        val signUpResponse: LiveData<NetworkResult<UserSettings>> = _signUpResponse
+    val signUpResponse: LiveData<NetworkResult<UserSettings>> = _signUpResponse
 
     //var repres = repository.signUp().asLiveData()
-
-    //    init {
-    //        signUp()
-    //    }
 
     fun signUp(userInfo: SignUpEntity) {
         viewModelScope.launch {
             repository.signUp(userInfo).collect {
                 //todo add try/catch for exceptions
                 _signUpResponse.postValue(it)
-                if (it is  NetworkResult.Success)  {
-                        //todo add success
+                if (it is NetworkResult.Success) {
+                    //todo add success
                     appSettings.createAccount(it.data)
                 }
             }

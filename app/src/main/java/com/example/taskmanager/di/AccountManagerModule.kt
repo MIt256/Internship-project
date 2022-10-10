@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class AccountManagerModule {
     @Singleton
     @Provides
-    fun provideAccountManager( @ApplicationContext context: Context): AccountManager {
+    fun provideAccountManager(@ApplicationContext context: Context): AccountManager {
         return AccountManager.get(context)
     }
 }

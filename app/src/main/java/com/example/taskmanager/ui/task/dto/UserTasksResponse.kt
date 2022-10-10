@@ -7,11 +7,11 @@ import com.google.gson.annotations.SerializedName
 
 data class UserTasksResponse(
     val `data`: List<TasksData>
-){
+) {
     /**
      * Convert this entity into in-app [Tasks] instance.
      */
-    fun toTaskList():List<Task>{
+    fun toTaskList(): List<Task> {
         val tasks = ArrayList<Task>()
         data.forEach { tasks.add(it.toTask()) }
         return tasks
@@ -41,18 +41,18 @@ data class TasksData(
     val projectId: String,
     @SerializedName("title")
     val title: String
-){
+) {
     /**
      * Convert this entity into in-app [Task] instance.
      */
     fun toTask(): Task {
         val tmpAttachment = ArrayList<TaskAttachment>()
-        attachments?.forEach{ tmpAttachment.add(it.toTaskAttachment()) }
+        attachments?.forEach { tmpAttachment.add(it.toTaskAttachment()) }
         val tmpMember = ArrayList<TaskMember>()
-        members?.forEach{ tmpMember.add(it.toTaskMember()) }
+        members?.forEach { tmpMember.add(it.toTaskMember()) }
         return Task(
             assignedTo = assignedTo,
-            attachments =  tmpAttachment,
+            attachments = tmpAttachment,
             createdAt = createdAt,
             description = description,
             dueDate = dueDate,
@@ -62,7 +62,7 @@ data class TasksData(
             ownerId = ownerId,
             projectId = projectId,
             title = title
-            )
+        )
     }
 }
 
@@ -74,15 +74,15 @@ data class Attachment(
     val taskId: String,
     val type: String,
     val url: String
-){
+) {
     /**
      * Convert this entity into in-app [TaskAttachment] instance.
      */
     fun toTaskAttachment(): TaskAttachment = TaskAttachment(
         createdAt = createdAt,
-        id =id,
+        id = id,
         taskId = taskId,
-        type= type,
+        type = type,
         url = url
     )
 }
@@ -95,7 +95,7 @@ data class Member(
     val email: String,
     val id: String,
     val username: String
-){
+) {
     /**
      * Convert this entity into in-app [TaskMember] instance.
      */

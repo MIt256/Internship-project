@@ -8,4 +8,5 @@ data class UserSettings(
     val accessToken: String,
     val expiresIn: Long,
     val refreshToken: String,
-    val tokenType: String)
+    val tokenType: String
+)

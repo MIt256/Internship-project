@@ -7,6 +7,6 @@ import retrofit2.http.Path
 interface TasksApi {
 
     @GET("user-tasks/{id}")
-    suspend fun fetchUserTasks(@Path("id") userId: String):UserTasksResponse
+    suspend fun fetchUserTasks(@Path("id") userId: String): UserTasksResponse
 
 }

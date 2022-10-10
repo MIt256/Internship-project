@@ -14,7 +14,6 @@ abstract class SettingsModule {
 
     @Binds
     abstract fun bindAppSettings(
-        //appSettings: SharedPrefAppSettings
         appSettings: AccountManagerAppSettings
     ): AppSettings
 }

@@ -29,37 +29,37 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration =AppBarConfiguration(
+        val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_task, R.id.navigation_menu, R.id.navigation_quick,R.id.navigation_profile
+                R.id.navigation_task,
+                R.id.navigation_menu,
+                R.id.navigation_quick,
+                R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        visibilityNavElements(navController)
+        changeVisibilityNavElements(navController)
         supportActionBar?.hide()
     }
+
     //?
-    private fun visibilityNavElements(navController: NavController) {
+    private fun changeVisibilityNavElements(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_task,
                 R.id.navigation_menu,
                 R.id.navigation_quick,
-                R.id.navigation_profile ->
-                {binding.navView.visibility = View.VISIBLE
-                 binding.buttonAdd.visibility = View.VISIBLE}
-                else -> {binding.navView.visibility = View.GONE
-                         binding.buttonAdd.visibility = View.GONE}
+                R.id.navigation_profile -> {
+                    binding.navView.visibility = View.VISIBLE
+                    binding.buttonAdd.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.navView.visibility = View.GONE
+                    binding.buttonAdd.visibility = View.GONE
+                }
             }
         }
     }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
-
-
 
 }
