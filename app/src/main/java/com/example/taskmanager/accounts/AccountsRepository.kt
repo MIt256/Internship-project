@@ -6,6 +6,7 @@ import com.example.taskmanager.dto.SignInEntity
 import com.example.taskmanager.dto.SignUpEntity
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import java.util.*
 import javax.inject.Inject
 
 //todo add local api
@@ -16,7 +17,7 @@ class AccountsRepository @Inject constructor(private val accountsApi: AccountsAp
         val requestEntity = SignUpRequestEntity(
             username = userInfo.username,
             email = userInfo.email,
-            password = userInfo.password
+            password = Base64.getEncoder().encodeToString(userInfo.password.toByteArray())
         )
         val response = accountsApi.signUp(
             SignUpRequestEntity(
@@ -37,7 +38,7 @@ class AccountsRepository @Inject constructor(private val accountsApi: AccountsAp
         emit(NetworkResult.Loading(true))
         val requestEntity = SignInRequestEntity(
             email = userInfo.email,
-            password = userInfo.password
+            password = Base64.getEncoder().encodeToString(userInfo.password.toByteArray())
         )
         val response = accountsApi.signIn(
             SignInRequestEntity(

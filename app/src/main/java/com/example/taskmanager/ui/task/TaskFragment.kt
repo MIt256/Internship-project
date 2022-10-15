@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.dto.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +26,7 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTaskBinding.inflate(inflater, container, false)
+        binding.taskList.layoutManager = LinearLayoutManager(context)
 
         val tasksAdapter = TasksAdapter()
         binding.taskList.adapter = tasksAdapter
@@ -40,7 +42,7 @@ class TaskFragment : Fragment() {
 
                 is NetworkResult.Failure -> {
                     //todo add error
-                    Toast.makeText(context, "Something was wrong(", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Something was wrong: ${it.errorMessage}", Toast.LENGTH_SHORT).show()
                 }
 
                 is NetworkResult.Success -> {

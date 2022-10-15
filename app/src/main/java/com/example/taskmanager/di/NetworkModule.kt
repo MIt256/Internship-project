@@ -1,10 +1,8 @@
 package com.example.taskmanager.di
 
 import com.example.taskmanager.accounts.AccountsApi
-import com.example.taskmanager.ApiService
-import com.example.taskmanager.accounts.settings.AccountManagerAppSettings
 import com.example.taskmanager.accounts.settings.AppSettings
-import com.example.taskmanager.accounts.settings.SharedPrefAppSettings
+import com.example.taskmanager.ui.newTask.NewTaskApi
 import com.example.taskmanager.ui.task.TasksApi
 import dagger.Module
 import dagger.Provides
@@ -14,12 +12,11 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+object NetworkModule {
 
     @Provides
     @Singleton
@@ -42,6 +39,7 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://todolist.dev2.cogniteq.com/api/v1/")
@@ -50,19 +48,24 @@ class NetworkModule {
             .build()
     }
 
-    @Provides
-    fun provideApiClient(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
-    }
 
     @Provides
+    @Singleton
     fun provideApiAccountClient(retrofit: Retrofit): AccountsApi {
         return retrofit.create(AccountsApi::class.java)
     }
 
     @Provides
+    @Singleton
     fun provideApiTasksClient(retrofit: Retrofit): TasksApi {
         return retrofit.create(TasksApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideApiNewTaskClient(retrofit: Retrofit): NewTaskApi {
+        return retrofit.create(NewTaskApi::class.java)
+    }
+
 
 }

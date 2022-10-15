@@ -9,7 +9,7 @@
         android:id="@+id/navigation_task"
         android:name="com.example.taskmanager.ui.task.TaskFragment"
         android:label="@string/my_task_menu_text"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_task" />
 
     <fragment
         android:id="@+id/navigation_menu"
@@ -88,4 +88,10 @@
             app:popUpTo="@id/walkthroughFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.example.taskmanager.ui.newTask.NewTaskFragment"
+        android:label="new_task_fragment"
+        tools:layout="@layout/new_task_fragment" />
+
 </navigation>

@@ -46,6 +46,7 @@
 
     <string name="button_get_started_text">Get Started</string>
 
+    <string name="toolbar_new_task_text">New Task</string>
     <string name="toolbar_work_list_text">Work List</string>
     <string name="toolbar_projects_text">Projects</string>
     <string name="toolbar_quick_notes_text">Quick Notes</string>
