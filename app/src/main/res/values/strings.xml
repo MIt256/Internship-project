@@ -46,6 +46,19 @@
 
     <string name="button_get_started_text">Get Started</string>
 
+    <string name="in_text">In</string>
+    <string name="for_text">For</string>
+    <string name="assignee_text">Assignee</string>
+    <string name="project_text">Project</string>
+    <string name="title_hint">Title</string>
+    <string name="description_text">Description</string>
+    <string name="due_date_text">Due Date</string>
+    <string name="anytime_button_text">Anytime</string>
+    <string name="add_member_text">Add Member</string>
+    <string name="anyone_hint">Anyone</string>
+    <string name="add_task_button_text">Add Task</string>
+
+
     <string name="toolbar_new_task_text">New Task</string>
     <string name="toolbar_work_list_text">Work List</string>
     <string name="toolbar_projects_text">Projects</string>
