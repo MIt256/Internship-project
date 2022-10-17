@@ -12,4 +12,6 @@ interface AppSettings {
 
     fun createAccount(accountSettings: UserSettings)
 
+    fun checkUserToken():Boolean
+
 }

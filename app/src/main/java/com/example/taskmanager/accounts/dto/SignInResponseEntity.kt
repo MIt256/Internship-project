@@ -15,12 +15,14 @@ data class SignInData(
     @SerializedName("refresh_token")
     val refreshToken: String,
     @SerializedName("token_type")
-    val tokenType: String
+    val tokenType: String,
+    @SerializedName("user_id")
+    val userId: String
 ) {
     fun toUserSettings(email: String) = UserSettings(
         avatarUrl = null,
         email = email,
-        id = null,
+        id = userId,
         username = null,
         accessToken = accessToken,
         expiresIn = expiresIn,

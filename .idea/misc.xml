@@ -17,12 +17,15 @@
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_logo.xml" value="0.2685" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_menu.xml" value="0.133" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_mytask.xml" value="0.2685" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_not_active.xml" value="0.231" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_not_active_task.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2685" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_page_1__5_.xml" value="0.1" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_plus.xml" value="0.231" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_profile.xml" value="0.133" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_quick.xml" value="0.1" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_second_walkthrough.xml" value="0.196" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_settings.xml" value="0.231" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_settings_button.xml" value="0.2685" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_successful.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_third_walkthrough.xml" value="0.3675" />
@@ -46,6 +49,8 @@
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/task_list_item.xml" value="0.33" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/walkthrough_item.xml" value="0.25" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.231" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.231" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/xml/task_manager_authentificator.xml" value="0.22447916666666667" />
       </map>
     </option>

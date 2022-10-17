@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.databinding.FragmentSignInBinding
 import com.example.taskmanager.dto.NetworkResult
 import com.example.taskmanager.dto.SignInEntity
@@ -18,6 +20,7 @@ class SignInFragment : Fragment() {
 
     private lateinit var binding: FragmentSignInBinding
     private val viewModel: SignInViewModel by viewModels()
+    private val userViewModel: UserSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +52,8 @@ class SignInFragment : Fragment() {
 
                 is NetworkResult.Success -> {
                     //todo add success
+                    userViewModel.setStatus(true)
+
                     val action =
                         SignInFragmentDirections.actionSignInFragmentToNavigationTask()
                     findNavController().navigate(action)

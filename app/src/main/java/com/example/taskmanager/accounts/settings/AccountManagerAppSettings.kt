@@ -3,7 +3,6 @@ package com.example.taskmanager.accounts.settings;
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
-import android.os.Bundle
 import com.example.taskmanager.accounts.entities.UserSettings
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -46,6 +45,17 @@ class AccountManagerAppSettings @Inject constructor(
         addUserInfo(account, accountSettings)
     }
 
+    override fun checkUserToken(): Boolean {
+        val account = getAccount(ACCOUNT_TYPE)
+        if (account != null)
+            if (System.currentTimeMillis() < accountManager.getUserData(
+                    account,
+                    KEY_EXPIRES_IN
+                ).toLong()
+            ) return true
+        return false
+    }
+
     private fun getAccount(type: String): Account? {
         return accountManager.getAccountsByType(type).firstOrNull()
     }
@@ -55,14 +65,16 @@ class AccountManagerAppSettings @Inject constructor(
 //    }
 
     private fun addUserInfo(account: Account, userSettings: UserSettings) {
-        accountManager.setUserData(account, KEY_USER_ACCESS_TOKEN, userSettings.accessToken)
-        accountManager.setUserData(account, KEY_USER_AVATAR_URL, userSettings.avatarUrl)
-        accountManager.setUserData(account, KEY_USER_EMAIL, userSettings.email)
-        accountManager.setUserData(account, KEY_USER_ID, userSettings.id)
-        accountManager.setUserData(account, KEY_REFRESH_TOKEN, userSettings.refreshToken)
-        accountManager.setUserData(account, KEY_TOKEN_TYPE, userSettings.tokenType)
-        accountManager.setUserData(account, KEY_USER_NAME, userSettings.username)
-        accountManager.setUserData(account, KEY_EXPIRES_IN, userSettings.expiresIn.toString())
+        with(accountManager) {
+            setUserData(account, KEY_USER_ACCESS_TOKEN, userSettings.accessToken)
+            setUserData(account, KEY_USER_AVATAR_URL, userSettings.avatarUrl)
+            setUserData(account, KEY_USER_EMAIL, userSettings.email)
+            setUserData(account, KEY_USER_ID, userSettings.id)
+            setUserData(account, KEY_REFRESH_TOKEN, userSettings.refreshToken)
+            setUserData(account, KEY_TOKEN_TYPE, userSettings.tokenType)
+            setUserData(account, KEY_USER_NAME, userSettings.username)
+            setUserData(account, KEY_EXPIRES_IN, userSettings.expiresIn.toString())
+        }
     }
 
     companion object {

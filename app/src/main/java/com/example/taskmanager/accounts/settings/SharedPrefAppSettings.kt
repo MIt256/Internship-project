@@ -37,6 +37,10 @@ class SharedPrefAppSettings @Inject constructor(
         TODO("Not yet implemented")
     }
 
+    override fun checkUserToken(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     companion object {
         private const val PREF_CURRENT_ACCOUNT_TOKEN = "currentToken"
     }
