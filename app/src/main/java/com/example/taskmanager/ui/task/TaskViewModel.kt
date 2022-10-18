@@ -23,7 +23,7 @@ class TaskViewModel @Inject constructor(private val repository: TaskRepository) 
     private fun fetchUserTasks() {
         viewModelScope.launch {
             //todo add id
-            repository.fetchTasks("76d2fab4-fd06-4909-bf8e-875c6b55c1f7").collect {
+            repository.fetchTasks().collect {
                 //todo add try/catch for exceptions
                 _tasks.postValue(it)
             }

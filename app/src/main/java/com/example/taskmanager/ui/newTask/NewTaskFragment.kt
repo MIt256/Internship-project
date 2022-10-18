@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doBeforeTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
@@ -33,6 +35,28 @@ class NewTaskFragment : Fragment() {
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.forEditText.setOnFocusChangeListener { _, _ ->
+            binding.goneGroupe.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
+        binding.inEditText.setOnFocusChangeListener { _, _ ->
+            binding.goneGroupe.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
+        binding.addMemberEditText.setOnFocusChangeListener { _, _ ->
+            binding.goneGroupe.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
+        binding.imageAddUser.setOnClickListener {
+            binding.goneGroupe.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
+
+        binding.recyclerView.setOnClickListener {
+            binding.goneGroupe.visibility = View.VISIBLE
+            binding.recyclerView.visibility = View.GONE
         }
 
         return binding.root

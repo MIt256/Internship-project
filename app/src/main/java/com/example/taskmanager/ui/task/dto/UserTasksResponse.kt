@@ -20,7 +20,7 @@ data class UserTasksResponse(
 
 data class TasksData(
     @SerializedName("assigned_to")
-    val assignedTo: String,
+    val assignedTo: String?,
     @SerializedName("attachments")
     val attachments: List<Attachment>?,
     @SerializedName("created_at")

@@ -1,7 +1,7 @@
 package com.example.taskmanager.ui.task.entities
 
 data class Task(
-    val assignedTo: String,
+    val assignedTo: String?,
     val attachments: List<TaskAttachment>,
     val createdAt: String,
     val description: String,

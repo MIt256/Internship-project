@@ -25,18 +25,13 @@ class AccountManagerAppSettings @Inject constructor(
             ) else null
     }
 
-    override fun getCurrentId(): String? = accountManager.getUserData(
+    override fun getCurrentId(): String = accountManager.getUserData(
         getAccount(ACCOUNT_TYPE),
         KEY_USER_ID
     )
 
     override fun setCurrentToken(token: String?) {
-        //        val editor = sharedPref.edit()
-        //        if (token == null)
-        //            editor.remove(PREF_CURRENT_ACCOUNT_TOKEN)
-        //        else
-        //            editor.putString(PREF_CURRENT_ACCOUNT_TOKEN, token)
-        //        editor.apply()
+
     }
 
     override fun createAccount(accountSettings: UserSettings) {
