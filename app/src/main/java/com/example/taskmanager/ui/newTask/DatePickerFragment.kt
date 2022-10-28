@@ -23,7 +23,10 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-        val date = SimpleDateFormat("yyyy-MM-dd").format(Date(year - 1900, month, day))
+        val c = Calendar.getInstance()
+        c.set(year,month,day,1,1,1)
+        c.time
+        val date = SimpleDateFormat("yyyy-MM-dd",Locale.getDefault()).format(Date(1000L))
         viewModel.setDate(date)
         dialog?.dismiss()
     }

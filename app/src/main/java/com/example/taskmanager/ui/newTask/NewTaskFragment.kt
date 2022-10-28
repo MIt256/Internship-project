@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanager.databinding.NewTaskFragmentBinding
 import com.example.taskmanager.dto.NetworkResult
+import com.example.taskmanager.ui.newTask.entities.NewTask
 import dagger.hilt.android.AndroidEntryPoint
 import java.sql.Time
 
@@ -42,7 +43,7 @@ class NewTaskFragment : Fragment() {
 
         binding.iconRecycler.adapter = userIconAdapter
 
-        Log.e("e", viewModel.toString())
+
 
         userAdapter.setOnItemClickListener {
             viewModel.setCurrentMember(it)
@@ -64,7 +65,7 @@ class NewTaskFragment : Fragment() {
             if (it.toString().length > 2)
                 viewModel.setMemberSearch(it.toString())
             if (binding.forEditText.isFocused)
-            setRecyclerVisible()
+                setRecyclerVisible()
         }
         viewModel.currentMember.observe(this.viewLifecycleOwner) {
             binding.forEditText.setText(it.username)
@@ -95,7 +96,7 @@ class NewTaskFragment : Fragment() {
             if (it.toString().length > 2)
                 viewModel.setProjectSearch(it.toString())
             if (binding.inEditText.isFocused)
-            setRecyclerVisible()
+                setRecyclerVisible()
         }
         viewModel.projects.observe(this.viewLifecycleOwner) {
             when (it) {
@@ -132,12 +133,26 @@ class NewTaskFragment : Fragment() {
 
         binding.buttonTime.setOnClickListener {
             //todo add change logic
-            TimePickerFragment().show(childFragmentManager,"TimePicker")
-            DatePickerFragment().show(childFragmentManager,"DatePicker")
+            //TimePickerFragment().show(childFragmentManager,"TimePicker")
+            DatePickerFragment().show(childFragmentManager, "DatePicker")
         }
 
         viewModel.date.observe(this.viewLifecycleOwner) {
             binding.buttonTime.text = viewModel.date.value
+        }
+
+        binding.buttonAddTask.setOnClickListener {
+            if (!binding.titleEditText.text.isNullOrEmpty() && !binding.descriptionEditText.text.isNullOrEmpty())
+                viewModel.createTask(
+                    binding.titleEditText.text.toString(), binding.descriptionEditText.text.toString()
+                )
+            else
+                Toast.makeText(
+                    context,
+                    "Title or description is empty",
+                    Toast.LENGTH_SHORT
+                ).show()
+
         }
 
         return binding.root

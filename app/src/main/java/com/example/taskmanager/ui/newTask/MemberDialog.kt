@@ -27,7 +27,7 @@ class MemberDialog : DialogFragment() {
         binding = MemberDialogBinding.inflate(inflater, container, false)
         binding.recycler.layoutManager = LinearLayoutManager(context)
 
-        Log.e("e",viewModel.toString())
+
 
         val userAdapter = UserAdapter()
         binding.recycler.adapter = userAdapter
