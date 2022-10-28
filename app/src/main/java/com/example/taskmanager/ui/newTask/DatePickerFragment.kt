@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import java.text.SimpleDateFormat
 import java.util.*
 
 class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
@@ -24,10 +23,10 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         val c = Calendar.getInstance()
-        c.set(year,month,day,1,1,1)
-        c.time
-        val date = SimpleDateFormat("yyyy-MM-dd",Locale.getDefault()).format(Date(1000L))
-        viewModel.setDate(date)
+        c.set(year, month, day, 1, 1, 1)
+        if (c.time > Calendar.getInstance().time)
+            viewModel.setDate(c.time)
+        else viewModel.setException("Set date in future")
         dialog?.dismiss()
     }
 }

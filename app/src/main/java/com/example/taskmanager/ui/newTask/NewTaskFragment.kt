@@ -1,22 +1,22 @@
 package com.example.taskmanager.ui.newTask
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanager.databinding.NewTaskFragmentBinding
 import com.example.taskmanager.dto.NetworkResult
-import com.example.taskmanager.ui.newTask.entities.NewTask
 import dagger.hilt.android.AndroidEntryPoint
-import java.sql.Time
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class NewTaskFragment : Fragment() {
@@ -24,8 +24,6 @@ class NewTaskFragment : Fragment() {
     private lateinit var binding: NewTaskFragmentBinding
     private val viewModel: NewTaskViewModel by activityViewModels()
 
-
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -138,21 +136,30 @@ class NewTaskFragment : Fragment() {
         }
 
         viewModel.date.observe(this.viewLifecycleOwner) {
-            binding.buttonTime.text = viewModel.date.value
+            binding.buttonTime.text = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(viewModel.date.value?.time)
         }
 
         binding.buttonAddTask.setOnClickListener {
-            if (!binding.titleEditText.text.isNullOrEmpty() && !binding.descriptionEditText.text.isNullOrEmpty())
+            if (!binding.titleEditText.text.isNullOrEmpty() && !binding.descriptionEditText.text.isNullOrEmpty()) {
                 viewModel.createTask(
                     binding.titleEditText.text.toString(), binding.descriptionEditText.text.toString()
                 )
-            else
+                findNavController().popBackStack()
+            } else
+                viewModel.setException(
+                    "Title or description is empty"
+                )
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.currentException.collect {
                 Toast.makeText(
                     context,
-                    "Title or description is empty",
+                    "Error: $it",
                     Toast.LENGTH_SHORT
                 ).show()
 
+            }
         }
 
         return binding.root

@@ -9,12 +9,16 @@ import com.example.taskmanager.ui.newTask.entities.NewTask
 import com.example.taskmanager.ui.newTask.entities.Project
 import com.example.taskmanager.ui.task.entities.TaskMember
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class NewTaskViewModel @Inject constructor(private val repository: NewTaskRepository) :
     ViewModel() {
+
+    var currentException = MutableSharedFlow<String>()
 
     private var _taskMemberList = MutableLiveData<MutableList<TaskMember>>()
     val taskMemberList: LiveData<MutableList<TaskMember>> = _taskMemberList
@@ -37,14 +41,17 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     private var _currentProjectSearch = MutableLiveData<String>()
     val currentProjectSearch: LiveData<String> = _currentProjectSearch
 
-    private var _date = MutableLiveData<String>()
-    val date: LiveData<String> = _date
+    private var _date = MutableLiveData<Date>()
+    val date: LiveData<Date> = _date
 
     init {
         _taskMemberList.value = mutableListOf()
     }
 
-    fun setDate(date: String) {
+    fun setException(exception:String) =
+        viewModelScope.launch { currentException.emit(exception) }
+
+    fun setDate(date: Date) {
         _date.value = date
     }
 
@@ -95,14 +102,14 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
         }
     }
 
-    fun createTask(title:String,description:String) {
-        val task:NewTask
+    fun createTask(title: String, description: String) {
+        val task: NewTask
         try {
             task = NewTask(
                 assignedTo = currentMember.value?.id ?: throw Exception("Member is undefined"),
                 description = description,
                 dueDate = date.value ?: throw Exception("Date is undefined"),
-                members = taskMemberList.value ,
+                members = taskMemberList.value,
                 ownerId = currentMember.value?.id ?: throw Exception("Member is undefined"),
                 projectId = currentProject.value?.id ?: throw Exception("Project is undefined"),
                 title = title
@@ -113,8 +120,8 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
                 }
             }
 
-        } catch(e:Exception){
-            //todo show exception
+        } catch (e: Exception) {
+            e.message?.let { setException(it) }
         }
     }
 

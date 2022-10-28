@@ -13,6 +13,7 @@ import com.example.taskmanager.accounts.AccountsApi
 import com.example.taskmanager.accounts.settings.AppSettings
 import com.example.taskmanager.ui.newTask.NewTaskApi
 import com.example.taskmanager.ui.task.TasksApi
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -58,9 +59,10 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
+        val gson = GsonBuilder().setDateFormat("YYYY-MM-dd'T'hh:mm:ss.ssssss").serializeNulls().create()
         return Retrofit.Builder()
             .baseUrl("https://todolist.dev2.cogniteq.com/api/v1/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()
     }

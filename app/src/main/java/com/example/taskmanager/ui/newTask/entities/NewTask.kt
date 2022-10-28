@@ -3,11 +3,13 @@ package com.example.taskmanager.ui.newTask.entities
 import com.example.taskmanager.ui.newTask.dto.NewTaskRequest
 import com.example.taskmanager.ui.task.entities.TaskAttachment
 import com.example.taskmanager.ui.task.entities.TaskMember
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class NewTask(
     val assignedTo: String,
     val description: String,
-    val dueDate: String,
+    val dueDate: Date,
     val members: List<TaskMember>?,
     var ownerId: String,
     val projectId: String,
