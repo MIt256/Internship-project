@@ -1,4 +1,4 @@
-package com.example.taskmanager.room
+package com.example.taskmanager.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
