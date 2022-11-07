@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.taskmanager.accounts.entities.UserSettings
+import com.example.taskmanager.ui.task.entities.TaskMember
 
 
 @Entity(
@@ -14,21 +15,17 @@ import com.example.taskmanager.accounts.entities.UserSettings
     ]
 )
 data class UserDbEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = false) val id: String,
     val email: String,
     val username: String,
     @ColumnInfo(name = "avatar_path") val avatarPath: String,
-    @ColumnInfo(name = "created_at") val createdAt: String,
+    @ColumnInfo(name = "created_at") val createdAt: String
 ) {
-    //todo add mappers
-    fun toUserSettings() = UserSettings(
+    fun toUserSettings() = TaskMember(
         avatarUrl = avatarPath,
         email = email,
-        id = id.toString(),
+        id = id,
         username = username,
-        accessToken = null,
-        expiresIn = null,
-        refreshToken = null,
-        tokenType = null
+        createdAt = createdAt
     )
 }
