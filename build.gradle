@@ -1,4 +1,7 @@
 buildscript {
+
+    ext.room_version = "2.4.3"
+
     repositories {
         google()
     }
