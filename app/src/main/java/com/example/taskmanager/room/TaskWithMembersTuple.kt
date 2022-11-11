@@ -16,7 +16,7 @@ data class TaskWithMembersTuple(
         associateBy = Junction(
             value = TaskMemberDbEntity::class,
             parentColumn = "task_id",
-            entityColumn = "User_id"
+            entityColumn = "user_id"
         )
 
     )
