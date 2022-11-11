@@ -2,6 +2,7 @@ package com.example.taskmanager.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.taskmanager.room.dao.ProjectsDao
 import com.example.taskmanager.room.dao.TasksDao
 import com.example.taskmanager.room.dao.UsersDao
 import com.example.taskmanager.room.entities.ProjectDbEntity
@@ -23,4 +24,6 @@ abstract class TaskManagerDatabase : RoomDatabase() {
     abstract fun getUsersDao(): UsersDao
 
     abstract fun getTasksDao(): TasksDao
+
+    abstract fun getProjectsDao(): ProjectsDao
 }
