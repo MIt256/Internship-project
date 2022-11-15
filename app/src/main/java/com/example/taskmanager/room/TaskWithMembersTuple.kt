@@ -20,7 +20,7 @@ data class TaskWithMembersTuple(
         )
 
     )
-    val members: List<UserDbEntity>
+    val members: List<UserDbEntity>?
 ) {
 
 }
