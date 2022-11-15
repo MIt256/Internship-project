@@ -41,7 +41,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             appContext,
             TaskManagerDatabase::class.java,
-            "Database"
+            "database.db"
         ).build()
     }
 }

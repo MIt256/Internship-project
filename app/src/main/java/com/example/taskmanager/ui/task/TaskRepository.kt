@@ -1,5 +1,6 @@
 package com.example.taskmanager.ui.task
 
+import android.util.Log
 import com.example.taskmanager.accounts.settings.AppSettings
 import com.example.taskmanager.dto.NetworkResult
 import com.example.taskmanager.room.dao.TasksDao
@@ -22,14 +23,20 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
 
     suspend fun fetchTasksAndSave() {
         val response = tasksApi.fetchUserTasks(settings.getCurrentId())
+        Log.e("SyncWorker", "Error,fetch")
         addTasksAndUsersToLocalDb(response.toTaskList())
     }
 
     suspend fun addTasksAndUsersToLocalDb(tasks: List<Task>) {
-        tasksDao.addAllTasks(tasks.map { it.toTaskDbEntity() })
-        tasks.map {
-            usersDao.addAllUsers(it.toUserDbList() ?: return)
+        Log.e("SyncWorker", "$tasks")
+        Log.e("SyncWorker", "addUsers")
+        tasks.forEach {
+            val list = it.toUserDbList()
+            if (list != null)
+                usersDao.addAllUsers(list)
         }
+        tasksDao.addAllTasks(tasks.map { it.toTaskDbEntity() })
+        Log.e("SyncWorker", "addUsersEnd")
     }
 
 
