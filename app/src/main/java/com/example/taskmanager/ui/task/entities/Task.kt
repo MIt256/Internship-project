@@ -34,7 +34,9 @@ data class Task(
         createdAt = createdAt
     )
 
-    fun toUserDbList() = members?.map { it.toUserDbEntity()}
+    fun toUserDbList(): List<UserDbEntity>? {
+        return members?.map { it.toUserDbEntity() }
+    }
 }
 
 data class TaskAttachment(
