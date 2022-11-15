@@ -1,10 +1,8 @@
 package com.example.taskmanager.ui.newTask.entities
 
 import com.example.taskmanager.ui.newTask.dto.NewTaskRequest
-import com.example.taskmanager.ui.task.entities.TaskAttachment
 import com.example.taskmanager.ui.task.entities.TaskMember
 import java.util.*
-import kotlin.collections.ArrayList
 
 data class NewTask(
     val assignedTo: String,
@@ -16,8 +14,7 @@ data class NewTask(
     val title: String
 ) {
     fun toNewTaskRequest(): NewTaskRequest {
-        val tmpMembersId = ArrayList<String>()
-        members?.forEach { tmpMembersId.add(it.id) }
+        val tmpMembersId = members?.map { it.id }
         return NewTaskRequest(
             assignedTo = assignedTo,
             description = description,

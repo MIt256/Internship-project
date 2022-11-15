@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.taskmanager.dto.NetworkResult
 import com.example.taskmanager.ui.newTask.entities.NewTask
 import com.example.taskmanager.ui.newTask.entities.Project
 import com.example.taskmanager.ui.task.entities.TaskMember
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -23,8 +23,8 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     private var _taskMemberList = MutableLiveData<MutableList<TaskMember>>()
     val taskMemberList: LiveData<MutableList<TaskMember>> = _taskMemberList
 
-    private var _members = MutableLiveData<NetworkResult<List<TaskMember>>>()
-    val members: LiveData<NetworkResult<List<TaskMember>>> = _members
+    private var _members = MutableLiveData<List<TaskMember>>()
+    val members: LiveData<List<TaskMember>> = _members
 
     private var _currentMemberSearch = MutableLiveData<String>()
     private val currentMemberSearch: LiveData<String> = _currentMemberSearch
@@ -32,8 +32,8 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     private var _currentMember = MutableLiveData<TaskMember>()
     val currentMember: LiveData<TaskMember> = _currentMember
 
-    private var _projects = MutableLiveData<NetworkResult<List<Project>>>()
-    val projects: LiveData<NetworkResult<List<Project>>> = _projects
+    private var _projects = MutableLiveData<List<Project>>()
+    val projects: LiveData<List<Project>> = _projects
 
     private var _currentProject = MutableLiveData<Project>()
     val currentProject: LiveData<Project> = _currentProject
@@ -48,7 +48,7 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
         _taskMemberList.value = mutableListOf()
     }
 
-    fun setException(exception:String) =
+    fun setException(exception: String) =
         viewModelScope.launch { currentException.emit(exception) }
 
     fun setDate(date: Date) {
@@ -56,7 +56,7 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     }
 
     fun addMember(memberPosition: Int) {
-        val item = (members.value as NetworkResult.Success<List<TaskMember>>).data[memberPosition]
+        val item = members.value?.get(memberPosition)
         if (_taskMemberList.value?.contains(item) != true)
             _taskMemberList.value = (_taskMemberList.value?.plus(item)
                 ?: mutableListOf(item)) as MutableList<TaskMember>?
@@ -73,32 +73,35 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     }
 
     fun setCurrentProject(position: Int) {
-        _currentProject.value =
-            (projects.value as NetworkResult.Success<List<Project>>).data[position]
+        _currentProject.value = projects.value?.get(position)
     }
 
     fun setCurrentMember(position: Int) {
         _currentMember.value =
-            (members.value as NetworkResult.Success<List<TaskMember>>).data[position]
+            members.value?.get(position)
     }
 
     private fun searchMembers() {
         viewModelScope.launch {
-            repository.searchTaskMembers(currentMemberSearch.value.toString()).collect {
-                //todo add try/catch for exceptions
-                _members.postValue(it)
+            try {
+                repository.searchTaskMembers(currentMemberSearch.value.toString()).collect {
+                    _members.value = it
+                }
+            } catch (exception: Exception) {
+                exception.message?.let { setException(it) }
             }
-
         }
     }
 
     private fun searchProjects() {
         viewModelScope.launch {
-            repository.searchProjects(currentProjectSearch.value.toString()).collect {
-                //todo add try/catch for exceptions
-                _projects.postValue(it)
+            try {
+                repository.searchProjects(currentProjectSearch.value.toString()).collect {
+                    _projects.value = it
+                }
+            }  catch (exception: Exception) {
+                exception.message?.let { setException(it) }
             }
-
         }
     }
 
@@ -115,8 +118,12 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
                 title = title
             )
             viewModelScope.launch {
-                repository.createNewTask(task).collect {
-                    //todo add collect?
+                try {
+                    repository.createNewTask(task).collect{
+                       setException(it)
+                    }
+                } catch (exception: Exception) {
+                    throw exception
                 }
             }
 

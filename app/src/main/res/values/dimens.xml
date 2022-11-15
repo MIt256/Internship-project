@@ -2,4 +2,29 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="fragment_toolbar_text_size">18sp</dimen>
+    <dimen name="fragment_card_view_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_card_view_vertical_margin">24dp</dimen>
+    <dimen name="fragment_main_corner_radius">5dp</dimen>
+
+    <dimen name="fragment_main_text_size">18sp</dimen>
+    <dimen name="fragment_secondary_text_size">12sp</dimen>
+
+    <dimen name="fragment_elements_main_margin">32dp</dimen>
+    <dimen name="fragment_elements_secondary_margin">16dp</dimen>
+    <dimen name="fragment_elements_small_margin">8dp</dimen>
+
+    <dimen name="fragment_edit_text_padding">10dp</dimen>
+    <dimen name="fragment_edit_text_horizontal_padding">32dp</dimen>
+    <dimen name="fragment_edit_text_vertical_padding">16dp</dimen>
+    <dimen name="fragment_edit_text_size">14sp</dimen>
+    <dimen name="fragment_edit_text_line_spacing">10sp</dimen>
+    <dimen name="fragment_edit_text_small_padding">8dp</dimen>
+
+    <dimen name="fragment_button_inset_vertical">10dp</dimen>
+    <dimen name="fragment_button_inset_horizontal">8dp</dimen>
+    <dimen name="fragment_button_padding">8dp</dimen>
+    <dimen name="fragment_button_text_size">12sp</dimen>
+
 </resources>

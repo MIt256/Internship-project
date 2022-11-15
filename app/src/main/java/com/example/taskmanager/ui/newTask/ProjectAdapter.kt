@@ -5,14 +5,16 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ProjectListItemBinding
 import com.example.taskmanager.ui.newTask.entities.Project
+import com.example.taskmanager.ui.task.entities.TaskMember
 
-class ProjectAdapter() : RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>() {
+class ProjectAdapter() : ListAdapter<Project, ProjectAdapter.ProjectViewHolder>(ProjectItemDiffCallback()) {
 
-    private var projects = mutableListOf<Project>()
     private var onItemClickListener: ((Int) -> Unit)? = null
     fun setOnItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
@@ -38,16 +40,13 @@ class ProjectAdapter() : RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>(
                 it(position)
             }
         }
-        holder.bind(projects[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return projects.size
-    }
+    class ProjectItemDiffCallback : DiffUtil.ItemCallback<Project>() {
+        override fun areItemsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem == newItem
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setProjects(projectList: List<Project>) {
-        projects = projectList.toMutableList()
-        notifyDataSetChanged()
+        override fun areContentsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem == newItem
+
     }
 }

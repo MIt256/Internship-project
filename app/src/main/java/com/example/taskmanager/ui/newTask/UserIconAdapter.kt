@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.taskmanager.R
@@ -11,9 +13,8 @@ import com.example.taskmanager.databinding.MemberIconListItemBinding
 import com.example.taskmanager.databinding.MemberListItemBinding
 import com.example.taskmanager.ui.task.entities.TaskMember
 
-class UserIconAdapter () : RecyclerView.Adapter<UserIconAdapter.UserIconViewHolder>() {
+class UserIconAdapter () : ListAdapter<TaskMember, UserIconAdapter.UserIconViewHolder>(UserIconItemDiffCallback()) {
 
-    private var users = listOf<TaskMember>()
     private var onItemClickListener: ((Int) -> Unit)? = null
     fun setOnItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
@@ -41,16 +42,12 @@ class UserIconAdapter () : RecyclerView.Adapter<UserIconAdapter.UserIconViewHold
                 it(position)
             }
         }
-        holder.bind(users[position])
+        holder.bind(getItem(position))
     }
+    class UserIconItemDiffCallback : DiffUtil.ItemCallback<TaskMember>() {
+        override fun areItemsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
 
-    override fun getItemCount(): Int {
-        return users.size
-    }
+        override fun areContentsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setUsers(memberList: List<TaskMember>) {
-        users = memberList.toMutableList()
-        notifyDataSetChanged()
     }
 }

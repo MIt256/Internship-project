@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanager.databinding.NewTaskFragmentBinding
-import com.example.taskmanager.dto.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -35,13 +34,16 @@ class NewTaskFragment : Fragment() {
         binding.iconRecycler.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val userAdapter = UserAdapter()
         val projectAdapter = ProjectAdapter()
         val userIconAdapter = UserIconAdapter()
-
         binding.iconRecycler.adapter = userIconAdapter
-
-
 
         userAdapter.setOnItemClickListener {
             viewModel.setCurrentMember(it)
@@ -68,27 +70,16 @@ class NewTaskFragment : Fragment() {
         viewModel.currentMember.observe(this.viewLifecycleOwner) {
             binding.forEditText.setText(it.username)
         }
-        viewModel.members.observe(this.viewLifecycleOwner) {
-            when (it) {
-                is NetworkResult.Loading -> {
-                    //todo add loading
-                }
+//        viewModel.members.observe(this.viewLifecycleOwner) {
+//            binding.recyclerView.adapter = userAdapter
+//            userAdapter.setUsers(it)
+//        }
 
-                is NetworkResult.Failure -> {
-                    //todo add error
-                    Toast.makeText(
-                        context,
-                        "Something was wrong: ${it.errorMessage}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                is NetworkResult.Success -> {
-                    binding.recyclerView.adapter = userAdapter
-                    userAdapter.setUsers(it.data)
-                }
-            }
+        viewModel.members.observe(viewLifecycleOwner){
+            binding.recyclerView.adapter = userAdapter
+            userAdapter.submitList(it)
         }
+
 
         binding.inEditText.doAfterTextChanged {
             if (it.toString().length > 2)
@@ -97,25 +88,9 @@ class NewTaskFragment : Fragment() {
                 setRecyclerVisible()
         }
         viewModel.projects.observe(this.viewLifecycleOwner) {
-            when (it) {
-                is NetworkResult.Loading -> {
-                    //todo add loading
-                }
+            binding.recyclerView.adapter = projectAdapter
+            projectAdapter.submitList(it)
 
-                is NetworkResult.Failure -> {
-                    //todo add error
-                    Toast.makeText(
-                        context,
-                        "Something was wrong: ${it.errorMessage}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                is NetworkResult.Success -> {
-                    binding.recyclerView.adapter = projectAdapter
-                    projectAdapter.setProjects(it.data)
-                }
-            }
         }
         viewModel.currentProject.observe(this.viewLifecycleOwner) {
             binding.inEditText.setText(it.title)
@@ -126,7 +101,7 @@ class NewTaskFragment : Fragment() {
         }
 
         viewModel.taskMemberList.observe(this.viewLifecycleOwner) {
-            userIconAdapter.setUsers(it)
+            userIconAdapter.submitList(it)
         }
 
         binding.buttonTime.setOnClickListener {
@@ -144,7 +119,6 @@ class NewTaskFragment : Fragment() {
                 viewModel.createTask(
                     binding.titleEditText.text.toString(), binding.descriptionEditText.text.toString()
                 )
-                findNavController().popBackStack()
             } else
                 viewModel.setException(
                     "Title or description is empty"
@@ -153,16 +127,17 @@ class NewTaskFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.currentException.collect {
-                Toast.makeText(
-                    context,
-                    "Error: $it",
-                    Toast.LENGTH_SHORT
-                ).show()
-
+                if (it == "Success")
+                    findNavController().popBackStack()
+                else
+                    Toast.makeText(
+                        context,
+                        "Error: $it",
+                        Toast.LENGTH_SHORT
+                    ).show()
             }
         }
 
-        return binding.root
     }
 
     private fun setRecyclerVisible() {

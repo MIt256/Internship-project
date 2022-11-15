@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -15,15 +17,14 @@ import com.example.taskmanager.ui.task.entities.TaskMember
 import java.lang.System.load
 import javax.inject.Inject
 
-class UserAdapter () : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter () : ListAdapter<TaskMember, UserAdapter.UserViewHolder>(UserItemDiffCallback()) {
 
-    private var users = mutableListOf<TaskMember>()
     private var onItemClickListener: ((Int) -> Unit)? = null
     fun setOnItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
     }
 
-    inner class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = MemberListItemBinding.bind(view)
         fun bind(memberItem: TaskMember) = with(binding) {
             binding.email.text = memberItem.email
@@ -49,16 +50,13 @@ class UserAdapter () : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                 it(position)
             }
         }
-        holder.bind(users[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return users.size
-    }
+    class UserItemDiffCallback : DiffUtil.ItemCallback<TaskMember>() {
+        override fun areItemsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setUsers(memberList: List<TaskMember>) {
-        users = memberList.toMutableList()
-        notifyDataSetChanged()
+        override fun areContentsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
+
     }
 }
