@@ -1,5 +1,7 @@
 package com.example.taskmanager.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.taskmanager.room.TaskManagerDatabase
 import com.example.taskmanager.room.dao.ProjectsDao
 import com.example.taskmanager.room.dao.TasksDao
@@ -7,6 +9,7 @@ import com.example.taskmanager.room.dao.UsersDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -32,4 +35,13 @@ object DatabaseModule {
         return appDatabase.getProjectsDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): TaskManagerDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            TaskManagerDatabase::class.java,
+            "Database"
+        ).build()
+    }
 }

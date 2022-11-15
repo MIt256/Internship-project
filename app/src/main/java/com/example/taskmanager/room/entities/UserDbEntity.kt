@@ -18,7 +18,7 @@ data class UserDbEntity(
     @PrimaryKey(autoGenerate = false) val id: String,
     val email: String,
     val username: String,
-    @ColumnInfo(name = "avatar_path") val avatarPath: String,
+    @ColumnInfo(name = "avatar_path") val avatarPath: String?,
     @ColumnInfo(name = "created_at") val createdAt: String
 ) {
     fun toUserSettings() = TaskMember(

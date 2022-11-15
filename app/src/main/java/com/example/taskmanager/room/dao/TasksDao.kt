@@ -16,8 +16,8 @@ interface TasksDao {
     fun getTaskMembers(taskId: String): Flow<List<UserDbEntity?>>
 
     @Transaction
-    @Query("SELECT * FROM tasks WHERE tasks.id = :taskId")
-    fun getTaskWithMembers(taskId: String): Flow<TaskWithMembersTuple>
+    @Query("SELECT * FROM tasks WHERE owner_id = :ownerId")
+    fun getTasksWithMembers(ownerId: String): Flow<List<TaskWithMembersTuple>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTask(task:TaskDbEntity)
