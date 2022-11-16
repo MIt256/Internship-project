@@ -15,7 +15,6 @@
         android:background="@color/app_red"
         android:navigationIcon="@drawable/ic_back_arrow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,7 +26,7 @@
             android:fontFamily="@font/roboto_light_italic"
             android:text="@string/toolbar_new_task_text"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="@dimen/fragment_toolbar_text_size" />
 
 
     </Toolbar>
@@ -53,258 +52,259 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="5dp"
+        android:layout_marginStart="@dimen/fragment_card_view_horizontal_margin"
+        android:layout_marginTop="@dimen/fragment_card_view_vertical_margin"
+        android:layout_marginEnd="@dimen/fragment_card_view_horizontal_margin"
+        android:layout_marginBottom="@dimen/fragment_card_view_vertical_margin"
+        app:cardCornerRadius="@dimen/fragment_main_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <ScrollView
-            android:id="@+id/scroll_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/for_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                android:layout_marginTop="@dimen/fragment_elements_main_margin"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/for_text"
+                android:textSize="@dimen/fragment_main_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/for_edit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
+                android:background="@drawable/rounded_shape"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/assignee_text"
+                android:inputType="text"
+                android:maxLength="16"
+                android:padding="@dimen/fragment_edit_text_padding"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_black"
+                android:textSize="@dimen/fragment_secondary_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/for_text_view"
+                app:layout_constraintStart_toEndOf="@+id/for_text_view"
+                app:layout_constraintTop_toTopOf="@+id/for_text_view" />
+
+            <TextView
+                android:id="@+id/in_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_elements_main_margin"
+                android:layout_marginEnd="@dimen/fragment_elements_secondary_margin"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/in_text"
+                android:textSize="@dimen/fragment_main_text_size"
+                app:layout_constraintEnd_toStartOf="@+id/in_edit_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/in_edit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                android:background="@drawable/rounded_shape"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/project_text"
+                android:inputType="text"
+                android:maxLength="16"
+                android:padding="@dimen/fragment_edit_text_padding"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_black"
+                android:textSize="@dimen/fragment_secondary_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/in_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/in_text_view" />
+
+            <ScrollView
+                android:id="@+id/scroll_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/for_edit_text"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="-16dp">
 
-                <androidx.constraintlayout.widget.Group
-                    android:id="@+id/gone_groupe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:constraint_referenced_ids="title_edit_text,description_text,description_edit_text,due_date_text,button_time,add_member_text,add_member_edit_text,image_add_user,button_add_task" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/for_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="@font/roboto_light_italic"
-                    android:text="@string/for_text"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/gone_groupe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:constraint_referenced_ids="title_edit_text,description_text,description_edit_text,due_date_text,button_time,add_member_text,image_add_user,button_add_task,icon_recycler" />
 
-                <EditText
-                    android:id="@+id/for_edit_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:background="@drawable/rounded_shape"
-                    android:fontFamily="@font/roboto_medium"
-                    android:hint="@string/assignee_text"
-                    android:inputType="text"
-                    android:maxLength="10"
-                    android:padding="10dp"
-                    android:textColor="@color/text_black"
-                    android:textColorHint="@color/text_black"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/for_text_view"
-                    app:layout_constraintStart_toEndOf="@+id/for_text_view"
-                    app:layout_constraintTop_toTopOf="@+id/for_text_view" />
+                    <EditText
+                        android:id="@+id/title_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/lite_grey"
+                        android:ems="10"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:hint="@string/title_hint"
+                        android:inputType="text"
+                        android:paddingLeft="@dimen/fragment_edit_text_horizontal_padding"
+                        android:paddingTop="@dimen/fragment_edit_text_vertical_padding"
+                        android:paddingRight="@dimen/fragment_edit_text_horizontal_padding"
+                        android:paddingBottom="@dimen/fragment_edit_text_vertical_padding"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/in_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/roboto_light_italic"
-                    android:text="@string/in_text"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@+id/in_edit_text"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/description_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_main_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/description_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_edit_text" />
 
-                <EditText
-                    android:id="@+id/in_edit_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/rounded_shape"
-                    android:fontFamily="@font/roboto_medium"
-                    android:hint="@string/project_text"
-                    android:inputType="text"
-                    android:maxLength="10"
-                    android:padding="10dp"
-                    android:textColor="@color/text_black"
-                    android:textColorHint="@color/text_black"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/in_text_view"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/in_text_view" />
+                    <EditText
+                        android:id="@+id/description_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
+                        android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                        android:background="@drawable/rectangle_shape"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:lineSpacingExtra="@dimen/fragment_edit_text_line_spacing"
+                        android:minLines="3"
+                        android:padding="@dimen/fragment_edit_text_small_padding"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/fragment_edit_text_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/description_text" />
 
-                <EditText
-                    android:id="@+id/title_edit_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:background="@color/lite_grey"
-                    android:ems="10"
-                    android:fontFamily="@font/roboto_light_italic"
-                    android:hint="@string/title_hint"
-                    android:inputType="text"
-                    android:paddingLeft="32dp"
-                    android:paddingTop="16dp"
-                    android:paddingRight="32dp"
-                    android:paddingBottom="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/for_text_view" />
+                    <TextView
+                        android:id="@+id/due_date_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/due_date_text"
+                        android:textColor="@color/text_black"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/button_time"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/button_time" />
 
-                <TextView
-                    android:id="@+id/description_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/description_text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title_edit_text" />
+                    <Button
+                        android:id="@+id/button_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
+                        android:backgroundTint="@color/blue_button"
+                        android:insetLeft="@dimen/fragment_button_inset_horizontal"
+                        android:insetTop="@dimen/fragment_button_inset_vertical"
+                        android:insetRight="@dimen/fragment_button_inset_horizontal"
+                        android:insetBottom="@dimen/fragment_button_inset_vertical"
+                        android:padding="@dimen/fragment_button_padding"
+                        android:text="@string/anytime_button_text"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fragment_button_text_size"
+                        app:layout_constraintStart_toEndOf="@+id/due_date_text"
+                        app:layout_constraintTop_toBottomOf="@+id/description_edit_text" />
 
-                <EditText
-                    android:id="@+id/description_edit_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/rectangle_shape"
-                    android:fontFamily="@font/roboto_medium"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:lineSpacingExtra="10sp"
-                    android:minLines="3"
-                    android:padding="8dp"
-                    android:textColor="@color/text_black"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/description_text" />
+                    <TextView
+                        android:id="@+id/add_member_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_main_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/add_member_text"
+                        android:textColor="@color/text_black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/button_time" />
 
-                <TextView
-                    android:id="@+id/due_date_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/due_date_text"
-                    android:textColor="@color/text_black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/button_time"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/button_time" />
+                    <ImageView
+                        android:id="@+id/image_add_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_small_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
+                        android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                        android:src="@drawable/ic_add_member"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icon_recycler"
+                        app:layout_constraintTop_toBottomOf="@+id/add_member_text" />
 
-                <Button
-                    android:id="@+id/button_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="@color/blue_button"
-                    android:insetLeft="8dp"
-                    android:insetTop="10dp"
-                    android:insetRight="8dp"
-                    android:insetBottom="10dp"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="0dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="@string/anytime_button_text"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@+id/due_date_text"
-                    app:layout_constraintTop_toBottomOf="@+id/description_edit_text" />
+                    <Button
+                        android:id="@+id/button_add_task"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_main_margin"
+                        android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                        android:layout_marginBottom="@dimen/fragment_elements_main_margin"
+                        android:backgroundTint="@color/app_red"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:text="@string/add_task_button_text"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_add_user" />
 
-                <TextView
-                    android:id="@+id/add_member_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/add_member_text"
-                    android:textColor="@color/text_black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button_time" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/lite_grey"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/add_member_edit_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/rounded_shape"
-                    android:focusable="false"
-                    android:fontFamily="@font/roboto_medium"
-                    android:hint="@string/anyone_hint"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textColor="@color/text_black"
-                    android:textColorHint="@color/text_black"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/add_member_text" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/icon_recycler"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
+                        android:orientation="horizontal"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/image_add_user"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/add_member_text" />
 
-                <ImageView
-                    android:id="@+id/image_add_user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:src="@drawable/ic_add_member"
-                    app:layout_constraintBottom_toBottomOf="@+id/add_member_edit_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/add_member_edit_text"
-                    app:layout_constraintTop_toTopOf="@+id/add_member_edit_text" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <Button
-                    android:id="@+id/button_add_task"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="32dp"
-                    android:backgroundTint="@color/app_red"
-                    android:fontFamily="@font/roboto_light_italic"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/add_task_button_text"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/add_member_edit_text" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="32dp"
-                    android:background="@color/lite_grey"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/for_text_view" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
     </androidx.cardview.widget.CardView>
 
 
