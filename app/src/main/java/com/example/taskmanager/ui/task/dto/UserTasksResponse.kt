@@ -18,12 +18,6 @@ data class UserTasksResponse(
     }
 }
 
-data class OneTaskResponse(
-    val `data`: TasksData
-) {
-    fun toTask(): Task = data.toTask()
-}
-
 data class TasksData(
     @SerializedName("assigned_to")
     val assignedTo: String?,

@@ -6,7 +6,6 @@
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/background_splash.xml" value="0.119" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_active_task.xml" value="0.3675" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_add_member.xml" value="0.2485" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_back_arrow.xml" value="0.231" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_bottom_one_walkthrough.xml" value="0.3675" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/drawable/ic_bottom_three_walkthrough.xml" value="0.3675" />
@@ -48,12 +47,8 @@
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_successful.xml" value="0.33" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_task.xml" value="0.25" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/fragment_walkthrough.xml" value="0.2" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/member_dialog.xml" value="0.30547550432276654" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/member_icon_list_item.xml" value="1.5" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/member_list_item.xml" value="0.4892086330935252" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/new_task_fragment.xml" value="0.22" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/project_list_item.xml" value="0.33" />
-        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/task_list_item.xml" value="0.5" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/new_task_fragment.xml" value="0.33" />
+        <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/task_list_item.xml" value="0.33" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/layout/walkthrough_item.xml" value="0.25" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/InternshipTaskManager/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.231" />
