@@ -9,15 +9,15 @@ import com.example.taskmanager.ui.newTask.entities.Project
 
 @Entity(
     tableName = "projects",
-    foreignKeys = [
-        ForeignKey(
-            entity = UserDbEntity::class,
-            parentColumns = ["id"],
-            childColumns = ["owner_id"],
-            onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
-        )
-    ]
+//    foreignKeys = [
+//        ForeignKey(
+//            entity = UserDbEntity::class,
+//            parentColumns = ["id"],
+//            childColumns = ["owner_id"],
+//            onDelete = ForeignKey.CASCADE,
+//            onUpdate = ForeignKey.CASCADE
+//        )
+//    ]
 )
 data class ProjectDbEntity(
     @PrimaryKey(autoGenerate = false) val id: String,
