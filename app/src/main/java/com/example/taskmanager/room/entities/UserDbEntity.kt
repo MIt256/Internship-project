@@ -4,8 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.taskmanager.accounts.entities.UserSettings
-import com.example.taskmanager.ui.task.entities.TaskMember
+import com.example.taskmanager.ui.task.entities.User
 
 
 @Entity(
@@ -21,7 +20,7 @@ data class UserDbEntity(
     @ColumnInfo(name = "avatar_path") val avatarPath: String?,
     @ColumnInfo(name = "created_at") val createdAt: String
 ) {
-    fun toUserSettings() = TaskMember(
+    fun toUserSettings() = User(
         avatarUrl = avatarPath,
         email = email,
         id = id,

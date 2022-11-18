@@ -13,7 +13,7 @@ data class Task(
     val dueDate: String,
     val id: String,
     val isCompleted: Boolean,
-    val members: List<TaskMember>?,
+    val members: List<User>?,
     val ownerId: String,
     val projectId: String,
     val title: String
@@ -55,7 +55,7 @@ data class TaskAttachment(
     val url: String
 )
 
-data class TaskMember(
+data class User(
     val avatarUrl: String?,
     val createdAt: String,
     val email: String,

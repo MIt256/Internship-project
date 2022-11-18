@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
-    "identityHash": "3ca17226fa839ceb3b4d75b10704d314",
+    "version": 3,
+    "identityHash": "d20281b69c8d990839a1b19837c053fd",
     "entities": [
       {
         "tableName": "users",
@@ -132,24 +132,6 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_tasks_owner_id` ON `${TABLE_NAME}` (`owner_id`)"
-          },
-          {
-            "name": "index_tasks_assigned_to",
-            "unique": false,
-            "columnNames": [
-              "assigned_to"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_tasks_assigned_to` ON `${TABLE_NAME}` (`assigned_to`)"
-          },
-          {
-            "name": "index_tasks_project_id",
-            "unique": false,
-            "columnNames": [
-              "project_id"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_tasks_project_id` ON `${TABLE_NAME}` (`project_id`)"
           }
         ],
         "foreignKeys": [
@@ -229,17 +211,7 @@
           ],
           "autoGenerate": false
         },
-        "indices": [
-          {
-            "name": "index_projects_owner_id",
-            "unique": false,
-            "columnNames": [
-              "owner_id"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_projects_owner_id` ON `${TABLE_NAME}` (`owner_id`)"
-          }
-        ],
+        "indices": [],
         "foreignKeys": [
           {
             "table": "users",
@@ -287,15 +259,6 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_task_members_task_id` ON `${TABLE_NAME}` (`task_id`)"
-          },
-          {
-            "name": "index_task_members_user_id",
-            "unique": false,
-            "columnNames": [
-              "user_id"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_task_members_user_id` ON `${TABLE_NAME}` (`user_id`)"
           }
         ],
         "foreignKeys": [
@@ -327,7 +290,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3ca17226fa839ceb3b4d75b10704d314')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd20281b69c8d990839a1b19837c053fd')"
     ]
   }
 }

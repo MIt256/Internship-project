@@ -1,6 +1,5 @@
 package com.example.taskmanager.ui.newTask
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
-import com.bumptech.glide.load.model.LazyHeaders
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.MemberListItemBinding
-import com.example.taskmanager.databinding.TaskListItemBinding
-import com.example.taskmanager.ui.task.entities.TaskMember
-import java.lang.System.load
-import javax.inject.Inject
+import com.example.taskmanager.ui.task.entities.User
 
-class UserAdapter () : ListAdapter<TaskMember, UserAdapter.UserViewHolder>(UserItemDiffCallback()) {
+class UserAdapter () : ListAdapter<User, UserAdapter.UserViewHolder>(UserItemDiffCallback()) {
 
     private var onItemClickListener: ((Int) -> Unit)? = null
     fun setOnItemClickListener(listener: (Int) -> Unit) {
@@ -26,7 +20,7 @@ class UserAdapter () : ListAdapter<TaskMember, UserAdapter.UserViewHolder>(UserI
 
     class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = MemberListItemBinding.bind(view)
-        fun bind(memberItem: TaskMember) = with(binding) {
+        fun bind(memberItem: User) = with(binding) {
             binding.email.text = memberItem.email
             binding.memberName.text = memberItem.username
 
@@ -53,10 +47,10 @@ class UserAdapter () : ListAdapter<TaskMember, UserAdapter.UserViewHolder>(UserI
         holder.bind(getItem(position))
     }
 
-    class UserItemDiffCallback : DiffUtil.ItemCallback<TaskMember>() {
-        override fun areItemsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
+    class UserItemDiffCallback : DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean = oldItem == newItem
 
     }
 }

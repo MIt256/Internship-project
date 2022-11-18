@@ -6,6 +6,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.lifecycle.viewModelScope
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.example.taskmanager.room.RoomRepository
 import com.example.taskmanager.ui.task.TaskRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 class SyncWorker @AssistedInject constructor(
     @Assisted ctx: Context,
     @Assisted params: WorkerParameters,
-    private val repository: TaskRepository
+    private val repository: RoomRepository
 ) :
     CoroutineWorker(ctx, params) {
 

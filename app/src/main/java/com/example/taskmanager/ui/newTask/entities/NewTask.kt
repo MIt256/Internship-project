@@ -1,14 +1,14 @@
 package com.example.taskmanager.ui.newTask.entities
 
 import com.example.taskmanager.ui.newTask.dto.NewTaskRequest
-import com.example.taskmanager.ui.task.entities.TaskMember
+import com.example.taskmanager.ui.task.entities.User
 import java.util.*
 
 data class NewTask(
     val assignedTo: String,
     val description: String,
     val dueDate: Date,
-    val members: List<TaskMember>?,
+    val members: List<User>?,
     var ownerId: String,
     val projectId: String,
     val title: String

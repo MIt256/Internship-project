@@ -1,6 +1,5 @@
 package com.example.taskmanager.ui.newTask
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.MemberIconListItemBinding
-import com.example.taskmanager.databinding.MemberListItemBinding
-import com.example.taskmanager.ui.task.entities.TaskMember
+import com.example.taskmanager.ui.task.entities.User
 
-class UserIconAdapter () : ListAdapter<TaskMember, UserIconAdapter.UserIconViewHolder>(UserIconItemDiffCallback()) {
+class UserIconAdapter () : ListAdapter<User, UserIconAdapter.UserIconViewHolder>(UserIconItemDiffCallback()) {
 
     private var onItemClickListener: ((Int) -> Unit)? = null
     fun setOnItemClickListener(listener: (Int) -> Unit) {
@@ -22,7 +20,7 @@ class UserIconAdapter () : ListAdapter<TaskMember, UserIconAdapter.UserIconViewH
 
     inner class UserIconViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = MemberIconListItemBinding.bind(view)
-        fun bind(memberItem: TaskMember) {
+        fun bind(memberItem: User) {
             Glide.with(binding.root)
                 .load(memberItem.avatarUrl)
                 .error(R.drawable.ic_no_image)
@@ -44,10 +42,10 @@ class UserIconAdapter () : ListAdapter<TaskMember, UserIconAdapter.UserIconViewH
         }
         holder.bind(getItem(position))
     }
-    class UserIconItemDiffCallback : DiffUtil.ItemCallback<TaskMember>() {
-        override fun areItemsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
+    class UserIconItemDiffCallback : DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: TaskMember, newItem: TaskMember): Boolean = oldItem == newItem
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean = oldItem == newItem
 
     }
 }

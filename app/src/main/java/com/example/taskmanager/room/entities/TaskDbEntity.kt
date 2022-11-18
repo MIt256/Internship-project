@@ -5,31 +5,33 @@ import com.example.taskmanager.ui.task.entities.Task
 
 @Entity(
     tableName = "tasks",
-//    foreignKeys = [
-//        ForeignKey(
-//            entity = UserDbEntity::class,
-//            parentColumns = ["id"],
-//            childColumns = ["assigned_to"],
-//            onDelete = ForeignKey.CASCADE,
-//            onUpdate = ForeignKey.CASCADE
-//        ),
-//        ForeignKey(
-//            entity = UserDbEntity::class,
-//            parentColumns = ["id"],
-//            childColumns = ["owner_id"],
-//            onDelete = ForeignKey.CASCADE,
-//            onUpdate = ForeignKey.CASCADE
-//        ),
-//        ForeignKey(
-//            entity = ProjectDbEntity::class,
-//            parentColumns = ["id"],
-//            childColumns = ["project_id"],
-//            onDelete = ForeignKey.CASCADE,
-//            onUpdate = ForeignKey.CASCADE
-//        )
-//    ],
+    foreignKeys = [
+        ForeignKey(
+            entity = UserDbEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["assigned_to"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = UserDbEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["owner_id"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = ProjectDbEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["project_id"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        )
+    ],
     indices = [
-        Index("owner_id")
+        Index("owner_id"),
+        Index("assigned_to"),
+        Index("project_id")
     ]
 )
 data class TaskDbEntity(

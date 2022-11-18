@@ -11,8 +11,10 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
 import com.example.taskmanager.accounts.AccountsApi
 import com.example.taskmanager.accounts.settings.AppSettings
+import com.example.taskmanager.ui.menu.ProjectApi
 import com.example.taskmanager.ui.newTask.NewTaskApi
 import com.example.taskmanager.ui.task.TasksApi
+import com.example.taskmanager.users.UserApi
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -86,5 +88,16 @@ object NetworkModule {
         return retrofit.create(NewTaskApi::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideApiUserClient(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiProjectClient(retrofit: Retrofit): ProjectApi {
+        return retrofit.create(ProjectApi::class.java)
+    }
 
 }

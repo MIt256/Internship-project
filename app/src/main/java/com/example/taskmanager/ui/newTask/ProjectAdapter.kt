@@ -1,6 +1,5 @@
 package com.example.taskmanager.ui.newTask
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ProjectListItemBinding
 import com.example.taskmanager.ui.newTask.entities.Project
-import com.example.taskmanager.ui.task.entities.TaskMember
 
 class ProjectAdapter() : ListAdapter<Project, ProjectAdapter.ProjectViewHolder>(ProjectItemDiffCallback()) {
 

@@ -1,16 +1,13 @@
 package com.example.taskmanager.ui.task
 
-import android.util.Log
 import com.example.taskmanager.accounts.settings.AppSettings
 import com.example.taskmanager.dto.NetworkResult
-import com.example.taskmanager.room.dao.TasksDao
-import com.example.taskmanager.room.dao.UsersDao
-import com.example.taskmanager.ui.task.entities.Task
+import com.example.taskmanager.room.dao.RoomDao
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private val settings: AppSettings, private val tasksDao: TasksDao, private val usersDao: UsersDao) {
+class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private val settings: AppSettings, private val roomDao: RoomDao) {
 
     suspend fun fetchTasks() = flow {
         emit(NetworkResult.Loading(true))
@@ -21,34 +18,14 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
         emit(NetworkResult.Failure(e.message ?: "Unknown Error"))
     }
 
-    suspend fun fetchTasksAndSave() {
-        val response = tasksApi.fetchUserTasks(settings.getCurrentId())
-        Log.e("SyncWorker", "Error,fetch")
-        addTasksAndUsersToLocalDb(response.toTaskList())
-    }
-
-    private suspend fun addTasksAndUsersToLocalDb(tasks: List<Task>) {
-        Log.e("SyncWorker", "$tasks")
-
-        tasks.forEach {
-            it.toUserDbList()?.forEach { usersDao.addUser(it) }
-            it.toTaskMemberCrossRefList()?.forEach { usersDao.addTaskMemberCrossRef(it) }
-            tasksDao.addTask(it.toTaskDbEntity())
+    suspend fun getTasksFromLocalDb() = flow {
+        emit(NetworkResult.Loading(true))
+        val response = roomDao.getTaskWithMembers(settings.getCurrentId())
+        if (response != null) {
+            emit(NetworkResult.Success(response.map { it.toTask() }))
         }
-
-        Log.e("SyncWorkerGet", "${tasksDao.getTaskWithMembers()}")
-        Log.e("SyncWorker", "addUsersEnd")
+    }.catch { e ->
+        emit(NetworkResult.Failure(e.message ?: "Unknown Error"))
     }
-
-
-//    suspend fun getTasksFromLocalDb() = flow {
-//        emit(NetworkResult.Loading(true))
-//        val response = tasksDao.getTasksWithMembers(settings.getCurrentId())
-//        if (response != null) {
-//            emit(NetworkResult.Success(response.map { it }))
-//        }
-//    }.catch { e ->
-//        emit(NetworkResult.Failure(e.message ?: "Unknown Error"))
-//    }
 
 }

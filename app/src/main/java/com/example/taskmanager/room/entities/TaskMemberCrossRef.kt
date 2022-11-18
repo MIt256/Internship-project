@@ -9,24 +9,25 @@ import androidx.room.Index
 @Entity(
     tableName = "task_members",
     primaryKeys = ["user_id","task_id"],
-//    foreignKeys = [
-//        ForeignKey(
-//            entity = UserDbEntity::class,
-//            parentColumns = ["id"],
-//            childColumns = ["user_id"],
-//            onDelete = ForeignKey.CASCADE,
-//            onUpdate = ForeignKey.CASCADE
-//        ),
-//        ForeignKey(
-//            entity = TaskDbEntity::class,
-//            parentColumns = ["id"],
-//            childColumns = ["task_id"],
-//            onDelete = ForeignKey.CASCADE,
-//            onUpdate = ForeignKey.CASCADE
-//        )
-//    ],
+    foreignKeys = [
+        ForeignKey(
+            entity = UserDbEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["user_id"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = TaskDbEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["task_id"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        )
+    ],
     indices = [
-        Index("task_id")
+        Index("task_id"),
+        Index("user_id")
     ]
 )
 data class TaskMemberCrossRef(
