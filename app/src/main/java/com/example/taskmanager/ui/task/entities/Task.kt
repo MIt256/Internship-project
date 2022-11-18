@@ -1,7 +1,8 @@
 package com.example.taskmanager.ui.task.entities
 
-import com.example.taskmanager.room.TaskWithMembersTuple
 import com.example.taskmanager.room.entities.TaskDbEntity
+import com.example.taskmanager.room.entities.TaskMemberCrossRef
+import com.example.taskmanager.room.entities.TaskWithMembers
 import com.example.taskmanager.room.entities.UserDbEntity
 
 data class Task(
@@ -17,10 +18,17 @@ data class Task(
     val projectId: String,
     val title: String
 ) {
-    fun toTaskTuple() = TaskWithMembersTuple(
+    fun toTaskWithMembersEntity() = TaskWithMembers(
         toTaskDbEntity(),
-        members = toUserDbList()
+        toUserDbList()
     )
+
+    fun toTaskMemberCrossRefList(): List<TaskMemberCrossRef>? {
+        return members?.map { TaskMemberCrossRef(
+            it.id,
+            id
+        ) }
+    }
 
     fun toTaskDbEntity() = TaskDbEntity(
         id = id,

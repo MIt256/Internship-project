@@ -27,15 +27,16 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
         addTasksAndUsersToLocalDb(response.toTaskList())
     }
 
-    suspend fun addTasksAndUsersToLocalDb(tasks: List<Task>) {
+    private suspend fun addTasksAndUsersToLocalDb(tasks: List<Task>) {
         Log.e("SyncWorker", "$tasks")
-        Log.e("SyncWorker", "addUsers")
+
         tasks.forEach {
-            val list = it.toUserDbList()
-            if (list != null)
-                usersDao.addAllUsers(list)
+            it.toUserDbList()?.forEach { usersDao.addUser(it) }
+            it.toTaskMemberCrossRefList()?.forEach { usersDao.addTaskMemberCrossRef(it) }
+            tasksDao.addTask(it.toTaskDbEntity())
         }
-        tasksDao.addAllTasks(tasks.map { it.toTaskDbEntity() })
+
+        Log.e("SyncWorkerGet", "${tasksDao.getTaskWithMembers()}")
         Log.e("SyncWorker", "addUsersEnd")
     }
 

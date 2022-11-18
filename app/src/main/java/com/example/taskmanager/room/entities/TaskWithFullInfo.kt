@@ -19,5 +19,5 @@ data class TaskWithFullInfo(
         parentColumn = "id",
         entityColumn = "project_id"
     )
-    val project: ProjectDbEntity,
+    val project: ProjectDbEntity
 )

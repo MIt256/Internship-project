@@ -9,7 +9,11 @@ data class TaskWithMembers(
     @Relation(
         parentColumn = "id",
         entityColumn = "id",
-        associateBy = Junction(TaskMemberCrossRef::class)
+        associateBy = Junction(
+            TaskMemberCrossRef::class,
+            parentColumn = "task_id",
+            entityColumn = "user_id"
+        )
     )
-    val members: List<UserDbEntity>
+    val members: List<UserDbEntity>?
 )

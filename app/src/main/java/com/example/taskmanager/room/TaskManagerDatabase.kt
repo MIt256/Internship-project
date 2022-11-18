@@ -11,7 +11,7 @@ import com.example.taskmanager.room.entities.TaskMemberCrossRef
 import com.example.taskmanager.room.entities.UserDbEntity
 
 @Database(
-    version = 1,
+    version = 2,
     entities = [
         UserDbEntity::class,
         TaskDbEntity::class,
