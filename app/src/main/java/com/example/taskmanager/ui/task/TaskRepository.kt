@@ -20,7 +20,7 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
 
     suspend fun getTasksFromLocalDb() = flow {
         emit(NetworkResult.Loading(true))
-        val response = roomDao.getTaskWithMembers(settings.getCurrentId())
+        val response = roomDao.getUserTasks(settings.getCurrentId())
         if (response != null) {
             emit(NetworkResult.Success(response.map { it.toTask() }))
         }
