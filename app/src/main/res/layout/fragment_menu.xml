@@ -24,7 +24,16 @@
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_light_italic"
             android:text="@string/toolbar_projects_text"
-            android:textSize="18sp" />
+            android:textSize="@dimen/fragment_main_text_size" />
 
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/project_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,8 +52,8 @@ abstract class RoomDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun addAllProjects(projects: List<ProjectDbEntity>)
 
-    @Query("SELECT * FROM projects WHERE owner_id = :ownerId ")
-    abstract fun getProjects(ownerId: String): Flow<List<ProjectDbEntity?>>
+    @Query("SELECT * FROM projects WHERE owner_id = :ownerId")
+    abstract suspend fun getProjects(ownerId: String): List<ProjectDbEntity>
 
     @Transaction
     open suspend fun addAllSyncInfo(tasks: List<TaskDbEntity>, crossRefs: List<TaskMemberCrossRef>, projects: List<ProjectDbEntity>, users: List<UserDbEntity>){
