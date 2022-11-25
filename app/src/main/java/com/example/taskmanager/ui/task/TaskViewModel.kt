@@ -7,26 +7,32 @@ import androidx.lifecycle.viewModelScope
 import com.example.taskmanager.dto.NetworkResult
 import com.example.taskmanager.ui.task.entities.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
 class TaskViewModel @Inject constructor(private val repository: TaskRepository) : ViewModel() {
 
-    private var _tasks = MutableLiveData<NetworkResult<List<Task>>>()
-    val tasks: LiveData<NetworkResult<List<Task>>> = _tasks
+    var currentException = MutableSharedFlow<String>()
 
-    init {
-        fetchUserTasks()
-    }
+    private var _tasks = MutableLiveData<List<Task>>()
+    val tasks: LiveData<List<Task>> = _tasks
 
-    private fun fetchUserTasks() {
+    fun setException(exception: String) =
+        viewModelScope.launch { currentException.emit(exception) }
+
+    fun fetchTasks() {
         viewModelScope.launch {
-            repository.getTasksFromLocalDb().collect {
-                //todo add try/catch for exceptions
-                _tasks.postValue(it)
+            try {
+                repository.getTasks().collect {
+                    _tasks.postValue(it)
+                }
+            } catch (exception:Exception){
+                exception.message?.let { setException(it) }
             }
-
         }
     }
 

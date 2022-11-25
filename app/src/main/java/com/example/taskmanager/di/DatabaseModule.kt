@@ -28,6 +28,6 @@ object DatabaseModule {
             appContext,
             TaskManagerDatabase::class.java,
             "database.db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }

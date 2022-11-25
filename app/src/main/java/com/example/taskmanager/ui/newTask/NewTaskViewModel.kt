@@ -19,7 +19,7 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
 
     var currentException = MutableSharedFlow<String>()
 
-    private var _taskMemberList = MutableLiveData<MutableList<User>>()
+    private val _taskMemberList = MutableLiveData<MutableList<User>>()
     val taskMemberList: LiveData<MutableList<User>> = _taskMemberList
 
     private var _members = MutableLiveData<List<User>>()

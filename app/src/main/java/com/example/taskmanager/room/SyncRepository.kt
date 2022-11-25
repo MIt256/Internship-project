@@ -11,7 +11,7 @@ import com.example.taskmanager.ui.task.entities.Task
 import com.example.taskmanager.users.UserApi
 import javax.inject.Inject
 
-class RoomRepository @Inject constructor(
+class SyncRepository @Inject constructor(
     private val roomDao: RoomDao,
     private val tasksApi: TasksApi,
     private val userApi: UserApi,
@@ -54,7 +54,7 @@ class RoomRepository @Inject constructor(
             if (it.assignedTo != null)
                 userIdSet += it.assignedTo
         }
-        projects.map { userIdSet += it.ownerId }
+        projects.forEach { userIdSet += it.ownerId }
 
         userIdSet.forEach {
             users.add(userApi.fetchUser(it).data.toUserDbEntity())

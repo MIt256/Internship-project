@@ -42,5 +42,4 @@ data class ProjectData(
         ownerId = ownerId,
         title = title
     )
-
 }

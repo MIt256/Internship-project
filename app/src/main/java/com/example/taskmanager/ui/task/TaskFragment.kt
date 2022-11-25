@@ -8,14 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.databinding.FragmentTaskBinding
-import com.example.taskmanager.dto.NetworkResult
-import com.example.taskmanager.ui.signUp.SignUpFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TaskFragment : Fragment() {
@@ -45,24 +45,22 @@ class TaskFragment : Fragment() {
         }
 
         viewModel.tasks.observe(this.viewLifecycleOwner) {
-            when (it) {
-                is NetworkResult.Loading -> {
-                    //todo add loading
-                }
-
-                is NetworkResult.Failure -> {
-                    //todo add error
-                    Toast.makeText(context, "Something was wrong: ${it.errorMessage}", Toast.LENGTH_SHORT).show()
-                }
-
-                is NetworkResult.Success -> {
-                    //todo add success
-                    tasksAdapter.setTasks(it.data)
-                }
-            }
+            tasksAdapter.setTasks(it)
         }
 
+        lifecycle.coroutineScope.launch {
+            viewModel.fetchTasks()
+        }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.currentException.collect {
+                    Toast.makeText(
+                        context,
+                        "Error: $it",
+                        Toast.LENGTH_SHORT
+                    ).show()
+            }
+        }
 
         return binding.root
     }
