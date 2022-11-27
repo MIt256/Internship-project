@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -32,11 +34,17 @@ class TaskFragment : Fragment() {
         binding = FragmentTaskBinding.inflate(inflater, container, false)
         binding.taskList.layoutManager = LinearLayoutManager(context)
 
-        if (userViewModel.isAuthenticated.value == false) {
-            val action =
-                TaskFragmentDirections.actionNavigationTaskToAuthNavigationGraph()
-            findNavController().navigate(action)
-        }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+//        if (userViewModel.isAuthenticated.value == false) {
+//            val action =
+//                TaskFragmentDirections.actionNavigationTaskToAuthNavigationGraph()
+//            findNavController().navigate(action)
+//        }
 
         val tasksAdapter = TasksAdapter()
         binding.taskList.adapter = tasksAdapter
@@ -48,21 +56,15 @@ class TaskFragment : Fragment() {
             tasksAdapter.setTasks(it)
         }
 
-        lifecycle.coroutineScope.launch {
-            viewModel.fetchTasks()
-        }
+        viewModel.currentException.onEach {
+            Toast.makeText(
+                context,
+                "Error: $it",
+                Toast.LENGTH_SHORT
+            ).show()
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.currentException.collect {
-                    Toast.makeText(
-                        context,
-                        "Error: $it",
-                        Toast.LENGTH_SHORT
-                    ).show()
-            }
-        }
 
-        return binding.root
     }
 
 }
