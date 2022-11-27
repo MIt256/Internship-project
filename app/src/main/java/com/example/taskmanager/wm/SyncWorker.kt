@@ -8,6 +8,8 @@ import androidx.work.WorkerParameters
 import com.example.taskmanager.room.SyncRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 @HiltWorker
 class SyncWorker @AssistedInject constructor(

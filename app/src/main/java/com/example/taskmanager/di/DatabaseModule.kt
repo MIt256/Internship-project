@@ -3,7 +3,6 @@ package com.example.taskmanager.di
 import android.content.Context
 import androidx.room.Room
 import com.example.taskmanager.room.TaskManagerDatabase
-import com.example.taskmanager.room.dao.RoomDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,12 +13,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object DatabaseModule {
-
-    @Provides
-    @Singleton
-    fun provideTasksDao(appDatabase: TaskManagerDatabase): RoomDao {
-        return appDatabase.getTasksDao()
-    }
 
     @Provides
     @Singleton

@@ -2,7 +2,8 @@ package com.example.taskmanager.ui.task
 
 import com.example.taskmanager.accounts.settings.AppSettings
 import com.example.taskmanager.dto.NetworkResult
-import com.example.taskmanager.room.dao.RoomDao
+import com.example.taskmanager.room.TaskManagerDatabase
+import com.example.taskmanager.room.dao.TaskDao
 import com.example.taskmanager.ui.task.entities.Task
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private val settings: AppSettings, private val roomDao: RoomDao) {
+class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private val settings: AppSettings, private val database: TaskManagerDatabase) {
 
     suspend fun fetchTasks() = flow {
         emit(NetworkResult.Loading(true))
@@ -23,7 +24,7 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
 
     suspend fun getTasksFromLocalDb() = flow {
         emit(NetworkResult.Loading(true))
-        val response = roomDao.getUserTasks(settings.getCurrentId())
+        val response = database.getTaskDao().getUserTasks(settings.getCurrentId())
         if (response != null) {
             emit(NetworkResult.Success(response.map { it.toTask() }))
         }
@@ -33,7 +34,7 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
 
     fun getTasks(): Flow<List<Task>> {
         try {
-            val response = roomDao.getTasks(settings.getCurrentId())
+            val response =database.getTaskDao().getTasks(settings.getCurrentId())
             return response.map {
                 it.map {
                     it?.toTask() ?: throw Exception("Error")

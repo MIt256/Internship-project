@@ -2,7 +2,9 @@ package com.example.taskmanager.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.taskmanager.room.dao.RoomDao
+import com.example.taskmanager.room.dao.ProjectDao
+import com.example.taskmanager.room.dao.TaskDao
+import com.example.taskmanager.room.dao.UserDao
 import com.example.taskmanager.room.entities.ProjectDbEntity
 import com.example.taskmanager.room.entities.TaskDbEntity
 import com.example.taskmanager.room.entities.TaskMemberCrossRef
@@ -18,5 +20,7 @@ import com.example.taskmanager.room.entities.UserDbEntity
     ]
 )
 abstract class TaskManagerDatabase : RoomDatabase() {
-    abstract fun getTasksDao(): RoomDao
+    abstract fun getTaskDao(): TaskDao
+    abstract fun getUserDao(): UserDao
+    abstract fun getProjectDao(): ProjectDao
 }

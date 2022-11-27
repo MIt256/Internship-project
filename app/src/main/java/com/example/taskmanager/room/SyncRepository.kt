@@ -1,8 +1,10 @@
 package com.example.taskmanager.room
 
+import androidx.room.Transaction
+import androidx.room.withTransaction
 import com.example.taskmanager.accounts.settings.AppSettings
-import com.example.taskmanager.room.dao.RoomDao
 import com.example.taskmanager.room.entities.ProjectDbEntity
+import com.example.taskmanager.room.entities.TaskDbEntity
 import com.example.taskmanager.room.entities.TaskMemberCrossRef
 import com.example.taskmanager.room.entities.UserDbEntity
 import com.example.taskmanager.ui.menu.ProjectApi
@@ -12,7 +14,7 @@ import com.example.taskmanager.users.UserApi
 import javax.inject.Inject
 
 class SyncRepository @Inject constructor(
-    private val roomDao: RoomDao,
+    private val database: TaskManagerDatabase,
     private val tasksApi: TasksApi,
     private val userApi: UserApi,
     private val settings: AppSettings,
@@ -27,7 +29,13 @@ class SyncRepository @Inject constructor(
         val dbProjects = tasks.map { projectApi.fetchProject(it.projectId).data.toProjectDbEntity() }
         val dpUsers = fetchAllUsers(tasks, dbProjects)
 
-        roomDao.addAllSyncInfo(dbTasks, dbTaskMemberCrossRefs, dbProjects, dpUsers)
+        database.withTransaction {
+            database.getProjectDao().addAllProjects(dbProjects)
+            database.getTaskDao().addAllTasks(dbTasks)
+            database.getUserDao().addAllUsers(dpUsers)
+            database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
+        }
+
     }
 
     private fun getAllCrossRefs(tasks: List<Task>): List<TaskMemberCrossRef> {
