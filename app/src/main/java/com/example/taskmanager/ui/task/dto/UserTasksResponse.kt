@@ -1,8 +1,9 @@
 package com.example.taskmanager.ui.task
 
+import com.example.taskmanager.room.entities.UserDbEntity
 import com.example.taskmanager.ui.task.entities.Task
 import com.example.taskmanager.ui.task.entities.TaskAttachment
-import com.example.taskmanager.ui.task.entities.TaskMember
+import com.example.taskmanager.ui.task.entities.User
 import com.google.gson.annotations.SerializedName
 
 data class UserTasksResponse(
@@ -40,7 +41,7 @@ data class TasksData(
     @SerializedName("is_completed")
     val isCompleted: Boolean,
     @SerializedName("members")
-    val members: List<Member>?,
+    val members: List<UserData>?,
     @SerializedName("owner_id")
     val ownerId: String,
     @SerializedName("project_id")
@@ -54,8 +55,8 @@ data class TasksData(
     fun toTask(): Task {
         val tmpAttachment = ArrayList<TaskAttachment>()
         attachments?.forEach { tmpAttachment.add(it.toTaskAttachment()) }
-        val tmpMember = ArrayList<TaskMember>()
-        members?.forEach { tmpMember.add(it.toTaskMember()) }
+        val tmpMember = ArrayList<User>()
+        members?.forEach { tmpMember.add(it.toUser()) }
         return Task(
             assignedTo = assignedTo,
             attachments = tmpAttachment,
@@ -93,7 +94,7 @@ data class Attachment(
     )
 }
 
-data class Member(
+data class UserData(
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("created_at")
@@ -103,13 +104,22 @@ data class Member(
     val username: String
 ) {
     /**
-     * Convert this entity into in-app [TaskMember] instance.
+     * Convert this entity into in-app [User] instance.
      */
-    fun toTaskMember(): TaskMember = TaskMember(
+    fun toUser()= User(
         avatarUrl = avatarUrl,
         createdAt = createdAt,
         email = email,
         id = id,
         username = username
     )
+
+    fun toUserDbEntity() = UserDbEntity(
+        id = id,
+        email = email,
+        username = username,
+        avatarPath = avatarUrl,
+        createdAt = createdAt
+    )
+
 }

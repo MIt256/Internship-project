@@ -1,18 +1,11 @@
 package com.example.taskmanager.di
 
-import android.content.Context
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Registry
-import com.bumptech.glide.annotation.Excludes
-import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule
-import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
-import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.module.AppGlideModule
 import com.example.taskmanager.accounts.AccountsApi
 import com.example.taskmanager.accounts.settings.AppSettings
+import com.example.taskmanager.ui.menu.ProjectApi
 import com.example.taskmanager.ui.newTask.NewTaskApi
 import com.example.taskmanager.ui.task.TasksApi
+import com.example.taskmanager.users.UserApi
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -23,7 +16,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.InputStream
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -34,6 +27,8 @@ object NetworkModule {
     @Singleton
     fun provideClient(settings: AppSettings): OkHttpClient {
         return OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(createAuthorizationInterceptor(settings))
             .addInterceptor(createLoggingInterceptor())
             .build()
@@ -86,5 +81,16 @@ object NetworkModule {
         return retrofit.create(NewTaskApi::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideApiUserClient(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiProjectClient(retrofit: Retrofit): ProjectApi {
+        return retrofit.create(ProjectApi::class.java)
+    }
 
 }

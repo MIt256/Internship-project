@@ -25,6 +25,8 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
             //TODO add info
             if (taskItem.isCompleted)
                 statusIcon.setImageResource(R.drawable.ic_not_active)
+            else
+                statusIcon.setImageResource(R.drawable.ic_active_task)
             title.text = taskItem.title
             time.text = taskItem.dueDate
         }

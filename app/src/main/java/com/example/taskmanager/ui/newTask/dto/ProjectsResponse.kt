@@ -1,5 +1,6 @@
 package com.example.taskmanager.ui.newTask.dto
 
+import com.example.taskmanager.room.entities.ProjectDbEntity
 import com.example.taskmanager.ui.newTask.entities.Project
 import com.google.gson.annotations.SerializedName
 
@@ -33,4 +34,12 @@ data class ProjectData(
             title = title
         )
     }
+
+    fun toProjectDbEntity() = ProjectDbEntity(
+        color = color,
+        createdAt = createdAt,
+        id = id,
+        ownerId = ownerId,
+        title = title
+    )
 }

@@ -5,8 +5,8 @@ data class UserSettings(
     val email: String,
     val id: String?,
     val username: String?,
-    val accessToken: String,
-    val expiresIn: Long,
-    val refreshToken: String,
-    val tokenType: String
+    val accessToken: String?,
+    val expiresIn: Long?,
+    val refreshToken: String?,
+    val tokenType: String?
 )

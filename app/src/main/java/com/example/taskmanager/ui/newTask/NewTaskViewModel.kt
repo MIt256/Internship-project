@@ -6,10 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taskmanager.ui.newTask.entities.NewTask
 import com.example.taskmanager.ui.newTask.entities.Project
-import com.example.taskmanager.ui.task.entities.TaskMember
+import com.example.taskmanager.ui.task.entities.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -20,17 +19,17 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
 
     var currentException = MutableSharedFlow<String>()
 
-    private var _taskMemberList = MutableLiveData<MutableList<TaskMember>>()
-    val taskMemberList: LiveData<MutableList<TaskMember>> = _taskMemberList
+    private val _taskMemberList = MutableLiveData<MutableList<User>>()
+    val taskMemberList: LiveData<MutableList<User>> = _taskMemberList
 
-    private var _members = MutableLiveData<List<TaskMember>>()
-    val members: LiveData<List<TaskMember>> = _members
+    private var _members = MutableLiveData<List<User>>()
+    val members: LiveData<List<User>> = _members
 
     private var _currentMemberSearch = MutableLiveData<String>()
     private val currentMemberSearch: LiveData<String> = _currentMemberSearch
 
-    private var _currentMember = MutableLiveData<TaskMember>()
-    val currentMember: LiveData<TaskMember> = _currentMember
+    private var _currentMember = MutableLiveData<User>()
+    val currentMember: LiveData<User> = _currentMember
 
     private var _projects = MutableLiveData<List<Project>>()
     val projects: LiveData<List<Project>> = _projects
@@ -59,7 +58,7 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
         val item = members.value?.get(memberPosition)
         if (_taskMemberList.value?.contains(item) != true)
             _taskMemberList.value = (_taskMemberList.value?.plus(item)
-                ?: mutableListOf(item)) as MutableList<TaskMember>?
+                ?: mutableListOf(item)) as MutableList<User>?
     }
 
     fun setMemberSearch(member: String) {
