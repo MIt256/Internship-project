@@ -40,11 +40,11 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        if (userViewModel.isAuthenticated.value == false) {
-//            val action =
-//                TaskFragmentDirections.actionNavigationTaskToAuthNavigationGraph()
-//            findNavController().navigate(action)
-//        }
+        if (userViewModel.isAuthenticated.value == false) {
+            val action =
+                TaskFragmentDirections.actionNavigationTaskToAuthNavigationGraph()
+            findNavController().navigate(action)
+        }
 
         val tasksAdapter = TasksAdapter()
         binding.taskList.adapter = tasksAdapter
