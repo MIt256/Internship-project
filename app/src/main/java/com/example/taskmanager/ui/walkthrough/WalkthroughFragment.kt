@@ -1,23 +1,16 @@
 package com.example.taskmanager.ui.walkthrough
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.example.taskmanager.ui.walkthrough.Adapter
 import com.example.taskmanager.R
 import com.example.taskmanager.UserSharedViewModel
-import com.example.taskmanager.ui.walkthrough.WalkthroughItem
 import com.example.taskmanager.databinding.FragmentWalkthroughBinding
-import com.example.taskmanager.ui.task.TaskFragmentDirections
-import com.example.taskmanager.ui.task.TaskViewModel
-
-import javax.inject.Inject
 
 class WalkthroughFragment : Fragment() {
 

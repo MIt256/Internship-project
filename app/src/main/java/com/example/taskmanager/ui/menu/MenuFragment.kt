@@ -1,6 +1,7 @@
 package com.example.taskmanager.ui.menu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.taskmanager.databinding.FragmentMenuBinding
+import com.example.taskmanager.ui.menu.adapter.ProjectGridAdapter
+import com.example.taskmanager.ui.menu.adapter.ProjectItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MenuFragment : Fragment() {
@@ -38,7 +40,7 @@ class MenuFragment : Fragment() {
         val projectAdapter = ProjectGridAdapter()
         binding.projectRecycler.adapter = projectAdapter
 
-        projectAdapter.setOnItemClickListener {
+        projectAdapter.onItemClick = { project ->
             Toast.makeText(
                 context,
                 "Not implemented",
@@ -46,8 +48,18 @@ class MenuFragment : Fragment() {
             ).show()
         }
 
+        projectAdapter.onItemAddClick = {
+            Toast.makeText(
+                context,
+                "Add new not implemented",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
         viewModel.projects.observe(viewLifecycleOwner) {
-            projectAdapter.submitList(it)
+            projectAdapter.submitList(
+                it.map { ProjectItem.PlainProject(it) }.plus(ProjectItem.AddItem)
+            )
         }
 
         viewModel.currentException.onEach {

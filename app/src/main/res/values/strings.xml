@@ -67,6 +67,8 @@
     <string name="toolbar_add_note_text">Add Note</string>
     <string name="toolbar_add_check_list_text">Add Check List</string>
     <string name="toolbar_personal_text">Personal</string>
+
+    <string name="plus_add_text">+</string>
     
     <string name="today_text">Today</string>
     <string name="month_text">Month</string>
