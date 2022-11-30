@@ -3,7 +3,6 @@ package com.example.taskmanager.room.entities
 import androidx.room.*
 import com.example.taskmanager.ui.newTask.entities.Project
 
-
 @Entity(
     tableName = "projects",
     foreignKeys = [
@@ -12,7 +11,8 @@ import com.example.taskmanager.ui.newTask.entities.Project
             parentColumns = ["id"],
             childColumns = ["owner_id"],
             onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         )
     ],
     indices = [

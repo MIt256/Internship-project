@@ -15,14 +15,16 @@ import androidx.room.Index
             parentColumns = ["id"],
             childColumns = ["user_id"],
             onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         ),
         ForeignKey(
             entity = TaskDbEntity::class,
             parentColumns = ["id"],
             childColumns = ["task_id"],
             onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         )
     ],
     indices = [

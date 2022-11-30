@@ -16,7 +16,7 @@ abstract class UserDao {
     abstract suspend fun createAccount(userDbEntity: UserDbEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun addAllUsers(users: List<UserDbEntity>)
+    abstract fun addAllUsers(users: List<UserDbEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun addUser(user: UserDbEntity)
@@ -25,5 +25,5 @@ abstract class UserDao {
     abstract suspend fun addTaskMemberCrossRef(item: TaskMemberCrossRef)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun addAllTaskMemberCrossRefs(items: List<TaskMemberCrossRef>)
+    abstract fun addAllTaskMemberCrossRefs(items: List<TaskMemberCrossRef>)
 }
