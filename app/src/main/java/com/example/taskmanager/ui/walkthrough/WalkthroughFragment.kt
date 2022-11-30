@@ -14,6 +14,7 @@ import com.example.taskmanager.R
 import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.ui.walkthrough.WalkthroughItem
 import com.example.taskmanager.databinding.FragmentWalkthroughBinding
+import com.example.taskmanager.ui.task.TaskFragmentDirections
 import com.example.taskmanager.ui.task.TaskViewModel
 
 import javax.inject.Inject
@@ -21,6 +22,7 @@ import javax.inject.Inject
 class WalkthroughFragment : Fragment() {
 
     private lateinit var binding: FragmentWalkthroughBinding
+    private val userViewModel: UserSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +30,12 @@ class WalkthroughFragment : Fragment() {
     ): View? {
 
         binding = FragmentWalkthroughBinding.inflate(inflater, container, false)
+
+        if (userViewModel.isAuthenticated.value == true) {
+            val action =
+                WalkthroughFragmentDirections.actionWalkthroughFragmentToNavigationTask()
+            findNavController().navigate(action)
+        }
 
         //TODO not good?
         val walkthroughs = arrayListOf(
