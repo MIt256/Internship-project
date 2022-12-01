@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 abstract class ProjectDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun addProject(project: ProjectDbEntity)
+    abstract fun addProject(project: ProjectDbEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun addAllProjects(projects: List<ProjectDbEntity>)
