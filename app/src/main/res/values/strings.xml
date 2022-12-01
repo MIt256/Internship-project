@@ -57,6 +57,7 @@
     <string name="add_member_text">Add Member</string>
     <string name="anyone_hint">Anyone</string>
     <string name="add_task_button_text">Add Task</string>
+    <string name="add_project_button_text">Create Project</string>
 
 
     <string name="toolbar_new_task_text">New Task</string>
@@ -69,7 +70,8 @@
     <string name="toolbar_personal_text">Personal</string>
 
     <string name="plus_add_text">+</string>
-    
+    <string name="check_mark_text">✓</string>
+
     <string name="today_text">Today</string>
     <string name="month_text">Month</string>
 

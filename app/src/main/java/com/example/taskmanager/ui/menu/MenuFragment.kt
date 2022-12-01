@@ -1,7 +1,6 @@
 package com.example.taskmanager.ui.menu
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.taskmanager.databinding.FragmentMenuBinding
 import com.example.taskmanager.ui.menu.adapter.ProjectGridAdapter
 import com.example.taskmanager.ui.menu.adapter.ProjectItem
+import com.example.taskmanager.ui.newTask.MemberDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -49,11 +49,7 @@ class MenuFragment : Fragment() {
         }
 
         projectAdapter.onItemAddClick = {
-            Toast.makeText(
-                context,
-                "Add new not implemented",
-                Toast.LENGTH_SHORT
-            ).show()
+            NewProjectDialog().show(childFragmentManager, "ProjectDialog")
         }
 
         viewModel.projects.observe(viewLifecycleOwner) {

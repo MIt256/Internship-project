@@ -47,5 +47,4 @@
     <style name="BottomNavigationView" parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/roboto_light_italic</item>
     </style>
-
 </resources>
