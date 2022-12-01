@@ -11,7 +11,7 @@ import com.example.taskmanager.ui.newTask.entities.Project
             parentColumns = ["id"],
             childColumns = ["owner_id"],
             onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.NO_ACTION,
             deferred = true
         )
     ],

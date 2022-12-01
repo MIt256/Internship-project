@@ -25,27 +25,29 @@ class SyncRepository @Inject constructor(
         val dbTasks = tasks.map { it.toTaskDbEntity() }
         val dbTaskMemberCrossRefs = getAllCrossRefs(tasks)
         val dbProjects = tasks.map { projectApi.fetchProject(it.projectId).data.toProjectDbEntity() }
+        val dbUserProjects = projectApi.fetchUserProjects(settings.getCurrentId()).data.map { it.toProjectDbEntity() }
+        dbProjects.plus(dbUserProjects)
         val dpUsers = fetchAllUsers(tasks, dbProjects)
 
-//        database.runInTransaction(Runnable()) {
-//            database.getProjectDao().addAllProjects(dbProjects)
-//            database.getTaskDao().addAllTasks(dbTasks)
-//            database.getUserDao().addAllUsers(dpUsers)
-//            database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
-//        }
         try {
             database.runInTransaction(Runnable {
-                try{
-                database.getProjectDao().addAllProjects(dbProjects)
-                database.getTaskDao().addAllTasks(dbTasks)
-                database.getUserDao().addAllUsers(dpUsers)
-                database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
-                }catch (ex:Exception){
+                try {
+                    database.getUserDao().addAllUsers(dpUsers)
+                    database.getProjectDao().addAllProjects(dbProjects)
+                    database.getTaskDao().addAllTasks(dbTasks)
+                    database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
+                } catch (ex: Exception) {
+                    ex.message?.let { Log.e("Error", it) }
+                    throw ex
+                }
+                try {
+                    database.getProjectDao().addAllProjects(dbUserProjects)
+                } catch (ex: Exception) {
                     ex.message?.let { Log.e("Error", it) }
                     throw ex
                 }
             })
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
             ex.message?.let { Log.e("Error", it) }
         }
 

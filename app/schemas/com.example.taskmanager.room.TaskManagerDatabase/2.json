@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "d20281b69c8d990839a1b19837c053fd",
+    "identityHash": "3dc8e7978c6a1d6be8ed4d7cd635d1e4",
     "entities": [
       {
         "tableName": "users",
@@ -60,7 +60,7 @@
       },
       {
         "tableName": "tasks",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `due_date` TEXT NOT NULL, `description` TEXT NOT NULL, `assigned_to` TEXT, `is_completed` INTEGER NOT NULL, `project_id` TEXT NOT NULL, `owner_id` TEXT NOT NULL, `created_at` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`assigned_to`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`owner_id`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`project_id`) REFERENCES `projects`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `due_date` TEXT NOT NULL, `description` TEXT NOT NULL, `assigned_to` TEXT, `is_completed` INTEGER NOT NULL, `project_id` TEXT NOT NULL, `owner_id` TEXT NOT NULL, `created_at` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`assigned_to`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`owner_id`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`project_id`) REFERENCES `projects`(`id`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
         "fields": [
           {
             "fieldPath": "id",
@@ -132,6 +132,24 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_tasks_owner_id` ON `${TABLE_NAME}` (`owner_id`)"
+          },
+          {
+            "name": "index_tasks_assigned_to",
+            "unique": false,
+            "columnNames": [
+              "assigned_to"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_tasks_assigned_to` ON `${TABLE_NAME}` (`assigned_to`)"
+          },
+          {
+            "name": "index_tasks_project_id",
+            "unique": false,
+            "columnNames": [
+              "project_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_tasks_project_id` ON `${TABLE_NAME}` (`project_id`)"
           }
         ],
         "foreignKeys": [
@@ -172,7 +190,7 @@
       },
       {
         "tableName": "projects",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `color` TEXT NOT NULL, `owner_id` TEXT NOT NULL, `created_at` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`owner_id`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `color` TEXT NOT NULL, `owner_id` TEXT NOT NULL, `created_at` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`owner_id`) REFERENCES `users`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
         "fields": [
           {
             "fieldPath": "id",
@@ -211,12 +229,22 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_projects_owner_id",
+            "unique": false,
+            "columnNames": [
+              "owner_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_projects_owner_id` ON `${TABLE_NAME}` (`owner_id`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "users",
             "onDelete": "CASCADE",
-            "onUpdate": "CASCADE",
+            "onUpdate": "NO ACTION",
             "columns": [
               "owner_id"
             ],
@@ -228,7 +256,7 @@
       },
       {
         "tableName": "task_members",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` TEXT NOT NULL, `task_id` TEXT NOT NULL, PRIMARY KEY(`user_id`, `task_id`), FOREIGN KEY(`user_id`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`task_id`) REFERENCES `tasks`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` TEXT NOT NULL, `task_id` TEXT NOT NULL, PRIMARY KEY(`user_id`, `task_id`), FOREIGN KEY(`user_id`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`task_id`) REFERENCES `tasks`(`id`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
         "fields": [
           {
             "fieldPath": "userId",
@@ -259,6 +287,15 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_task_members_task_id` ON `${TABLE_NAME}` (`task_id`)"
+          },
+          {
+            "name": "index_task_members_user_id",
+            "unique": false,
+            "columnNames": [
+              "user_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_task_members_user_id` ON `${TABLE_NAME}` (`user_id`)"
           }
         ],
         "foreignKeys": [
@@ -290,7 +327,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd20281b69c8d990839a1b19837c053fd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3dc8e7978c6a1d6be8ed4d7cd635d1e4')"
     ]
   }
 }

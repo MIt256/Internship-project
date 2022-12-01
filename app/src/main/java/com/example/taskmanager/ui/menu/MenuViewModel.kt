@@ -13,23 +13,26 @@ class MenuViewModel @Inject constructor(private val repository: ProjectsReposito
 
     var currentException = MutableSharedFlow<String>()
 
-    val projects: LiveData<List<Project>> = repository.getProjects().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
+    val projects: LiveData<List<Project>> = repository.getProjects().catch { it.message?.let { setException(it) } }.asLiveData()
 
     val color = MutableLiveData<String>()
+
+    fun setException(exception: String) =
+        viewModelScope.launch { currentException.emit(exception) }
 
     fun createNewProject(title: String) {
         val colorValue = color.value
         when {
-            title.length < 3 -> currentException.tryEmit("The length of the header must be greater than 3")
-            colorValue == null -> currentException.tryEmit("Choose color")
+            title.length < 3 -> setException("The length of the header must be greater than 3")
+            colorValue == null -> setException("Choose color")
             else -> {
                 viewModelScope.launch {
                     try {
                         repository.addNewProject(title, colorValue).collect {
-                            currentException.tryEmit(it)
+                            setException(it)
                         }
                     } catch (exception: Exception) {
-                        exception.message?.let { currentException.tryEmit(it) }
+                        exception.message?.let { setException(it) }
                     }
                 }
             }

@@ -40,9 +40,11 @@ class NewProjectDialog : DialogFragment() {
         }
 
         viewModel.currentException.onEach {
+            if (it == "Success")
+                dialog?.dismiss()
             Toast.makeText(
                 context,
-                "Error: $it",
+                it,
                 Toast.LENGTH_SHORT
             ).show()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
