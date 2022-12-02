@@ -1,10 +1,8 @@
 package com.example.taskmanager.room
 
-import androidx.room.Transaction
-import androidx.room.withTransaction
+import android.util.Log
 import com.example.taskmanager.accounts.settings.AppSettings
 import com.example.taskmanager.room.entities.ProjectDbEntity
-import com.example.taskmanager.room.entities.TaskDbEntity
 import com.example.taskmanager.room.entities.TaskMemberCrossRef
 import com.example.taskmanager.room.entities.UserDbEntity
 import com.example.taskmanager.ui.menu.ProjectApi
@@ -27,14 +25,25 @@ class SyncRepository @Inject constructor(
         val dbTasks = tasks.map { it.toTaskDbEntity() }
         val dbTaskMemberCrossRefs = getAllCrossRefs(tasks)
         val dbProjects = tasks.map { projectApi.fetchProject(it.projectId).data.toProjectDbEntity() }
+        val dbUserProjects = projectApi.fetchUserProjects(settings.getCurrentId()).data.map { it.toProjectDbEntity() }
+        dbProjects.plus(dbUserProjects)
         val dpUsers = fetchAllUsers(tasks, dbProjects)
 
-        database.withTransaction {
-            database.getProjectDao().addAllProjects(dbProjects)
-            database.getTaskDao().addAllTasks(dbTasks)
-            database.getUserDao().addAllUsers(dpUsers)
-            database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
-        }
+
+            database.runInTransaction(Runnable {
+                try {
+                    database.getUserDao().addAllUsers(dpUsers)
+                    database.getProjectDao().addAllProjects(dbProjects)
+                    database.getTaskDao().addAllTasks(dbTasks)
+                    database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
+
+                    database.getProjectDao().addAllProjects(dbUserProjects)
+                } catch (ex: Exception) {
+                    Log.d("SyncWorker","Error while adding in db: ${ex.message}")
+                    throw ex
+                }
+            })
+
 
     }
 

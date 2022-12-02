@@ -1,13 +1,38 @@
 package com.example.taskmanager.ui.menu
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.taskmanager.ui.newTask.entities.Project
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MenuViewModel : ViewModel() {
+@HiltViewModel
+class MenuViewModel @Inject constructor(private val repository: ProjectsRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is menu Fragment"
+    val currentException = MutableSharedFlow<String>(extraBufferCapacity = 1)
+
+    val projects: LiveData<List<Project>> = repository.getProjects().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
+
+    val color = MutableLiveData<String>()
+    val title = MutableLiveData<String>()
+
+    fun createNewProject() {
+        if (projectCheck())
+            viewModelScope.launch {
+                try {
+                    repository.addNewProject(
+                        title.value ?: throw Exception("Title is null"),
+                        color.value ?: throw Exception("Color is null")
+                    )
+                } catch (exception: Exception) {
+                    exception.message?.let { currentException.emit(it) }
+                }
+            }
+        else currentException.tryEmit("Choose color, enter length of the title greater than 3")
     }
-    val text: LiveData<String> = _text
+
+    private fun projectCheck() = ((title.value?.length ?: 0 > 2) && color.value != null)
+
 }

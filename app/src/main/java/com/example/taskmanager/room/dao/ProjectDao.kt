@@ -13,7 +13,7 @@ abstract class ProjectDao {
     abstract suspend fun addProject(project: ProjectDbEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun addAllProjects(projects: List<ProjectDbEntity>)
+    abstract fun addAllProjects(projects: List<ProjectDbEntity>)
 
     @Query("SELECT * FROM projects WHERE owner_id = :ownerId ")
     abstract fun getProjects(ownerId: String): Flow<List<ProjectDbEntity?>>

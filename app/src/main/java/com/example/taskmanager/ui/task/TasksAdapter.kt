@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.TaskListItemBinding
 import com.example.taskmanager.ui.task.entities.Task
-import javax.inject.Inject
-import javax.inject.Singleton
+import java.util.*
+import java.util.logging.SimpleFormatter
 
 class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
 
@@ -23,12 +24,16 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
         private val binding = TaskListItemBinding.bind(view)
         fun bind(taskItem: Task) = with(binding) {
             //TODO add info
-            if (taskItem.isCompleted)
+            if (taskItem.isCompleted) {
                 statusIcon.setImageResource(R.drawable.ic_not_active)
-            else
+                statusBar.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.app_red))
+            } else {
                 statusIcon.setImageResource(R.drawable.ic_active_task)
+                statusBar.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.blue_button))
+            }
             title.text = taskItem.title
             time.text = taskItem.dueDate
+
         }
     }
 

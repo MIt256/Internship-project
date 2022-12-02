@@ -11,21 +11,24 @@ import com.example.taskmanager.ui.task.entities.Task
             parentColumns = ["id"],
             childColumns = ["assigned_to"],
             onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         ),
         ForeignKey(
             entity = UserDbEntity::class,
             parentColumns = ["id"],
             childColumns = ["owner_id"],
             onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         ),
         ForeignKey(
             entity = ProjectDbEntity::class,
             parentColumns = ["id"],
             childColumns = ["project_id"],
             onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         )
     ],
     indices = [

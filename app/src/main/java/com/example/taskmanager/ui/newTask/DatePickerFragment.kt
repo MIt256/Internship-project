@@ -26,7 +26,7 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         c.set(year, month, day, 1, 1, 1)
         if (c.time > Calendar.getInstance().time)
             viewModel.setDate(c.time)
-        else viewModel.setException("Set date in future")
+        else viewModel.currentException.tryEmit("Set date in future")
         dialog?.dismiss()
     }
 }

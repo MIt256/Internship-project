@@ -17,7 +17,7 @@ abstract class TaskDao {
     abstract suspend fun addTask(task: TaskDbEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun addAllTasks(tasks: List<TaskDbEntity>)
+    abstract fun addAllTasks(tasks: List<TaskDbEntity>)
 
     @Transaction
     @Query("SELECT * FROM tasks WHERE owner_id = :ownerId")

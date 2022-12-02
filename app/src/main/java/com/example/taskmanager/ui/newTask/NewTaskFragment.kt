@@ -120,7 +120,7 @@ class NewTaskFragment : Fragment() {
                     binding.titleEditText.text.toString(), binding.descriptionEditText.text.toString()
                 )
             } else
-                viewModel.setException(
+                viewModel.currentException.tryEmit(
                     "Title or description is empty"
                 )
         }

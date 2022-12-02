@@ -24,7 +24,6 @@ class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
     private val viewModel: TaskViewModel by viewModels()
-    private val userViewModel: UserSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,12 +38,6 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if (userViewModel.isAuthenticated.value == false) {
-            val action =
-                TaskFragmentDirections.actionNavigationTaskToAuthNavigationGraph()
-            findNavController().navigate(action)
-        }
 
         val tasksAdapter = TasksAdapter()
         binding.taskList.adapter = tasksAdapter

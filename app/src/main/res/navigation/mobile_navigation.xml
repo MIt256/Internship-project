@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_task">
+    app:startDestination="@id/auth_navigation_graph">
 
     <fragment
         android:id="@+id/navigation_task"
@@ -49,6 +49,10 @@
             <action
                 android:id="@+id/action_walkthroughFragment_to_signUpFragment"
                 app:destination="@id/signUpFragment" />
+            <action
+                android:id="@+id/action_walkthroughFragment_to_navigation_task"
+                app:destination="@id/navigation_task"
+                app:launchSingleTop="false" />
         </fragment>
         <fragment
             android:id="@+id/signInFragment"

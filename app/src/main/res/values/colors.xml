@@ -15,4 +15,10 @@
     <color name="text_black">#313131</color>
     <color name="blue_button">#6074F9</color>
 
+    <color name="project_color_1">#6074F9</color>
+    <color name="project_color_2">#E42B6A</color>
+    <color name="project_color_3">#5ABB56</color>
+    <color name="project_color_4">#3D3A62</color>
+    <color name="project_color_5">#F4CA8F</color>
+
 </resources>
