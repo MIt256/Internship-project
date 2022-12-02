@@ -60,14 +60,9 @@ class NewProjectDialog : DialogFragment() {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.buttonAddProject.setOnClickListener {
-            onAddButtonClick()
+            viewModel.createNewProject()
         }
         super.onViewCreated(view, savedInstanceState)
-    }
-
-
-    private fun onAddButtonClick() {
-        viewModel.createNewProject(binding.projectTitle.text.toString())
     }
 
     private fun getColor(colorResource: Int) = String.format("#%06x", ContextCompat.getColor(binding.root.context, colorResource) and 0xffffff)

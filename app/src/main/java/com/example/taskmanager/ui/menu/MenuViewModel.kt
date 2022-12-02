@@ -18,13 +18,14 @@ class MenuViewModel @Inject constructor(private val repository: ProjectsReposito
     val color = MutableLiveData<String>()
     val title = MutableLiveData<String>()
 
-    fun createNewProject(title: String) {
+    fun createNewProject() {
         if (projectCheck())
             viewModelScope.launch {
                 try {
-                    color.value?.let {
-                        repository.addNewProject(title, it)
-                    }
+                    repository.addNewProject(
+                        title.value ?: throw Exception("Title is null"),
+                        color.value ?: throw Exception("Color is null")
+                    )
                 } catch (exception: Exception) {
                     exception.message?.let { currentException.emit(it) }
                 }
