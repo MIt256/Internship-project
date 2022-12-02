@@ -11,31 +11,27 @@ import javax.inject.Inject
 @HiltViewModel
 class MenuViewModel @Inject constructor(private val repository: ProjectsRepository) : ViewModel() {
 
-    var currentException = MutableSharedFlow<String>()
+    val currentException = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
-    val projects: LiveData<List<Project>> = repository.getProjects().catch { it.message?.let { setException(it) } }.asLiveData()
+    val projects: LiveData<List<Project>> = repository.getProjects().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
 
     val color = MutableLiveData<String>()
-
-    fun setException(exception: String) =
-        viewModelScope.launch { currentException.emit(exception) }
+    val title = MutableLiveData<String>()
 
     fun createNewProject(title: String) {
-        val colorValue = color.value
-        when {
-            title.length < 3 -> setException("The length of the header must be greater than 3")
-            colorValue == null -> setException("Choose color")
-            else -> {
-                viewModelScope.launch {
-                    try {
-                        repository.addNewProject(title, colorValue).collect {
-                            setException(it)
-                        }
-                    } catch (exception: Exception) {
-                        exception.message?.let { setException(it) }
+        if (projectCheck())
+            viewModelScope.launch {
+                try {
+                    color.value?.let {
+                        repository.addNewProject(title, it)
                     }
+                } catch (exception: Exception) {
+                    exception.message?.let { currentException.emit(it) }
                 }
             }
-        }
+        else currentException.tryEmit("Choose color, enter length of the title greater than 3")
     }
+
+    private fun projectCheck() = ((title.value?.length ?: 0 > 2) && color.value != null)
+
 }

@@ -29,27 +29,21 @@ class SyncRepository @Inject constructor(
         dbProjects.plus(dbUserProjects)
         val dpUsers = fetchAllUsers(tasks, dbProjects)
 
-        try {
+
             database.runInTransaction(Runnable {
                 try {
                     database.getUserDao().addAllUsers(dpUsers)
                     database.getProjectDao().addAllProjects(dbProjects)
                     database.getTaskDao().addAllTasks(dbTasks)
                     database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
-                } catch (ex: Exception) {
-                    ex.message?.let { Log.e("Error", it) }
-                    throw ex
-                }
-                try {
+
                     database.getProjectDao().addAllProjects(dbUserProjects)
                 } catch (ex: Exception) {
-                    ex.message?.let { Log.e("Error", it) }
+                    Log.d("SyncWorker","Error while adding in db: ${ex.message}")
                     throw ex
                 }
             })
-        } catch (ex: Exception) {
-            ex.message?.let { Log.e("Error", it) }
-        }
+
 
     }
 

@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ProjectGridAddItemBinding
 import com.example.taskmanager.databinding.ProjectGridItemBinding
+import com.example.taskmanager.ui.menu.adapter.ItemTypes.ITEM_TYPE_ADD_BUTTON
+import com.example.taskmanager.ui.menu.adapter.ItemTypes.ITEM_TYPE_PROJECT
 import com.example.taskmanager.ui.newTask.entities.Project
 
 class ProjectGridAdapter : ListAdapter<ProjectItem, ProjectItemViewHolder<ProjectItem>>(ProjectItemDiffCallback()) {
@@ -42,7 +43,7 @@ class ProjectGridAdapter : ListAdapter<ProjectItem, ProjectItemViewHolder<Projec
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             : ProjectItemViewHolder<ProjectItem> {
         return when (viewType) {
-            R.layout.project_grid_item -> {
+            ITEM_TYPE_PROJECT -> {
                 PlainProjectViewHolder(
                     ProjectGridItemBinding.inflate(
                         LayoutInflater.from(parent.context),
@@ -52,7 +53,7 @@ class ProjectGridAdapter : ListAdapter<ProjectItem, ProjectItemViewHolder<Projec
                 )
             }
 
-            R.layout.project_grid_add_item -> {
+            ITEM_TYPE_ADD_BUTTON -> {
                 AddProjectHolder(
                     ProjectGridAddItemBinding.inflate(
                         LayoutInflater.from(parent.context),
@@ -71,8 +72,8 @@ class ProjectGridAdapter : ListAdapter<ProjectItem, ProjectItemViewHolder<Projec
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is ProjectItem.PlainProject -> R.layout.project_grid_item
-            is ProjectItem.AddItem -> R.layout.project_grid_add_item
+            is ProjectItem.PlainProject -> ITEM_TYPE_PROJECT
+            is ProjectItem.AddItem -> ITEM_TYPE_ADD_BUTTON
         }
     }
 }
@@ -86,7 +87,7 @@ class ProjectItemDiffCallback : DiffUtil.ItemCallback<ProjectItem>() {
         return if (oldItem is ProjectItem.PlainProject && newItem is ProjectItem.PlainProject) {
             oldItem.projectItem.id == newItem.projectItem.id
         } else {
-            false
+            true
         }
     }
 

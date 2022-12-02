@@ -25,7 +25,7 @@ class ProjectsRepository @Inject constructor(private val database: TaskManagerDa
         }
     }
 
-    suspend fun addNewProject(title: String, color: String) = flow {
+    suspend fun addNewProject(title: String, color: String)  {
         val newProject = NewProjectRequest(
             title = title,
             color = color,
@@ -34,12 +34,9 @@ class ProjectsRepository @Inject constructor(private val database: TaskManagerDa
         try {
             val response = projectApi.createProject(newProject)
             database.getProjectDao().addProject(response.data.toProjectDbEntity())
-            emit("Success")
+            throw Exception("Success")
         } catch (e: Exception) {
             throw e
         }
-    }.catch { e ->
-        emit(e.message ?: "Unknown Error")
     }
-
 }

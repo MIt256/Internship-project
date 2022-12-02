@@ -17,7 +17,7 @@ import javax.inject.Inject
 class NewTaskViewModel @Inject constructor(private val repository: NewTaskRepository) :
     ViewModel() {
 
-    var currentException = MutableSharedFlow<String>()
+    var currentException = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
     private val _taskMemberList = MutableLiveData<MutableList<User>>()
     val taskMemberList: LiveData<MutableList<User>> = _taskMemberList
@@ -46,9 +46,6 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     init {
         _taskMemberList.value = mutableListOf()
     }
-
-    fun setException(exception: String) =
-        viewModelScope.launch { currentException.emit(exception) }
 
     fun setDate(date: Date) {
         _date.value = date
@@ -87,7 +84,7 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
                     _members.value = it
                 }
             } catch (exception: Exception) {
-                exception.message?.let { setException(it) }
+                exception.message?.let { currentException.emit(it) }
             }
         }
     }
@@ -98,8 +95,8 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
                 repository.searchProjects(currentProjectSearch.value.toString()).collect {
                     _projects.value = it
                 }
-            }  catch (exception: Exception) {
-                exception.message?.let { setException(it) }
+            } catch (exception: Exception) {
+                exception.message?.let { currentException.emit(it) }
             }
         }
     }
@@ -118,8 +115,8 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
             )
             viewModelScope.launch {
                 try {
-                    repository.createNewTask(task).collect{
-                       setException(it)
+                    repository.createNewTask(task).collect {
+                        currentException.emit(it)
                     }
                 } catch (exception: Exception) {
                     throw exception
@@ -127,7 +124,7 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
             }
 
         } catch (e: Exception) {
-            e.message?.let { setException(it) }
+            e.message?.let { currentException.tryEmit(it) }
         }
     }
 
