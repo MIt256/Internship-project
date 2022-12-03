@@ -1,0 +1,30 @@
+package com.example.taskmanager.workmanager
+
+import android.content.Context
+import android.util.Log
+import androidx.hilt.work.HiltWorker
+import androidx.work.CoroutineWorker
+import androidx.work.WorkerParameters
+import com.example.taskmanager.data.local.room.SyncRepository
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+
+@HiltWorker
+class SyncWorker @AssistedInject constructor(
+    @Assisted ctx: Context,
+    @Assisted params: WorkerParameters,
+    private val repository: SyncRepository
+) :
+    CoroutineWorker(ctx, params) {
+
+    override suspend fun doWork(): Result {
+        return try {
+            repository.fetchTasksAndSave()
+            Result.success()
+        } catch (e: Throwable) {
+            Log.e("SyncWorker", "Error, result is failure")
+            Result.failure()
+        }
+
+    }
+}

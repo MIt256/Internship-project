@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.taskmanager.databinding.FragmentMenuBinding
 import com.example.taskmanager.ui.menu.adapter.ProjectGridAdapter
 import com.example.taskmanager.ui.menu.adapter.ProjectItem
+import com.example.taskmanager.ui.menu.vm.MenuViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

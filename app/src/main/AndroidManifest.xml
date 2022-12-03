@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".accounts.settings.AccountService"
+        <service android:name="com.example.taskmanager.data.settings.service.AccountService"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />

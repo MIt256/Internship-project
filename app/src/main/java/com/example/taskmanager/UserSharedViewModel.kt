@@ -1,17 +1,14 @@
 package com.example.taskmanager
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.taskmanager.accounts.settings.AppSettings
-import com.example.taskmanager.wm.SyncWorker
+import com.example.taskmanager.data.settings.AppSettings
+import com.example.taskmanager.workmanager.SyncWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 @HiltViewModel

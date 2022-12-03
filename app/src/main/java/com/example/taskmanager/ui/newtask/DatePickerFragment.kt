@@ -1,0 +1,33 @@
+package com.example.taskmanager.ui.newtask
+
+import android.app.DatePickerDialog
+import android.app.Dialog
+import android.os.Bundle
+import android.widget.DatePicker
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import com.example.taskmanager.ui.newtask.vm.NewTaskViewModel
+import java.util.*
+
+class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
+
+    private val viewModel: NewTaskViewModel by activityViewModels()
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        return DatePickerDialog(requireContext(), this, year, month, day)
+    }
+
+    override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
+        val c = Calendar.getInstance()
+        c.set(year, month, day, 1, 1, 1)
+        if (c.time > Calendar.getInstance().time)
+            viewModel.setDate(c.time)
+        else viewModel.currentException.tryEmit("Set date in future")
+        dialog?.dismiss()
+    }
+}

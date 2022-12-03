@@ -36,7 +36,7 @@
         tools:layout="@layout/fragment_quick" />
     <fragment
         android:id="@+id/newTaskFragment"
-        android:name="com.example.taskmanager.ui.newTask.NewTaskFragment"
+        android:name="com.example.taskmanager.ui.newtask.NewTaskFragment"
         android:label="new_task_fragment"
         tools:layout="@layout/new_task_fragment" />
     <navigation android:id="@+id/auth_navigation_graph"
@@ -56,7 +56,7 @@
         </fragment>
         <fragment
             android:id="@+id/signInFragment"
-            android:name="com.example.taskmanager.ui.signIn.SignInFragment"
+            android:name="com.example.taskmanager.ui.signin.SignInFragment"
             android:label="fragment_sign_in"
             tools:layout="@layout/fragment_sign_in">
             <action
@@ -67,7 +67,8 @@
                 app:popUpToInclusive="true" />
             <action
                 android:id="@+id/action_signInFragment_to_navigation_task"
-                app:destination="@id/navigation_task" />
+                app:destination="@id/navigation_task"
+                app:launchSingleTop="false"/>
             <action
                 android:id="@+id/action_signInFragment_to_walkthroughFragment"
                 app:destination="@id/walkthroughFragment"
@@ -76,7 +77,7 @@
         </fragment>
         <fragment
             android:id="@+id/signUpFragment"
-            android:name="com.example.taskmanager.ui.signUp.SignUpFragment"
+            android:name="com.example.taskmanager.ui.signup.SignUpFragment"
             android:label="fragment_sign_up"
             tools:layout="@layout/fragment_sign_up">
             <action
