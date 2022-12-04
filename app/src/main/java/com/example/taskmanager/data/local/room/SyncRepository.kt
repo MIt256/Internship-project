@@ -24,19 +24,15 @@ class SyncRepository @Inject constructor(
 
         val dbTasks = tasks.map { it.toTaskDbEntity() }
         val dbTaskMemberCrossRefs = getAllCrossRefs(tasks)
-        val dbProjects = tasks.map { projectApi.fetchProject(it.projectId).data.toProjectDbEntity() }
         val dbUserProjects = projectApi.fetchUserProjects(settings.getCurrentId()).data.map { it.toProjectDbEntity() }
-        dbProjects.plus(dbUserProjects)
-        val dpUsers = fetchAllUsers(tasks, dbProjects)
+        val dpUsers = fetchAllUsers(tasks)
 
 
             database.runInTransaction(Runnable {
                 try {
                     database.getUserDao().addAllUsers(dpUsers)
-                    database.getProjectDao().addAllProjects(dbProjects)
                     database.getTaskDao().addAllTasks(dbTasks)
                     database.getUserDao().addAllTaskMemberCrossRefs(dbTaskMemberCrossRefs)
-
                     database.getProjectDao().addAllProjects(dbUserProjects)
                 } catch (ex: Exception) {
                     Log.d("SyncWorker","Error while adding in db: ${ex.message}")
@@ -58,7 +54,7 @@ class SyncRepository @Inject constructor(
         return refs
     }
 
-    private suspend fun fetchAllUsers(tasks: List<Task>, projects: List<ProjectDbEntity>): List<UserDbEntity> {
+    private suspend fun fetchAllUsers(tasks: List<Task>): List<UserDbEntity> {
         val users = mutableSetOf<UserDbEntity>()
         val userIdSet = mutableSetOf<String>()
 
@@ -71,7 +67,6 @@ class SyncRepository @Inject constructor(
             if (it.assignedTo != null)
                 userIdSet += it.assignedTo
         }
-        projects.forEach { userIdSet += it.ownerId }
 
         userIdSet.forEach {
             users.add(userApi.fetchUser(it).data.toUserDbEntity())
