@@ -38,7 +38,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val profileAdapter = ProfileAdapter()
-        //binding.workRecycler.adapter = profileAdapter
+        binding.workRecycler.adapter = profileAdapter
 
         viewModel.profileStatistic.observe(viewLifecycleOwner){
             with(binding){
@@ -48,6 +48,10 @@ class ProfileFragment : Fragment() {
                 statisticTodoCount.text = it.todo
                 statisticQuickCount.text = it.quickNotes
             }
+        }
+
+        viewModel.profileWorkItems.observe(viewLifecycleOwner){
+            profileAdapter.submitList(it)
         }
 
         viewModel.profileInfo.observe(viewLifecycleOwner) {

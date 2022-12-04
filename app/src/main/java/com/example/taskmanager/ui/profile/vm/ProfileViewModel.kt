@@ -3,6 +3,7 @@ package com.example.taskmanager.ui.profile.vm
 import androidx.lifecycle.*
 import com.example.taskmanager.data.repository.ProfileRepository
 import com.example.taskmanager.data.repository.ProjectsRepository
+import com.example.taskmanager.ui.entities.ProfileStatisticItem
 import com.example.taskmanager.ui.entities.Project
 import com.example.taskmanager.ui.entities.Statistic
 import com.example.taskmanager.ui.task.entities.User
@@ -18,6 +19,8 @@ class ProfileViewModel @Inject constructor(private val repository: ProfileReposi
     val currentException = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
     val profileInfo: LiveData<User> = repository.getProfileInfo().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
+
+    val profileWorkItems: LiveData<List<ProfileStatisticItem>> = repository.getProfileWorkItems().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
 
     private var _profileStatistic= MutableLiveData<Statistic>()
     val profileStatistic: LiveData<Statistic> = _profileStatistic

@@ -1,34 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/element"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/rectangle_shape"
-    android:backgroundTint="@color/app_red"
-    android:padding="@dimen/fragment_edit_text_vertical_padding"
-    android:paddingStart="@dimen/fragment_big_padding"
-    android:paddingEnd="@dimen/fragment_big_padding">
+    >
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        app:cardCornerRadius="@dimen/fragment_main_corner_radius"
+        app:cardElevation="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light_italic"
-        android:text="@string/no_info_text"
-        android:textColor="@color/white"
-        android:textSize="@dimen/fragment_main_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+       >
 
-    <TextView
-        android:id="@+id/count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_elements_small_margin"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/no_info_text"
-        android:textSize="@dimen/fragment_secondary_text_size"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:cardCornerRadius="@dimen/fragment_main_corner_radius"
+            android:padding="@dimen/fragment_edit_text_vertical_padding"
+            android:paddingStart="@dimen/fragment_big_padding"
+            android:paddingEnd="@dimen/fragment_big_padding">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/no_info_text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fragment_main_text_size" />
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_elements_small_margin"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/no_info_text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fragment_secondary_text_size" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

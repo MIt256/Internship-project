@@ -3,9 +3,11 @@ package com.example.taskmanager.data.repository
 import com.example.taskmanager.data.local.room.TaskManagerDatabase
 import com.example.taskmanager.data.remote.api.UserApi
 import com.example.taskmanager.data.settings.AppSettings
+import com.example.taskmanager.ui.entities.ProfileStatisticItem
 import com.example.taskmanager.ui.entities.Statistic
 import com.example.taskmanager.ui.task.entities.User
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -17,6 +19,15 @@ class ProfileRepository @Inject constructor(private val database: TaskManagerDat
             return response.map {
                 it?.toUserSettings() ?: throw Exception("Error, can't get user")
             }
+        } catch (ex: Exception) {
+            throw ex
+        }
+    }
+
+    fun getProfileWorkItems() = flow {
+        try {
+            val response = database.getTaskDao().getCountOfTasks(settings.getCurrentId())
+            emit(listOf(ProfileStatisticItem("To do Task",response,"#6074F9")))
         } catch (ex: Exception) {
             throw ex
         }

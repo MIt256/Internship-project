@@ -25,4 +25,7 @@ abstract class TaskDao {
 
     @Query("SELECT * FROM tasks WHERE owner_id = :ownerId")
     abstract suspend fun getUserTasks(ownerId: String): List<TaskDbEntity>
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE owner_id = :ownerId")
+    abstract suspend fun getCountOfTasks(ownerId: String): Int
 }
