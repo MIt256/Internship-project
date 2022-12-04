@@ -40,8 +40,8 @@ class ProfileFragment : Fragment() {
         val profileAdapter = ProfileAdapter()
         binding.workRecycler.adapter = profileAdapter
 
-        viewModel.profileStatistic.observe(viewLifecycleOwner){
-            with(binding){
+        viewModel.profileStatistic.observe(viewLifecycleOwner) {
+            with(binding) {
                 createdTaskCount.text = it.createdTasks
                 completedTaskCount.text = it.completedTasks
                 statisticEventsCount.text = it.events
@@ -50,7 +50,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        viewModel.profileWorkItems.observe(viewLifecycleOwner){
+        viewModel.profileWorkItems.observe(viewLifecycleOwner) {
             profileAdapter.submitList(it)
         }
 
