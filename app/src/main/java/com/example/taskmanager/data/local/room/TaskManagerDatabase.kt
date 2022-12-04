@@ -14,8 +14,8 @@ import com.example.taskmanager.data.local.entities.*
         UserDbEntity::class,
         TaskDbEntity::class,
         ProjectDbEntity::class,
-        TaskMemberCrossRef::class,
-        QuickDbEntity::class
+        QuickDbEntity::class,
+        TaskMemberCrossRef::class
     ]
 )
 abstract class TaskManagerDatabase : RoomDatabase() {

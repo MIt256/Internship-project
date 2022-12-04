@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.Flow
 abstract class QuickDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun addAllQuickNotes(projects: List<QuickDbEntity>)
+    abstract fun addAllQuickNotes(quickNotes: List<QuickDbEntity>)
 
-    @Query("SELECT * FROM projects WHERE owner_id = :ownerId ")
-    abstract fun getQuicks(ownerId: String): Flow<List<QuickDbEntity?>>
+    @Query("SELECT * FROM quicks WHERE owner_id = :ownerId ")
+    abstract fun getQuickNotes(ownerId: String): Flow<List<QuickDbEntity?>>
 }

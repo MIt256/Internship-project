@@ -33,7 +33,11 @@ class QuickFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val quickAdapter = QuickAdapter()
-        //binding.quickRecycler.adapter = quickAdapter
+        binding.quickRecycler.adapter = quickAdapter
+
+        viewModel.quickNotes.observe(viewLifecycleOwner){
+            quickAdapter.submitList(it)
+        }
 
     }
 }

@@ -1,11 +1,7 @@
 package com.example.taskmanager.di.module
 
-import com.example.taskmanager.data.remote.api.AccountsApi
+import com.example.taskmanager.data.remote.api.*
 import com.example.taskmanager.data.settings.AppSettings
-import com.example.taskmanager.data.remote.api.ProjectApi
-import com.example.taskmanager.data.remote.api.NewTaskApi
-import com.example.taskmanager.data.remote.api.TasksApi
-import com.example.taskmanager.data.remote.api.UserApi
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -91,6 +87,12 @@ object NetworkModule {
     @Singleton
     fun provideApiProjectClient(retrofit: Retrofit): ProjectApi {
         return retrofit.create(ProjectApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiQuickClient(retrofit: Retrofit): QuickApi {
+        return retrofit.create(QuickApi::class.java)
     }
 
 }

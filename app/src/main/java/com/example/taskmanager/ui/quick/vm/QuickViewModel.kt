@@ -15,6 +15,6 @@ class QuickViewModel @Inject constructor(private val repository: QuickNotesRepos
 
     val currentException = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
-    val quicks: LiveData<List<Quick>> = repository.getQuickNotes().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
+    val quickNotes: LiveData<List<Quick>> = repository.getQuickNotes().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
 
 }

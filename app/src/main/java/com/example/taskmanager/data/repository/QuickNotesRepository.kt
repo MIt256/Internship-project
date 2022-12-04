@@ -11,7 +11,7 @@ class QuickNotesRepository @Inject constructor(private val database: TaskManager
 
     fun getQuickNotes(): Flow<List<Quick>> {
         try {
-            val response = database.getQuickNotesDao().getQuicks(settings.getCurrentId())
+            val response = database.getQuickNotesDao().getQuickNotes(settings.getCurrentId())
             return response.map {
                 it.map {
                     it?.toQuick() ?: throw Exception("Error, cant get quick notes")
