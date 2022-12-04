@@ -8,6 +8,10 @@ data class QuickResponse(
     val `data`: List<QuickData>
 )
 
+data class OneQuickResponse(
+    val `data`: QuickData
+)
+
 data class QuickData(
     @SerializedName("id")
     val id: String,
