@@ -9,6 +9,7 @@
     <dimen name="fragment_main_corner_radius">5dp</dimen>
 
     <dimen name="fragment_main_text_size">18sp</dimen>
+    <dimen name="fragment_small_text_size">14sp</dimen>
     <dimen name="fragment_secondary_text_size">12sp</dimen>
 
     <dimen name="fragment_elements_main_margin">32dp</dimen>
@@ -27,8 +28,11 @@
 
     <dimen name="fragment_button_inset_vertical">10dp</dimen>
     <dimen name="fragment_button_inset_horizontal">8dp</dimen>
+    <dimen name="fragment_secondary_padding">16dp</dimen>
     <dimen name="fragment_big_padding">32dp</dimen>
     <dimen name="fragment_button_padding">8dp</dimen>
     <dimen name="fragment_button_text_size">12sp</dimen>
+
+    <dimen name="fragment_profile_icon_size">60dp</dimen>
 
 </resources>
