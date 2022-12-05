@@ -13,8 +13,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/ic_back_arrow"
+        android:tint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseAppTint" />
 
     <Button
         android:id="@+id/button_sign_in"
@@ -39,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
         android:fontFamily="@font/roboto_light_italic"
         android:text="@string/welcome_back_text"
         android:textSize="28sp"
@@ -62,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/password_text"
         android:textColor="@color/black"
@@ -92,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/email_text"
         android:textColor="@color/black"
@@ -135,7 +137,7 @@
         android:id="@+id/forgot_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto_light_italic"
         android:text="@string/forgot_password_text"

@@ -27,6 +27,6 @@ class QuickNotesRepository @Inject constructor(private val database: TaskManager
             ownerId = settings.getCurrentId()
         )
         val response = quickApi.createQuickNote(newQuick)
-        database.getQuickNotesDao().addQuickNote(response.noteData.toDbQuick())
+        database.getQuickNotesDao().addQuickNote(response.data.toDbQuick())
     }
 }
