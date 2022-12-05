@@ -2,6 +2,7 @@ package com.example.taskmanager.data.local.entities
 
 import androidx.room.*
 import com.example.taskmanager.ui.task.entities.Task
+import com.example.taskmanager.utils.DateTimeFormatterUtil
 
 @Entity(
     tableName = "tasks",
@@ -54,7 +55,7 @@ data class TaskDbEntity(
         attachments = null,
         createdAt = createdAt,
         description = description,
-        dueDate = dueDate,
+        dueDate = DateTimeFormatterUtil.toLocalDateTime(dueDate),
         isCompleted = isCompleted,
         members = null,
         ownerId = ownerId,

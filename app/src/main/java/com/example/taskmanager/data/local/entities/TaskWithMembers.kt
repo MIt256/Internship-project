@@ -4,6 +4,8 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import com.example.taskmanager.ui.task.entities.Task
+import com.example.taskmanager.utils.DateTimeFormatterUtil
+import java.time.LocalDateTime
 
 data class TaskWithMembers(
     @Embedded val task: TaskDbEntity,
@@ -23,7 +25,7 @@ data class TaskWithMembers(
         attachments = null,
         createdAt = task.createdAt,
         description = task.description,
-        dueDate = task.dueDate,
+        dueDate = DateTimeFormatterUtil.toLocalDateTime(task.dueDate),
         id = task.id,
         isCompleted = task.isCompleted,
         members = members?.map { it.toUserSettings() },
