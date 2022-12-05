@@ -28,223 +28,232 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/profile_card_view"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
-        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
-        android:layout_marginEnd="@dimen/fragment_elements_secondary_margin"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/fragment_secondary_padding">
+            android:layout_height="match_parent">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
-                android:layout_width="@dimen/fragment_profile_icon_size"
-                android:layout_height="@dimen/fragment_profile_icon_size"
-                android:src="@drawable/ic_no_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profile_card_view"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
-                android:fontFamily="@font/roboto_light_italic"
-                android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_main_text_size"
-                app:layout_constraintStart_toEndOf="@+id/profile_image"
-                app:layout_constraintTop_toTopOf="@+id/profile_image" />
-
-            <TextView
-                android:id="@+id/user_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
-                android:layout_marginTop="@dimen/fragment_elements_small_margin"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_small_text_size"
-                app:layout_constraintStart_toEndOf="@+id/profile_image"
-                app:layout_constraintTop_toBottomOf="@+id/user_name" />
-
-            <TextView
-                android:id="@+id/created_task_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
-                android:fontFamily="@font/roboto_light_italic"
-                android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_main_text_size"
-                app:layout_constraintStart_toStartOf="@+id/profile_image"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
-
-            <TextView
-                android:id="@+id/created_task_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_small_margin"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/created_tasks_text"
-                android:textSize="@dimen/fragment_small_text_size"
-                app:layout_constraintStart_toStartOf="@+id/created_task_count"
-                app:layout_constraintTop_toBottomOf="@+id/created_task_count" />
-
-            <TextView
-                android:id="@+id/completed_task_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_small_margin"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/completed_tasks_text"
-                android:textSize="@dimen/fragment_small_text_size"
-                app:layout_constraintStart_toStartOf="@+id/completed_task_count"
-                app:layout_constraintTop_toBottomOf="@+id/completed_task_count" />
-
-            <TextView
-                android:id="@+id/completed_task_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_light_italic"
-                android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_main_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/created_task_text"
-                app:layout_constraintTop_toTopOf="@+id/created_task_count" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/work_recycler"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
-        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
-        android:layout_marginEnd="@dimen/fragment_elements_secondary_margin"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_card_view" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/statistic_card_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
-        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
-        android:layout_marginEnd="@dimen/fragment_elements_secondary_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/work_recycler">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/fragment_secondary_padding">
-
-            <TextView
-                android:id="@+id/statistic_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_light_italic"
-                android:text="@string/statistic_text"
-                android:textSize="@dimen/fragment_main_text_size"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="@dimen/fragment_elements_secondary_margin">
 
-            <TextView
-                android:id="@+id/statistic_events_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
-                android:background="@drawable/ic_circle_statistic"
-                android:backgroundTint="@color/app_red"
-                android:fontFamily="@font/roboto_light_italic"
-                android:gravity="center"
-                android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_main_text_size"
-                app:layout_constraintEnd_toStartOf="@+id/statistic_todo_count"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/statistic_text" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/fragment_secondary_padding">
 
-            <TextView
-                android:id="@+id/statistic_todo_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_circle_statistic"
-                android:backgroundTint="@color/blue_button"
-                android:fontFamily="@font/roboto_light_italic"
-                android:gravity="center"
-                android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_main_text_size"
-                app:layout_constraintEnd_toStartOf="@+id/statistic_quick_count"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/statistic_events_count"
-                app:layout_constraintTop_toTopOf="@+id/statistic_events_count" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="@dimen/fragment_profile_icon_size"
+                        android:layout_height="@dimen/fragment_profile_icon_size"
+                        android:src="@drawable/ic_no_image"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/statistic_quick_count"
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:text="@string/no_info_text"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintStart_toEndOf="@+id/profile_image"
+                        app:layout_constraintTop_toTopOf="@+id/profile_image" />
+
+                    <TextView
+                        android:id="@+id/user_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
+                        android:layout_marginTop="@dimen/fragment_elements_small_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/no_info_text"
+                        android:textSize="@dimen/fragment_small_text_size"
+                        app:layout_constraintStart_toEndOf="@+id/profile_image"
+                        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+                    <TextView
+                        android:id="@+id/created_task_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:text="@string/no_info_text"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintStart_toStartOf="@+id/profile_image"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+                    <TextView
+                        android:id="@+id/created_task_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_elements_small_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/created_tasks_text"
+                        android:textSize="@dimen/fragment_small_text_size"
+                        app:layout_constraintStart_toStartOf="@+id/created_task_count"
+                        app:layout_constraintTop_toBottomOf="@+id/created_task_count" />
+
+                    <TextView
+                        android:id="@+id/completed_task_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_elements_small_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/completed_tasks_text"
+                        android:textSize="@dimen/fragment_small_text_size"
+                        app:layout_constraintStart_toStartOf="@+id/completed_task_count"
+                        app:layout_constraintTop_toBottomOf="@+id/completed_task_count" />
+
+                    <TextView
+                        android:id="@+id/completed_task_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:text="@string/no_info_text"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/created_task_text"
+                        app:layout_constraintTop_toTopOf="@+id/created_task_count" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/work_recycler"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_circle_statistic"
-                android:backgroundTint="@color/app_purple"
-                android:fontFamily="@font/roboto_light_italic"
-                android:gravity="center"
-                android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_main_text_size"
+                android:layout_margin="@dimen/fragment_elements_secondary_margin"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/statistic_todo_count"
-                app:layout_constraintTop_toTopOf="@+id/statistic_events_count" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_card_view" />
 
-            <TextView
-                android:id="@+id/statistic_events_text"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/statistic_card_view"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_small_margin"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/events_text"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/fragment_small_text_size"
-                app:layout_constraintEnd_toEndOf="@+id/statistic_events_count"
-                app:layout_constraintStart_toStartOf="@+id/statistic_events_count"
-                app:layout_constraintTop_toBottomOf="@+id/statistic_events_count" />
+                android:layout_margin="@dimen/fragment_elements_secondary_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/work_recycler">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_small_margin"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/to_do_text"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/fragment_small_text_size"
-                app:layout_constraintEnd_toEndOf="@+id/statistic_todo_count"
-                app:layout_constraintStart_toStartOf="@+id/statistic_todo_count"
-                app:layout_constraintTop_toBottomOf="@+id/statistic_todo_count" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/fragment_secondary_padding">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_small_margin"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/quick_notes_text"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/fragment_small_text_size"
-                app:layout_constraintEnd_toEndOf="@+id/statistic_quick_count"
-                app:layout_constraintStart_toStartOf="@+id/statistic_quick_count"
-                app:layout_constraintTop_toBottomOf="@+id/statistic_quick_count" />
+                    <TextView
+                        android:id="@+id/statistic_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:text="@string/statistic_text"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/statistic_events_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
+                        android:background="@drawable/ic_circle_statistic"
+                        android:backgroundTint="@color/app_red"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:gravity="center"
+                        android:text="@string/no_info_text"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintEnd_toStartOf="@+id/statistic_todo_count"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/statistic_text" />
+
+                    <TextView
+                        android:id="@+id/statistic_todo_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_circle_statistic"
+                        android:backgroundTint="@color/blue_button"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:gravity="center"
+                        android:text="@string/no_info_text"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintEnd_toStartOf="@+id/statistic_quick_count"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/statistic_events_count"
+                        app:layout_constraintTop_toTopOf="@+id/statistic_events_count" />
+
+                    <TextView
+                        android:id="@+id/statistic_quick_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_circle_statistic"
+                        android:backgroundTint="@color/app_purple"
+                        android:fontFamily="@font/roboto_light_italic"
+                        android:gravity="center"
+                        android:text="@string/no_info_text"
+                        android:textSize="@dimen/fragment_main_text_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/statistic_todo_count"
+                        app:layout_constraintTop_toTopOf="@+id/statistic_events_count" />
+
+                    <TextView
+                        android:id="@+id/statistic_events_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_elements_small_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/events_text"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/fragment_small_text_size"
+                        app:layout_constraintEnd_toEndOf="@+id/statistic_events_count"
+                        app:layout_constraintStart_toStartOf="@+id/statistic_events_count"
+                        app:layout_constraintTop_toBottomOf="@+id/statistic_events_count" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_elements_small_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/to_do_text"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/fragment_small_text_size"
+                        app:layout_constraintEnd_toEndOf="@+id/statistic_todo_count"
+                        app:layout_constraintStart_toStartOf="@+id/statistic_todo_count"
+                        app:layout_constraintTop_toBottomOf="@+id/statistic_todo_count" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_elements_small_margin"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/quick_notes_text"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/fragment_small_text_size"
+                        app:layout_constraintEnd_toEndOf="@+id/statistic_quick_count"
+                        app:layout_constraintStart_toStartOf="@+id/statistic_quick_count"
+                        app:layout_constraintTop_toBottomOf="@+id/statistic_quick_count" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
