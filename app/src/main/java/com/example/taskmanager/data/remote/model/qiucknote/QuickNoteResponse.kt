@@ -9,7 +9,7 @@ data class QuickNoteResponse(
 )
 
 data class OneQuickNoteResponse(
-    val noteData: QuickNoteData
+    val `data`: QuickNoteData
 )
 
 data class QuickNoteData(

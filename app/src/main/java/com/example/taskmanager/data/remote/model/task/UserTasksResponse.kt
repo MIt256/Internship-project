@@ -4,6 +4,7 @@ import com.example.taskmanager.data.local.entities.UserDbEntity
 import com.example.taskmanager.ui.task.entities.Task
 import com.example.taskmanager.ui.task.entities.TaskAttachment
 import com.example.taskmanager.ui.task.entities.User
+import com.example.taskmanager.utils.DateTimeFormatterUtil
 import com.google.gson.annotations.SerializedName
 
 data class UserTasksResponse(
@@ -62,7 +63,7 @@ data class TasksData(
             attachments = tmpAttachment,
             createdAt = createdAt,
             description = description,
-            dueDate = dueDate,
+            dueDate = DateTimeFormatterUtil.toLocalDateTime(dueDate),
             id = id,
             isCompleted = isCompleted,
             members = tmpMember,

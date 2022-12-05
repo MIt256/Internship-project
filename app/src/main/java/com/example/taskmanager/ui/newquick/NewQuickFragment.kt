@@ -71,6 +71,10 @@ class NewQuickFragment : Fragment() {
             viewModel.createNewQuickNote()
         }
 
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
     }
 
     private fun getColor(colorResource: Int) = String.format("#%06x", ContextCompat.getColor(binding.root.context, colorResource) and 0xffffff)

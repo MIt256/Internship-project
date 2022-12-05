@@ -1,11 +1,11 @@
 package com.example.taskmanager.data.repository
 
 import com.example.taskmanager.data.remote.api.AccountsApi
+import com.example.taskmanager.data.remote.model.accounts.SignInEntity
 import com.example.taskmanager.data.remote.model.accounts.SignInRequestEntity
+import com.example.taskmanager.data.remote.model.accounts.SignUpEntity
 import com.example.taskmanager.data.remote.model.accounts.SignUpRequestEntity
 import com.example.taskmanager.data.remote.utils.NetworkResult
-import com.example.taskmanager.data.remote.model.accounts.SignInEntity
-import com.example.taskmanager.data.remote.model.accounts.SignUpEntity
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import java.util.*
@@ -22,11 +22,12 @@ class AccountsRepository @Inject constructor(private val accountsApi: AccountsAp
             password = Base64.getEncoder().encodeToString(userInfo.password.toByteArray())
         )
         val response = accountsApi.signUp(
-            SignUpRequestEntity(
-                username = "andreikastsiuk",
-                email = "andrei.kastsiuk@cogniteq.com",
-                password = "MTIzNDU2Nzhx"
-            )
+//            SignUpRequestEntity(
+//                username = "andreikastsiuk",
+//                email = "andrei.kastsiuk@cogniteq.com",
+//                password = "MTIzNDU2Nzhx"
+//            )
+            requestEntity
         )
         emit(NetworkResult.Success(response.data.toUserSettings()))
     }.catch { e ->
@@ -40,10 +41,11 @@ class AccountsRepository @Inject constructor(private val accountsApi: AccountsAp
             password = Base64.getEncoder().encodeToString(userInfo.password.toByteArray())
         )
         val response = accountsApi.signIn(
-            SignInRequestEntity(
-                email = "andrei.kastsiuk@cogniteq.com",
-                password = "MTIzNDU2Nzhx"
-            )
+//            SignInRequestEntity(
+//                email = "andrei.kastsiuk@cogniteq.com",
+//                password = "MTIzNDU2Nzhx"
+//            )
+            requestEntity
         )
         emit(NetworkResult.Success(response.data.toUserSettings(userInfo.email)))
     }.catch { e ->

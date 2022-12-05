@@ -4,13 +4,15 @@ import com.example.taskmanager.data.local.entities.TaskDbEntity
 import com.example.taskmanager.data.local.entities.TaskMemberCrossRef
 import com.example.taskmanager.data.local.entities.TaskWithMembers
 import com.example.taskmanager.data.local.entities.UserDbEntity
+import com.example.taskmanager.utils.DateTimeFormatterUtil
+import java.time.LocalDateTime
 
 data class Task(
     val assignedTo: String?,
     val attachments: List<TaskAttachment>?,
     val createdAt: String,
     val description: String,
-    val dueDate: String,
+    val dueDate: LocalDateTime,
     val id: String,
     val isCompleted: Boolean,
     val members: List<User>?,
@@ -33,7 +35,7 @@ data class Task(
     fun toTaskDbEntity() = TaskDbEntity(
         id = id,
         title = title,
-        dueDate = dueDate,
+        dueDate = DateTimeFormatterUtil.formatter.format(dueDate),
         description = description,
         assignedTo = assignedTo,
         isCompleted = isCompleted,

@@ -20,9 +20,12 @@ class ProfileRepository @Inject constructor(private val database: TaskManagerDat
     }
 
     fun getProfileWorkItems() = flow {
-        val response = database.getTaskDao().getCountOfTasks(settings.getCurrentId())
-        //todo fix this when i add quick
-        emit(listOf(ProfileStatisticItem("To do Task", response, "#6074F9")))
+        emit(
+            listOf(
+                ProfileStatisticItem("To do Task", database.getTaskDao().getCountOfTasks(settings.getCurrentId()), "#6074F9"),
+                ProfileStatisticItem("Quick Note", database.getQuickNotesDao().getCountOfNotes(settings.getCurrentId()), "#8560F9")
+            )
+        )
     }
 
     suspend fun getProfileStatistic(): Statistic {

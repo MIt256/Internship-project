@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.TaskListItemBinding
 import com.example.taskmanager.ui.task.entities.Task
+import com.example.taskmanager.utils.DateTimeFormatterUtil
 
 class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
 
@@ -30,8 +31,7 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
                 statusBar.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.blue_button))
             }
             title.text = taskItem.title
-            time.text = taskItem.dueDate
-
+            time.text = DateTimeFormatterUtil.simpleFormatter.format(taskItem.dueDate)
         }
     }
 
