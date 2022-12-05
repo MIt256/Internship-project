@@ -61,7 +61,7 @@ class SyncRepository @Inject constructor(
         val users = mutableSetOf<UserDbEntity>()
         val userIdSet = mutableSetOf<String>()
 
-        userIdSet.add(tasks[0].ownerId)
+        userIdSet.add(settings.getCurrentId())
         tasks.forEach {
             val members = it.toUserDbList()
             if (members != null) {

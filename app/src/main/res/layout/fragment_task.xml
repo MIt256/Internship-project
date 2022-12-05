@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -63,7 +62,6 @@
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/app_red"
@@ -73,13 +71,11 @@
             app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_item_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/today_text" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_item_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/month_text" />
