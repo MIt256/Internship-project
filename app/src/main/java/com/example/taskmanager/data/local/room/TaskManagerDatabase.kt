@@ -14,7 +14,7 @@ import com.example.taskmanager.data.local.entities.*
         UserDbEntity::class,
         TaskDbEntity::class,
         ProjectDbEntity::class,
-        QuickDbEntity::class,
+        QuickNoteDbEntity::class,
         TaskMemberCrossRef::class
     ]
 )

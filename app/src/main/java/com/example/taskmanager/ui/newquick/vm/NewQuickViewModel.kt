@@ -25,7 +25,8 @@ class NewQuickViewModel @Inject constructor(private val repository: QuickNotesRe
                     repository.addNewQuick(
                         description.value ?: throw Exception("Title is null"),
                         color.value ?: throw Exception("Color is null")
-                    ).collect() { successMessage.emit(it) }
+                    )
+                    successMessage.emit("Success, quick note was successfully added")
                 } catch (exception: Exception) {
                     exception.message?.let { currentException.emit(it) }
                 }

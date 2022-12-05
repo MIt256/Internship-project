@@ -19,7 +19,7 @@ import com.example.taskmanager.ui.entities.QuickNote
         Index("owner_id")
     ]
 )
-data class QuickDbEntity(
+data class QuickNoteDbEntity(
     @PrimaryKey(autoGenerate = false) val id: String,
     val description: String,
     val color: String,

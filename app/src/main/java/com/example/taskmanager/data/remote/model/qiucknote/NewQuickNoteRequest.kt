@@ -1,8 +1,8 @@
-package com.example.taskmanager.data.remote.model.qiuck
+package com.example.taskmanager.data.remote.model.qiucknote
 
 import com.google.gson.annotations.SerializedName
 
-data class NewQuickRequest(
+data class NewQuickNoteRequest(
     @SerializedName("description")
     val description: String,
     @SerializedName("color")
