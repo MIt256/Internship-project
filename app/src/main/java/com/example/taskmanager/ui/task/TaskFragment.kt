@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.ui.task.adapter.TasksAdapter
 import com.example.taskmanager.ui.task.vm.TaskViewModel
@@ -21,6 +23,7 @@ class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
     private val viewModel: TaskViewModel by viewModels()
+    private val sharedViewModel: UserSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +38,8 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedViewModel.workManagerStart()
 
         val tasksAdapter = TasksAdapter()
         binding.taskList.adapter = tasksAdapter
@@ -53,7 +58,6 @@ class TaskFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
-
 
     }
 

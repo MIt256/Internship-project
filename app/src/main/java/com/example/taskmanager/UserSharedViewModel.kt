@@ -22,7 +22,6 @@ class UserSharedViewModel @Inject constructor(
 
     init{
         checkUserStatus()
-        workManagerStart()
     }
 
     fun setStatus(status: Boolean){
@@ -33,7 +32,7 @@ class UserSharedViewModel @Inject constructor(
         _isAuthenticated.value = appSettings.checkUserToken()
     }
 
-    private fun workManagerStart(){
+    fun workManagerStart(){
 
         val workRequest =
             OneTimeWorkRequestBuilder<SyncWorker>().build()
