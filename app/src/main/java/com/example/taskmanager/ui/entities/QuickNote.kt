@@ -1,6 +1,6 @@
 package com.example.taskmanager.ui.entities
 
-data class Quick(
+data class QuickNote(
     val id: String,
     val description: String,
     val color: String,

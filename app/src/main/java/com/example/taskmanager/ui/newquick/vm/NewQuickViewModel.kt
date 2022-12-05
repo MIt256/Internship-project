@@ -13,6 +13,7 @@ import javax.inject.Inject
 class NewQuickViewModel @Inject constructor(private val repository: QuickNotesRepository) : ViewModel() {
 
     val currentException = MutableSharedFlow<String>(extraBufferCapacity = 1)
+    val successMessage = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
     val description = MutableLiveData<String>()
     val color = MutableLiveData<String>()
@@ -24,7 +25,7 @@ class NewQuickViewModel @Inject constructor(private val repository: QuickNotesRe
                     repository.addNewQuick(
                         description.value ?: throw Exception("Title is null"),
                         color.value ?: throw Exception("Color is null")
-                    )
+                    ).collect() { successMessage.emit(it) }
                 } catch (exception: Exception) {
                     exception.message?.let { currentException.emit(it) }
                 }

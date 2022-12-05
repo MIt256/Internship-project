@@ -2,30 +2,26 @@ package com.example.taskmanager.data.repository
 
 import com.example.taskmanager.data.local.room.TaskManagerDatabase
 import com.example.taskmanager.data.remote.api.QuickApi
-import com.example.taskmanager.data.remote.model.project.NewProjectRequest
 import com.example.taskmanager.data.remote.model.qiuck.NewQuickRequest
 import com.example.taskmanager.data.settings.AppSettings
-import com.example.taskmanager.ui.entities.Quick
+import com.example.taskmanager.ui.entities.QuickNote
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class QuickNotesRepository @Inject constructor(private val database: TaskManagerDatabase, private val settings: AppSettings, private val quickApi: QuickApi) {
 
-    fun getQuickNotes(): Flow<List<Quick>> {
-        try {
-            val response = database.getQuickNotesDao().getQuickNotes(settings.getCurrentId())
-            return response.map {
-                it.map {
-                    it?.toQuick() ?: throw Exception("Error, cant get quick notes")
-                }
+    fun getQuickNotes(): Flow<List<QuickNote>> {
+        return database.getQuickNotesDao().getQuickNotes(settings.getCurrentId()).map {
+            it.map {
+                it?.toQuick() ?: throw Exception("Error, cant get quick notes")
             }
-        } catch (ex: Exception) {
-            throw ex
         }
+
     }
 
-    suspend fun addNewQuick(description: String, color: String)  {
+    suspend fun addNewQuick(description: String, color: String) = flow {
         val newQuick = NewQuickRequest(
             description = description,
             color = color,
@@ -34,7 +30,7 @@ class QuickNotesRepository @Inject constructor(private val database: TaskManager
         try {
             val response = quickApi.createQuickNote(newQuick)
             database.getQuickNotesDao().addQuickNote(response.data.toDbQuick())
-            throw Exception("Success")
+            emit("Success, quick note was successfully added")
         } catch (e: Exception) {
             throw e
         }

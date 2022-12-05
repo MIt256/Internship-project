@@ -1,7 +1,7 @@
 package com.example.taskmanager.data.remote.model.qiuck
 
 import com.example.taskmanager.data.local.entities.QuickDbEntity
-import com.example.taskmanager.ui.entities.Quick
+import com.example.taskmanager.ui.entities.QuickNote
 import com.google.gson.annotations.SerializedName
 
 data class QuickResponse(
@@ -26,7 +26,7 @@ data class QuickData(
     @SerializedName("created_at")
     val createdAt: String
 ) {
-    fun toQuick() = Quick(
+    fun toQuick() = QuickNote(
         id = id,
         description = description,
         color = color,

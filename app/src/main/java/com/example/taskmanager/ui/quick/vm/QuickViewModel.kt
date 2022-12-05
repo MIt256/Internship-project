@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.taskmanager.data.repository.QuickNotesRepository
-import com.example.taskmanager.ui.entities.Quick
+import com.example.taskmanager.ui.entities.QuickNote
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.catch
@@ -15,6 +15,6 @@ class QuickViewModel @Inject constructor(private val repository: QuickNotesRepos
 
     val currentException = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
-    val quickNotes: LiveData<List<Quick>> = repository.getQuickNotes().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
+    val quickNoteNotes: LiveData<List<QuickNote>> = repository.getQuickNotes().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
 
 }

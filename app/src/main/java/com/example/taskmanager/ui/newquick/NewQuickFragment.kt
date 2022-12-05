@@ -50,9 +50,16 @@ class NewQuickFragment : Fragment() {
                 viewModel.description.value = it.toString()
         }
 
+        viewModel.successMessage.onEach {
+            Toast.makeText(
+                context,
+                it,
+                Toast.LENGTH_SHORT
+            ).show()
+            findNavController().popBackStack()
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
         viewModel.currentException.onEach {
-            if (it == "Success")
-                findNavController().popBackStack()
             Toast.makeText(
                 context,
                 it,

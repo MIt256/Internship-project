@@ -1,7 +1,7 @@
 package com.example.taskmanager.data.local.entities
 
 import androidx.room.*
-import com.example.taskmanager.ui.entities.Quick
+import com.example.taskmanager.ui.entities.QuickNote
 
 @Entity(
     tableName = "quicks",
@@ -27,7 +27,7 @@ data class QuickDbEntity(
     @ColumnInfo(name = "owner_id") val ownerId: String,
     @ColumnInfo(name = "created_at") val createdAt: String
 ) {
-    fun toQuick() = Quick(
+    fun toQuick() = QuickNote(
         id = id,
         description = description,
         color = color,

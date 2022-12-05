@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanager.databinding.FragmentQuickBinding
-import com.example.taskmanager.ui.profile.adapter.ProfileAdapter
 import com.example.taskmanager.ui.quick.adapter.QuickAdapter
 import com.example.taskmanager.ui.quick.vm.QuickViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +34,7 @@ class QuickFragment : Fragment() {
         val quickAdapter = QuickAdapter()
         binding.quickRecycler.adapter = quickAdapter
 
-        viewModel.quickNotes.observe(viewLifecycleOwner){
+        viewModel.quickNoteNotes.observe(viewLifecycleOwner){
             quickAdapter.submitList(it)
         }
 

@@ -27,8 +27,7 @@ class SyncRepository @Inject constructor(
         val dbTasks = tasks.map { it.toTaskDbEntity() }
         val dbTaskMemberCrossRefs = getAllCrossRefs(tasks)
         val dbProjects = tasks.map { projectApi.fetchProject(it.projectId).data.toProjectDbEntity() }
-        val dbUserProjects = projectApi.fetchUserProjects(settings.getCurrentId()).data.map { it.toProjectDbEntity() }
-        dbProjects.plus(dbUserProjects)
+            .plus(projectApi.fetchUserProjects(settings.getCurrentId()).data.map { it.toProjectDbEntity() })
         val dpUsers = fetchAllUsers(tasks, dbProjects)
         val dpQuicks = quickApi.fetchUserQuickNotes(settings.getCurrentId()).data.map { it.toDbQuick() }
 

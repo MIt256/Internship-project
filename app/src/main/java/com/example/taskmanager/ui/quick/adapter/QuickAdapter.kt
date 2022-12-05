@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.QuickRecyclerItemBinding
-import com.example.taskmanager.ui.entities.Quick
+import com.example.taskmanager.ui.entities.QuickNote
 
-class QuickAdapter : ListAdapter<Quick, QuickAdapter.QuickViewHolder>(QuickItemDiffCallback()) {
+class QuickAdapter : ListAdapter<QuickNote, QuickAdapter.QuickViewHolder>(QuickItemDiffCallback()) {
 
     inner class QuickViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = QuickRecyclerItemBinding.bind(view)
-        fun bind(item: Quick) = with(binding) {
+        fun bind(item: QuickNote) = with(binding) {
             quickText.text = item.description
             statusBar.setBackgroundColor(item.color.toColorInt())
         }
@@ -31,10 +31,10 @@ class QuickAdapter : ListAdapter<Quick, QuickAdapter.QuickViewHolder>(QuickItemD
         holder.bind(getItem(position))
     }
 
-    class QuickItemDiffCallback : DiffUtil.ItemCallback<Quick>() {
-        override fun areItemsTheSame(oldItem: Quick, newItem: Quick): Boolean = oldItem == newItem
+    class QuickItemDiffCallback : DiffUtil.ItemCallback<QuickNote>() {
+        override fun areItemsTheSame(oldItem: QuickNote, newItem: QuickNote): Boolean = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: Quick, newItem: Quick): Boolean = oldItem == newItem
+        override fun areContentsTheSame(oldItem: QuickNote, newItem: QuickNote): Boolean = oldItem == newItem
 
     }
 }
