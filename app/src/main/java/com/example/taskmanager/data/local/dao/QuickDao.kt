@@ -19,4 +19,7 @@ abstract class QuickDao {
 
     @Query("SELECT * FROM quicks WHERE owner_id = :ownerId ")
     abstract fun getQuickNotes(ownerId: String): Flow<List<QuickNoteDbEntity?>>
+
+    @Query("SELECT COUNT(*) FROM quicks WHERE owner_id = :ownerId")
+    abstract suspend fun getCountOfNotes(ownerId: String): Int
 }
