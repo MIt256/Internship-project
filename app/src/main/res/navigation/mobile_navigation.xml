@@ -97,5 +97,10 @@
                 app:popUpToInclusive="true" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/newQuickFragment"
+        android:name="com.example.taskmanager.ui.newquick.NewQuickFragment"
+        android:label="new_quick_fragment"
+        tools:layout="@layout/new_quick_fragment" />
 
 </navigation>

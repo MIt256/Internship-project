@@ -82,6 +82,10 @@
     <string name="to_do_text">To do</string>
     <string name="quick_notes_text">Quick notes</string>
 
+    <string name="done_button_text">Done</string>
+    <string name="choose_color_text">Choose color</string>
+    <string name="add_quick_note_text">Add Quick Note</string>
+
     <string name="no_info_text">No info</string>
 
 </resources>

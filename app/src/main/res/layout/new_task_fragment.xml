@@ -146,7 +146,7 @@
                         android:id="@+id/gone_groupe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:constraint_referenced_ids="title_edit_text,description_text,description_edit_text,due_date_text,button_time,add_member_text,image_add_user,button_add_task,icon_recycler" />
+                        app:constraint_referenced_ids="title_edit_text,description_text,description_edit_text,due_date_text,button_time,add_member_text,image_add_user,button_add_note,icon_recycler" />
 
                     <EditText
                         android:id="@+id/title_edit_text"
