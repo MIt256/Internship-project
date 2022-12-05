@@ -14,13 +14,8 @@ import javax.inject.Inject
 class ProfileRepository @Inject constructor(private val database: TaskManagerDatabase, private val settings: AppSettings, private val userApi: UserApi) {
 
     fun getProfileInfo(): Flow<User> {
-        try {
-            val response = database.getUserDao().getUserById(settings.getCurrentId())
-            return response.map {
-                it?.toUserSettings() ?: throw Exception("Error, can't get user")
-            }
-        } catch (ex: Exception) {
-            throw ex
+        return database.getUserDao().getUserById(settings.getCurrentId()).map {
+            it?.toUserSettings() ?: throw Exception("Error, can't get user")
         }
     }
 
