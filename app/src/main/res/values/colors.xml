@@ -10,6 +10,7 @@
 
     <color name="app_red">#F96060</color>
     <color name="app_grey">#C4C4C4</color>
+    <color name="app_purple">#8560F9</color>
     <color name="app_dark_blue">#292E4E</color>
     <color name="lite_grey">#F4F4F4</color>
     <color name="text_black">#313131</color>

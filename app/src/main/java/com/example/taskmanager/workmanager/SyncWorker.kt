@@ -22,7 +22,7 @@ class SyncWorker @AssistedInject constructor(
             repository.fetchTasksAndSave()
             Result.success()
         } catch (e: Throwable) {
-            Log.e("SyncWorker", "Error, result is failure")
+            Log.e("SyncWorker", "Error, result is failure $e")
             Result.failure()
         }
 

@@ -34,4 +34,10 @@
     <style name="BottomNavigationView" parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/roboto_light_italic</item>
     </style>
+
+    <style name="MyAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:fontFamily">@font/roboto_light_italic</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

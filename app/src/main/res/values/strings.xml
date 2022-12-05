@@ -75,4 +75,17 @@
     <string name="today_text">Today</string>
     <string name="month_text">Month</string>
 
+    <string name="created_tasks_text">Created tasks</string>
+    <string name="completed_tasks_text">Completed tasks</string>
+    <string name="statistic_text">Statistic</string>
+    <string name="events_text">Events</string>
+    <string name="to_do_text">To do</string>
+    <string name="quick_notes_text">Quick notes</string>
+
+    <string name="done_button_text">Done</string>
+    <string name="choose_color_text">Choose color</string>
+    <string name="add_quick_note_text">Add Quick Note</string>
+
+    <string name="no_info_text">No info</string>
+
 </resources>

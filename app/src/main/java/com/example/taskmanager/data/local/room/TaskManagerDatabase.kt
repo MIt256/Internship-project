@@ -3,12 +3,10 @@ package com.example.taskmanager.data.local.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.taskmanager.data.local.dao.ProjectDao
+import com.example.taskmanager.data.local.dao.QuickDao
 import com.example.taskmanager.data.local.dao.TaskDao
 import com.example.taskmanager.data.local.dao.UserDao
-import com.example.taskmanager.data.local.entities.ProjectDbEntity
-import com.example.taskmanager.data.local.entities.TaskDbEntity
-import com.example.taskmanager.data.local.entities.TaskMemberCrossRef
-import com.example.taskmanager.data.local.entities.UserDbEntity
+import com.example.taskmanager.data.local.entities.*
 
 @Database(
     version = 1,
@@ -16,6 +14,7 @@ import com.example.taskmanager.data.local.entities.UserDbEntity
         UserDbEntity::class,
         TaskDbEntity::class,
         ProjectDbEntity::class,
+        QuickNoteDbEntity::class,
         TaskMemberCrossRef::class
     ]
 )
@@ -23,4 +22,5 @@ abstract class TaskManagerDatabase : RoomDatabase() {
     abstract fun getTaskDao(): TaskDao
     abstract fun getUserDao(): UserDao
     abstract fun getProjectDao(): ProjectDao
+    abstract fun getQuickNotesDao(): QuickDao
 }

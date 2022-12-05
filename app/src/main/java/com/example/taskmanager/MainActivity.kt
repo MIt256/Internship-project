@@ -1,8 +1,9 @@
 package com.example.taskmanager
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -10,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.taskmanager.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +44,15 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.buttonAdd.setOnClickListener {
-            navController.navigate(R.id.newTaskFragment)
+            val builder = AlertDialog.Builder(binding.root.context, R.style.MyAlertDialogTheme)
+            builder.setItems(R.array.creation_options,
+                DialogInterface.OnClickListener { dialog, which ->
+                    when (which) {
+                        0 -> navController.navigate(R.id.newTaskFragment)
+                        1 -> navController.navigate(R.id.newQuickFragment)
+                    }
+                })
+            builder.show()
         }
 
     }
