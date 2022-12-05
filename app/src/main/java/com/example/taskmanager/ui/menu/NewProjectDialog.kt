@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.NewProjectDialogBinding
+import com.example.taskmanager.ui.menu.vm.MenuViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="creation_options">
+        <item>@string/add_task_button_text</item>
+        <item>@string/add_quick_note_text</item>
+    </array>
+</resources>

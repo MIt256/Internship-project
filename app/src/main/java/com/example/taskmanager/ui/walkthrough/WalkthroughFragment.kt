@@ -11,6 +11,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.taskmanager.R
 import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.databinding.FragmentWalkthroughBinding
+import com.example.taskmanager.ui.entities.WalkthroughItem
+import com.example.taskmanager.ui.walkthrough.adapter.Adapter
 
 class WalkthroughFragment : Fragment() {
 

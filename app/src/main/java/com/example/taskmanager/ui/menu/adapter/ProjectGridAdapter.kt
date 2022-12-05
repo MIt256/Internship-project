@@ -11,7 +11,7 @@ import com.example.taskmanager.databinding.ProjectGridAddItemBinding
 import com.example.taskmanager.databinding.ProjectGridItemBinding
 import com.example.taskmanager.ui.menu.adapter.ItemTypes.ITEM_TYPE_ADD_BUTTON
 import com.example.taskmanager.ui.menu.adapter.ItemTypes.ITEM_TYPE_PROJECT
-import com.example.taskmanager.ui.newTask.entities.Project
+import com.example.taskmanager.ui.entities.Project
 
 class ProjectGridAdapter : ListAdapter<ProjectItem, ProjectItemViewHolder<ProjectItem>>(ProjectItemDiffCallback()) {
 
