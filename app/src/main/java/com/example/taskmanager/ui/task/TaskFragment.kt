@@ -16,10 +16,14 @@ import com.example.taskmanager.R
 import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.ui.task.adapter.TasksAdapter
+import com.example.taskmanager.ui.task.entities.Task
 import com.example.taskmanager.ui.task.vm.TaskViewModel
+import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.*
+import kotlin.time.Duration.Companion.days
 
 @AndroidEntryPoint
 class TaskFragment : Fragment() {
@@ -27,6 +31,7 @@ class TaskFragment : Fragment() {
     private lateinit var binding: FragmentTaskBinding
     private val viewModel: TaskViewModel by viewModels()
     private val sharedViewModel: UserSharedViewModel by activityViewModels()
+    val tasksAdapter = TasksAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +49,18 @@ class TaskFragment : Fragment() {
 
         sharedViewModel.workManagerStart()
 
-        val tasksAdapter = TasksAdapter()
+        binding.filter.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewModel.tasks.value?.let { setTasks(it) }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
+
         binding.taskList.adapter = tasksAdapter
         tasksAdapter.setOnItemClickListener {
             //todo event click
@@ -54,7 +70,7 @@ class TaskFragment : Fragment() {
         }
 
         viewModel.tasks.observe(this.viewLifecycleOwner) {
-            tasksAdapter.setTasks(it)
+            setTasks(it)
         }
 
         viewModel.currentException.onEach {
@@ -64,6 +80,17 @@ class TaskFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+    }
+
+    private fun setTasks(tasks:List<Task>){
+        tasksAdapter.setTasks(
+            when(binding.filter.selectedTabPosition){
+                0 -> tasks.filter{ it.dueDate.dayOfMonth == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)}
+                1 -> tasks.filter{ it.dueDate.month.value == Calendar.getInstance().get(Calendar.MONTH)+1}
+                else -> {tasks}
+            }
+        )
 
     }
 

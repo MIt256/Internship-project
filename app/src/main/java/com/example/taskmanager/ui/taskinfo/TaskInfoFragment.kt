@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.databinding.FragmentTaskInfoBinding
 import com.example.taskmanager.ui.taskinfo.vm.TaskInfoViewModel
+import com.example.taskmanager.utils.DateTimeFormatterUtil
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,7 +41,7 @@ class TaskInfoFragment : Fragment() {
         viewModel.currentTask.observe(viewLifecycleOwner){
             binding.titleEditText2.setText(it.title)
             binding.descriptionEditText2.setText(it.description)
-            binding.buttonAddTask2.text = it.dueDate.toString()
+            binding.buttonTime2.text = DateTimeFormatterUtil.simpleFormatter.format(it.dueDate)
             binding.projectTextInfo.text = it.projectId
         }
 
