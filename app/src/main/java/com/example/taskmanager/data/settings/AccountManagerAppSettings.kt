@@ -25,10 +25,11 @@ class AccountManagerAppSettings @Inject constructor(
             ) else null
     }
 
-    override fun getCurrentId(): String = accountManager.getUserData(
-        getAccount(ACCOUNT_TYPE),
-        KEY_USER_ID
-    )
+//    override fun getCurrentId(): String = accountManager.getUserData(
+//        getAccount(ACCOUNT_TYPE),
+//        KEY_USER_ID
+//    )
+    override fun getCurrentId(): String = "ab29f6c7-3d86-4e7b-8d04-94f887620ad3"
 
     override fun setCurrentToken(token: String?) {
 
