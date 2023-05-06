@@ -15,6 +15,9 @@
             app:destination="@id/auth_navigation_graph"
             app:popUpTo="@id/mobile_navigation"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_task_to_taskInfoFragment"
+            app:destination="@id/taskInfoFragment" />
     </fragment>
 
     <fragment
@@ -102,5 +105,16 @@
         android:name="com.example.taskmanager.ui.newquick.NewQuickFragment"
         android:label="new_quick_fragment"
         tools:layout="@layout/new_quick_fragment" />
+    <fragment
+        android:id="@+id/taskInfoFragment"
+        android:name="com.example.taskmanager.ui.taskinfo.TaskInfoFragment"
+        android:label="fragment_task_info"
+        tools:layout="@layout/fragment_task_info" >
+        <action
+            android:id="@+id/action_taskInfoFragment_to_navigation_task"
+            app:destination="@id/navigation_task" />
+        <argument android:name="id"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

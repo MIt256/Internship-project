@@ -14,8 +14,8 @@ import com.example.taskmanager.utils.DateTimeFormatterUtil
 class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
 
     private var tasks = mutableListOf<Task>()
-    private var onItemClickListener: ((Int) -> Unit)? = null
-    fun setOnItemClickListener(listener: (Int) -> Unit) {
+    private var onItemClickListener: ((String) -> Unit)? = null
+    fun setOnItemClickListener(listener: (String) -> Unit) {
         onItemClickListener = listener
     }
 
@@ -45,7 +45,7 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
         holder.itemView.setOnClickListener {
             //todo add click event
             onItemClickListener?.let {
-                it(position)
+                it(tasks[position].id)
             }
         }
         holder.bind(tasks[position])

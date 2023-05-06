@@ -55,12 +55,14 @@
     <string name="due_date_text">Due Date</string>
     <string name="anytime_button_text">Anytime</string>
     <string name="add_member_text">Add Member</string>
+    <string name="member_text">Members</string>
     <string name="anyone_hint">Anyone</string>
     <string name="add_task_button_text">Add Task</string>
+    <string name="save_task_button_text">Save Task</string>
     <string name="add_project_button_text">Create Project</string>
 
-
     <string name="toolbar_new_task_text">New Task</string>
+    <string name="toolbar_task_info_text">Task Info</string>
     <string name="toolbar_work_list_text">Work List</string>
     <string name="toolbar_projects_text">Projects</string>
     <string name="toolbar_periods_text">Time Periods</string>
@@ -74,6 +76,7 @@
 
     <string name="today_text">Today</string>
     <string name="month_text">Month</string>
+    <string name="all_text">All</string>
 
     <string name="created_tasks_text">Created tasks</string>
     <string name="completed_tasks_text">Completed tasks</string>

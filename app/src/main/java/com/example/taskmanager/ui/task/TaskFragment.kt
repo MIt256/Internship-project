@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taskmanager.R
 import com.example.taskmanager.UserSharedViewModel
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.ui.task.adapter.TasksAdapter
@@ -45,6 +48,9 @@ class TaskFragment : Fragment() {
         binding.taskList.adapter = tasksAdapter
         tasksAdapter.setOnItemClickListener {
             //todo event click
+            val bundle = Bundle()
+            bundle.putString("id", it)
+            findNavController().navigate(R.id.action_navigation_task_to_taskInfoFragment,bundle)
         }
 
         viewModel.tasks.observe(this.viewLifecycleOwner) {

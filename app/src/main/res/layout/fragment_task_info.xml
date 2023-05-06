@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.taskinfo.TaskInfoFragment">
+
+
+    <View
+        android:id="@+id/view_bottom_task_info"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_dark_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view_top_task_info"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_task_info" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/fragment_card_view_horizontal_margin"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/fragment_card_view_horizontal_margin"
+        android:layout_marginBottom="@dimen/fragment_card_view_vertical_margin"
+        app:cardCornerRadius="@dimen/fragment_main_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_top_task_info">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/project_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/project_text"
+                    android:textColor="@color/text_black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/icon_recycler" />
+
+                <Button
+                    android:id="@+id/button_add_task2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                    android:layout_marginBottom="@dimen/fragment_elements_main_margin"
+                    android:backgroundTint="@color/app_red"
+                    android:fontFamily="@font/roboto_light_italic"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/save_task_button_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fragment_main_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/project_text_info" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/icon_recycler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_member_text2" />
+
+                <TextView
+                    android:id="@+id/add_member_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/member_text"
+                    android:textColor="@color/text_black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_time2" />
+
+                <Button
+                    android:id="@+id/button_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/blue_button"
+                    android:insetLeft="@dimen/fragment_button_inset_horizontal"
+                    android:insetTop="@dimen/fragment_button_inset_vertical"
+                    android:insetRight="@dimen/fragment_button_inset_horizontal"
+                    android:insetBottom="@dimen/fragment_button_inset_vertical"
+                    android:padding="@dimen/fragment_button_padding"
+                    android:text="@string/anytime_button_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fragment_button_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description_edit_text2" />
+
+                <EditText
+                    android:id="@+id/description_edit_text2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                    android:background="@drawable/rectangle_shape"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:lineSpacingExtra="@dimen/fragment_edit_text_line_spacing"
+                    android:minLines="3"
+                    android:padding="@dimen/fragment_edit_text_small_padding"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/fragment_edit_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description_text_info" />
+
+                <TextView
+                    android:id="@+id/description_text_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/description_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_edit_text2" />
+
+                <TextView
+                    android:id="@+id/project_text_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/description_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/project_text" />
+
+                <EditText
+                    android:id="@+id/title_edit_text2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lite_grey"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto_light_italic"
+                    android:hint="@string/title_hint"
+                    android:inputType="text"
+                    android:paddingLeft="@dimen/fragment_edit_text_horizontal_padding"
+                    android:paddingTop="@dimen/fragment_edit_text_vertical_padding"
+                    android:paddingRight="@dimen/fragment_edit_text_horizontal_padding"
+                    android:paddingBottom="@dimen/fragment_edit_text_vertical_padding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+    <Toolbar
+        android:id="@+id/toolbar_task_info"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_red"
+        android:navigationIcon="@drawable/ic_back_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_light_italic"
+            android:text="@string/toolbar_task_info_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fragment_toolbar_text_size" />
+
+    </Toolbar>
+</androidx.constraintlayout.widget.ConstraintLayout>

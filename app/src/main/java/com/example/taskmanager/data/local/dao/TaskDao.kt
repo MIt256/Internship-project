@@ -9,6 +9,9 @@ abstract class TaskDao {
     @Query("SELECT * FROM tasks WHERE owner_id = :ownerId ")
     abstract fun getTasks(ownerId: String): Flow<List<TaskDbEntity?>>
 
+    @Query("SELECT * FROM tasks WHERE id = :taskId ")
+    abstract fun getTask(taskId: String): Flow<TaskDbEntity?>
+
     //todo check
     @Query("SELECT * FROM users, task_members WHERE users.id = task_members.user_id AND task_members.task_id = :taskId")
     abstract fun getTaskMembers(taskId: String): Flow<List<UserDbEntity?>>

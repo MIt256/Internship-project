@@ -34,4 +34,13 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
             throw ex
         }
     }
+    fun getTaskById(id:String): Flow<Task> {
+        try {
+            val response = database.getTaskDao().getTask(id)
+            return response.map { it?.toTask() ?: throw Exception("Error")  }
+        } catch (ex:Exception){
+            throw ex
+        }
+    }
+
 }
