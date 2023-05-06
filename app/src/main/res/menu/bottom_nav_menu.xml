@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_menu"
         android:icon="@drawable/ic_menu"
-        android:title="@string/menu_menu_text" />
+        android:title="@string/menu_projects_text" />
 
     <item
         android:id="@+id/placeholder"
@@ -20,7 +20,7 @@
     <item
         android:id="@+id/navigation_quick"
         android:icon="@drawable/ic_quick"
-        android:title="@string/quick_menu_text" />
+        android:title="@string/period_menu_text" />
 
     <item
         android:id="@+id/navigation_profile"

@@ -245,7 +245,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/fragment_elements_small_margin"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="@string/quick_notes_text"
+                        android:text="@string/time_periods_text"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/fragment_small_text_size"
                         app:layout_constraintEnd_toEndOf="@+id/statistic_quick_count"

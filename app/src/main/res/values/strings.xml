@@ -39,10 +39,10 @@
     <string name="send_req_text">Send request</string>
     <string name="change_password_text">Change password</string>
 
-    <string name="menu_menu_text">menu</string>
+    <string name="menu_projects_text">project</string>
     <string name="my_task_menu_text">my task</string>
     <string name="profile_menu_text">profile</string>
-    <string name="quick_menu_text">quick</string>
+    <string name="period_menu_text">period</string>
 
     <string name="button_get_started_text">Get Started</string>
 
@@ -63,9 +63,9 @@
     <string name="toolbar_new_task_text">New Task</string>
     <string name="toolbar_work_list_text">Work List</string>
     <string name="toolbar_projects_text">Projects</string>
-    <string name="toolbar_quick_notes_text">Quick Notes</string>
+    <string name="toolbar_periods_text">Time Periods</string>
     <string name="toolbar_profile_text">Profile</string>
-    <string name="toolbar_add_note_text">Add Note</string>
+    <string name="toolbar_add_period_text">Add Time Period</string>
     <string name="toolbar_add_check_list_text">Add Check List</string>
     <string name="toolbar_personal_text">Personal</string>
 
@@ -80,11 +80,11 @@
     <string name="statistic_text">Statistic</string>
     <string name="events_text">Events</string>
     <string name="to_do_text">To do</string>
-    <string name="quick_notes_text">Quick notes</string>
+    <string name="time_periods_text">Time Periods</string>
 
     <string name="done_button_text">Done</string>
     <string name="choose_color_text">Choose color</string>
-    <string name="add_quick_note_text">Add Quick Note</string>
+    <string name="add_time_period_text">Add Time Period</string>
 
     <string name="no_info_text">No info</string>
 

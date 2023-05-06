@@ -20,13 +20,13 @@
     <fragment
         android:id="@+id/navigation_menu"
         android:name="com.example.taskmanager.ui.menu.MenuFragment"
-        android:label="@string/menu_menu_text"
+        android:label="@string/menu_projects_text"
         tools:layout="@layout/fragment_menu" />
 
     <fragment
         android:id="@+id/navigation_quick"
         android:name="com.example.taskmanager.ui.quick.QuickFragment"
-        android:label="@string/quick_menu_text"
+        android:label="@string/period_menu_text"
         tools:layout="@layout/fragment_quick" />
 
     <fragment

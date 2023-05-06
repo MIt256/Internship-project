@@ -2,6 +2,6 @@
 <resources>
     <array name="creation_options">
         <item>@string/add_task_button_text</item>
-        <item>@string/add_quick_note_text</item>
+        <item>@string/add_time_period_text</item>
     </array>
 </resources>

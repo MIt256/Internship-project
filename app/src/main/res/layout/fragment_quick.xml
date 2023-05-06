@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_light_italic"
-            android:text="@string/toolbar_quick_notes_text"
+            android:text="@string/toolbar_periods_text"
             android:textSize="@dimen/fragment_main_text_size" />
 
     </androidx.appcompat.widget.Toolbar>

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_light_italic"
-            android:text="@string/toolbar_add_note_text"
+            android:text="@string/toolbar_add_period_text"
             android:textColor="@color/white"
             android:textSize="@dimen/fragment_toolbar_text_size" />
     </Toolbar>
