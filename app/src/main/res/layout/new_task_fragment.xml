@@ -73,7 +73,7 @@
                 android:layout_marginStart="@dimen/fragment_elements_main_margin"
                 android:layout_marginTop="@dimen/fragment_elements_main_margin"
                 android:fontFamily="@font/roboto_light_italic"
-                android:text="@string/for_text"
+                android:text="@string/type_text"
                 android:textSize="@dimen/fragment_main_text_size"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -85,7 +85,7 @@
                 android:layout_marginStart="@dimen/fragment_elements_secondary_margin"
                 android:background="@drawable/rounded_shape"
                 android:fontFamily="@font/roboto_medium"
-                android:hint="@string/assignee_text"
+                android:hint="@string/type_text"
                 android:inputType="text"
                 android:maxLength="16"
                 android:padding="@dimen/fragment_edit_text_padding"

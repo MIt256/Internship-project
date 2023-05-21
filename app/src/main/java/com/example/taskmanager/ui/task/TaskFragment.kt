@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -23,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import java.util.*
-import kotlin.time.Duration.Companion.days
 
 @AndroidEntryPoint
 class TaskFragment : Fragment() {
@@ -91,7 +89,6 @@ class TaskFragment : Fragment() {
                 else -> {tasks}
             }
         )
-
     }
 
 }

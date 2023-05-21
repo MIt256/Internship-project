@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task Manager</string>
+    <string name="app_name">Time Manager</string>
     <string name="account_type">com.example.taskmanager</string>
     
     <string name="app_name_text">todo list</string>
@@ -47,8 +47,8 @@
     <string name="button_get_started_text">Get Started</string>
 
     <string name="in_text">In</string>
-    <string name="for_text">For</string>
-    <string name="assignee_text">Assignee</string>
+    <string name="type_text">Type</string>
+    <string name="type_text_edit">Type</string>
     <string name="project_text">Project</string>
     <string name="title_hint">Title</string>
     <string name="description_text">Description</string>
@@ -86,7 +86,7 @@
     <string name="time_periods_text">Time Periods</string>
 
     <string name="done_button_text">Done</string>
-    <string name="choose_color_text">Choose color</string>
+    <string name="choose_type">Choose type</string>
     <string name="add_time_period_text">Add Time Period</string>
 
     <string name="no_info_text">No info</string>

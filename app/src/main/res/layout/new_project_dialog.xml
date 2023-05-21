@@ -19,15 +19,37 @@
             android:paddingEnd="@dimen/fragment_edit_text_vertical_padding"
             android:paddingBottom="@dimen/fragment_big_padding">
 
+            <EditText
+                android:id="@+id/description_edit_text3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                android:background="#F6E9E9"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="start|top"
+                android:hint="@string/description_text"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="@dimen/fragment_edit_text_line_spacing"
+                android:minLines="3"
+                android:padding="@dimen/fragment_edit_text_small_padding"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/fragment_edit_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/project_title" />
+
             <RadioGroup
                 android:id="@+id/color_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_elements_main_margin"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/project_title">
+                app:layout_constraintTop_toBottomOf="@+id/description_edit_text3">
 
                 <RadioButton
                     android:id="@+id/color1"
@@ -35,9 +57,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_elements_small_margin"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical"
                     android:background="@color/project_color_1"
                     android:button="@drawable/color_button_selector"
+                    android:gravity="center_horizontal|center_vertical"
                     android:padding="@dimen/fragment_button_padding" />
 
                 <RadioButton
@@ -57,9 +79,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_elements_small_margin"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical"
                     android:background="@color/project_color_3"
                     android:button="@drawable/color_button_selector"
+                    android:gravity="center_horizontal|center_vertical"
                     android:padding="@dimen/fragment_button_padding" />
 
                 <RadioButton
@@ -68,9 +90,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_elements_small_margin"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical"
                     android:background="@color/project_color_4"
                     android:button="@drawable/color_button_selector"
+                    android:gravity="center_horizontal|center_vertical"
                     android:padding="@dimen/fragment_button_padding" />
 
                 <RadioButton
@@ -79,9 +101,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_elements_small_margin"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical"
                     android:background="@color/project_color_5"
                     android:button="@drawable/color_button_selector"
+                    android:gravity="center_horizontal|center_vertical"
                     android:padding="@dimen/fragment_button_padding" />
             </RadioGroup>
 
@@ -105,10 +127,10 @@
                 android:id="@+id/project_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:background="#F6E9E9"
                 android:ems="30"
                 android:fontFamily="@font/roboto_light_italic"
-                android:hint="@string/title_hint"
+                android:hint="Name"
                 android:inputType="text"
                 android:padding="@dimen/fragment_edit_text_small_padding"
                 android:singleLine="true"
@@ -117,6 +139,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

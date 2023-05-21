@@ -33,21 +33,42 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/button_add_task3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                android:layout_marginEnd="@dimen/fragment_elements_main_margin"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/app_red"
+                android:fontFamily="@font/roboto_light_italic"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="Generate statistic"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fragment_main_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/profile_card_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_elements_secondary_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_margin="@dimen/fragment_elements_secondary_margin">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -91,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/fragment_elements_secondary_margin"
                         android:fontFamily="@font/roboto_light_italic"
-                        android:text="@string/no_info_text"
+                        android:text="40"
                         android:textSize="@dimen/fragment_main_text_size"
                         app:layout_constraintStart_toStartOf="@+id/profile_image"
                         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
@@ -123,11 +144,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_light_italic"
-                        android:text="@string/no_info_text"
+                        android:text="8"
                         android:textSize="@dimen/fragment_main_text_size"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/created_task_text"
                         app:layout_constraintTop_toTopOf="@+id/created_task_count" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_settings"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -147,7 +179,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_elements_secondary_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/button_add_task3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/work_recycler">
@@ -176,7 +208,7 @@
                         android:backgroundTint="@color/app_red"
                         android:fontFamily="@font/roboto_light_italic"
                         android:gravity="center"
-                        android:text="@string/no_info_text"
+                        android:text="45%"
                         android:textSize="@dimen/fragment_main_text_size"
                         app:layout_constraintEnd_toStartOf="@+id/statistic_todo_count"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -191,7 +223,7 @@
                         android:backgroundTint="@color/blue_button"
                         android:fontFamily="@font/roboto_light_italic"
                         android:gravity="center"
-                        android:text="@string/no_info_text"
+                        android:text="92%"
                         android:textSize="@dimen/fragment_main_text_size"
                         app:layout_constraintEnd_toStartOf="@+id/statistic_quick_count"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -206,7 +238,7 @@
                         android:backgroundTint="@color/app_purple"
                         android:fontFamily="@font/roboto_light_italic"
                         android:gravity="center"
-                        android:text="@string/no_info_text"
+                        android:text="8%"
                         android:textSize="@dimen/fragment_main_text_size"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -219,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/fragment_elements_small_margin"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="@string/events_text"
+                        android:text="Active tasks"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/fragment_small_text_size"
                         app:layout_constraintEnd_toEndOf="@+id/statistic_events_count"
@@ -232,7 +264,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/fragment_elements_small_margin"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="@string/to_do_text"
+                        android:text="Work periods"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/fragment_small_text_size"
                         app:layout_constraintEnd_toEndOf="@+id/statistic_todo_count"
@@ -245,7 +277,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/fragment_elements_small_margin"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="@string/time_periods_text"
+                        android:text="Rest periods"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/fragment_small_text_size"
                         app:layout_constraintEnd_toEndOf="@+id/statistic_quick_count"

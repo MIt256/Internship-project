@@ -31,7 +31,7 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
                 statusBar.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.blue_button))
             }
             title.text = taskItem.title
-            time.text = DateTimeFormatterUtil.simpleFormatter.format(taskItem.dueDate)
+            time.text = DateTimeFormatterUtil.simpleFormatterDate.format(taskItem.dueDate)
         }
     }
 

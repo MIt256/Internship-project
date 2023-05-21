@@ -17,7 +17,7 @@ class ProfileAdapter : ListAdapter<ProfileStatisticItem, ProfileAdapter.ProfileV
         private val binding = ProfileRecyclerItemBinding.bind(view)
         fun bind(item: ProfileStatisticItem) = with(binding) {
             title.text = item.type
-            count.text = "${item.count} Tasks"
+            count.text = "${item.count}"
             card.setCardBackgroundColor(item.color.toColorInt())
         }
     }
