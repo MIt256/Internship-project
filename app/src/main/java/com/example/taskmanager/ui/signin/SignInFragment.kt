@@ -72,11 +72,16 @@ class SignInFragment : Fragment() {
     }
 
     private fun onSignInButtonPressed() {
-        val userInfo = SignInEntity(
-            email = binding.editTextEmailAddress.text.toString(),
-            password = binding.editTextPassword.text.toString()
-        )
-        viewModel.signIn(userInfo)
+//        val userInfo = SignInEntity(
+//            email = binding.editTextEmailAddress.text.toString(),
+//            password = binding.editTextPassword.text.toString()
+//        )
+//        viewModel.signIn(userInfo)
+        Toast.makeText(context, "Success!", Toast.LENGTH_SHORT)
+            .show()
+        val action =
+            SignInFragmentDirections.actionSignInFragmentToNavigationTask()
+        findNavController().navigate(action)
     }
 
     private fun onBackArrowPressed() {

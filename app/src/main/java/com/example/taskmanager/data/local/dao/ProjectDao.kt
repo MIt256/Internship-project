@@ -17,6 +17,9 @@ abstract class ProjectDao {
 
     @Query("SELECT * FROM projects WHERE owner_id = :ownerId ")
     abstract fun getProjects(ownerId: String): Flow<List<ProjectDbEntity?>>
+
+    @Query("SELECT title FROM projects WHERE id = :tid ")
+    abstract fun getProjectName(tid: String): Flow<String>
     @Query("SELECT COUNT(*) FROM projects WHERE owner_id = :ownerId")
     abstract suspend fun getCountOfProjects(ownerId: String): Int
 

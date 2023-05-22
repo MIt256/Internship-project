@@ -66,7 +66,7 @@ class NewTaskFragment : Fragment() {
         }
 
         binding.forEditText.doAfterTextChanged {
-            if (it.toString().length > 2)
+            //if (it.toString().length > 2)
                 viewModel.setMemberSearch(it.toString())
             if (binding.forEditText.isFocused)
                 setRecyclerVisible()
@@ -86,7 +86,7 @@ class NewTaskFragment : Fragment() {
 
 
         binding.inEditText.doAfterTextChanged {
-            if (it.toString().length > 2)
+           //if (it.toString().length > 2)
                 viewModel.setProjectSearch(it.toString())
             if (binding.inEditText.isFocused)
                 setRecyclerVisible()
@@ -127,6 +127,7 @@ class NewTaskFragment : Fragment() {
                 viewModel.currentException.tryEmit(
                     "Title or description is empty"
                 )
+            findNavController().popBackStack()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

@@ -20,7 +20,6 @@ class TaskInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskInfoBinding
     private val viewModel: TaskInfoViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,13 +35,18 @@ class TaskInfoFragment : Fragment() {
             findNavController().navigate(TaskInfoFragmentDirections.actionTaskInfoFragmentToNavigationTask())
         }
 
-        arguments?.getString("id")?.let { viewModel.setMemberSearch(it) }
+        arguments?.getString("id")?.let { viewModel.setMemberSearch(it)}
 
         viewModel.currentTask.observe(viewLifecycleOwner){
             binding.titleEditText2.setText(it.title)
             binding.descriptionEditText2.setText(it.description)
             binding.buttonTime2.text = DateTimeFormatterUtil.simpleFormatter.format(it.dueDate)
-            binding.projectTextInfo.text = it.projectId
+            viewModel.getProject(it.projectId)
+            binding.projectTextInfo.text = "test2"
+        }
+
+        binding.buttonAddTask2.setOnClickListener {
+           viewModel.save(binding.titleEditText2.text.toString(),binding.descriptionEditText2.text.toString())
         }
 
     }

@@ -69,7 +69,25 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/button_time_3"
+                    android:id="@+id/et"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/blue_button"
+                    android:insetLeft="@dimen/fragment_button_inset_horizontal"
+                    android:insetTop="@dimen/fragment_button_inset_vertical"
+                    android:insetRight="@dimen/fragment_button_inset_horizontal"
+                    android:insetBottom="@dimen/fragment_button_inset_vertical"
+                    android:padding="@dimen/fragment_button_padding"
+                    android:text="@string/time_button_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fragment_button_text_size"
+                    app:layout_constraintStart_toEndOf="@+id/ed"
+                    app:layout_constraintTop_toTopOf="@+id/ed" />
+
+                <Button
+                    android:id="@+id/sd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -79,7 +97,7 @@
                     android:insetRight="@dimen/fragment_button_inset_horizontal"
                     android:insetBottom="@dimen/fragment_button_inset_vertical"
                     android:padding="@dimen/fragment_button_padding"
-                    android:text="@string/anytime_button_text"
+                    android:text="@string/date_button_text"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/fragment_button_text_size"
@@ -88,7 +106,26 @@
                     app:layout_constraintTop_toTopOf="@+id/due_date_text2" />
 
                 <Button
-                    android:id="@+id/button_time_"
+                    android:id="@+id/st"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/blue_button"
+                    android:insetLeft="@dimen/fragment_button_inset_horizontal"
+                    android:insetTop="@dimen/fragment_button_inset_vertical"
+                    android:insetRight="@dimen/fragment_button_inset_horizontal"
+                    android:insetBottom="@dimen/fragment_button_inset_vertical"
+                    android:padding="@dimen/fragment_button_padding"
+                    android:text="@string/time_button_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fragment_button_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/due_date_text2"
+                    app:layout_constraintStart_toEndOf="@+id/sd"
+                    app:layout_constraintTop_toTopOf="@+id/due_date_text2" />
+
+                <Button
+                    android:id="@+id/ed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -99,12 +136,12 @@
                     android:insetRight="@dimen/fragment_button_inset_horizontal"
                     android:insetBottom="@dimen/fragment_button_inset_vertical"
                     android:padding="@dimen/fragment_button_padding"
-                    android:text="@string/anytime_button_text"
+                    android:text="@string/date_button_text"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/fragment_button_text_size"
                     app:layout_constraintStart_toEndOf="@+id/due_date_text2"
-                    app:layout_constraintTop_toBottomOf="@+id/button_time_3" />
+                    app:layout_constraintTop_toBottomOf="@+id/sd" />
 
                 <TextView
                     android:id="@+id/due_date_text2"
@@ -113,7 +150,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Start date/time:"
+                    android:text="Start:"
                     android:textColor="@color/text_black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/button_time"
@@ -126,12 +163,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="End date/time:"
+                    android:text="End:"
                     android:textColor="@color/text_black"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/button_time_"
+                    app:layout_constraintBottom_toBottomOf="@+id/ed"
                     app:layout_constraintStart_toStartOf="@+id/color_radio_group"
-                    app:layout_constraintTop_toTopOf="@+id/button_time_" />
+                    app:layout_constraintTop_toTopOf="@+id/ed" />
 
                 <EditText
                     android:id="@+id/title_edit_text4"
@@ -350,7 +387,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button_time_" />
+                    app:layout_constraintTop_toBottomOf="@+id/ed" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

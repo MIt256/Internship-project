@@ -16,6 +16,9 @@ abstract class UserDao {
     @Query("SELECT * FROM users WHERE id = :id ")
     abstract fun getUserById(id: String): Flow<UserDbEntity?>
 
+    @Query("SELECT * FROM users")
+    abstract fun getAllUsers(): Flow<List<UserDbEntity?>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun createAccount(userDbEntity: UserDbEntity)
 

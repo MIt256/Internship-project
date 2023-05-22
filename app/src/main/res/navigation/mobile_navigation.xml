@@ -36,7 +36,14 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.taskmanager.ui.profile.ProfileFragment"
         android:label="@string/profile_menu_text"
-        tools:layout="@layout/fragment_quick" />
+        tools:layout="@layout/fragment_quick" >
+        <action
+            android:id="@+id/action_navigation_profile_to_statisticFragment"
+            app:destination="@id/statisticFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_auth_navigation_graph"
+            app:destination="@id/auth_navigation_graph" />
+    </fragment>
     <fragment
         android:id="@+id/newTaskFragment"
         android:name="com.example.taskmanager.ui.newtask.NewTaskFragment"
@@ -115,6 +122,15 @@
             app:destination="@id/navigation_task" />
         <argument android:name="id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticFragment"
+        android:name="com.example.taskmanager.ui.statistic.StatisticFragment"
+        android:label="fragment_statistic"
+        tools:layout="@layout/fragment_statistic" >
+        <action
+            android:id="@+id/action_statisticFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
     </fragment>
 
 </navigation>

@@ -14,6 +14,7 @@ import com.example.taskmanager.data.remote.utils.NetworkResult
 import com.example.taskmanager.databinding.FragmentSignUpBinding
 import com.example.taskmanager.data.remote.model.accounts.SignUpEntity
 import com.example.taskmanager.ui.signup.vm.SignUpViewModel
+import com.example.taskmanager.utils.ID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -94,12 +95,16 @@ class   SignUpFragment : Fragment() {
     }
 
     private fun onSignUpButtonPressed() {
-        val userInfo = SignUpEntity(
-            username = binding.editTextPersonName.text.toString(),
-            email = binding.editTextEmailAddress.text.toString(),
-            password = binding.editTextPassword.text.toString()
-        )
-        viewModel.signUp(userInfo)
+//        val userInfo = SignUpEntity(
+//            username = binding.editTextPersonName.text.toString(),
+//            email = binding.editTextEmailAddress.text.toString(),
+//            password = binding.editTextPassword.text.toString()
+//        )
+//        viewModel.signUp(userInfo)
+        ID.IDString.id = "12341414"
+        val action =
+            SignUpFragmentDirections.actionSignUpFragmentToNavigationTask()
+        findNavController().navigate(action)
     }
 
     private companion object {

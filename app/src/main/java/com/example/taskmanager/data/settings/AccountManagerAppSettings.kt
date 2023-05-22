@@ -4,6 +4,7 @@ import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
 import com.example.taskmanager.ui.entities.UserSettings
+import com.example.taskmanager.utils.ID
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -29,7 +30,7 @@ class AccountManagerAppSettings @Inject constructor(
 //        getAccount(ACCOUNT_TYPE),
 //        KEY_USER_ID
 //    )
-    override fun getCurrentId(): String = "ab29f6c7-3d86-4e7b-8d04-94f887620ad3"
+    override fun getCurrentId(): String = ID.IDString.id
 
     override fun setCurrentToken(token: String?) {
 

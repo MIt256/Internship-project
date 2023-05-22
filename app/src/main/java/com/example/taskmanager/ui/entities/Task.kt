@@ -11,14 +11,14 @@ data class Task(
     val assignedTo: String?,
     val attachments: List<TaskAttachment>?,
     val createdAt: String,
-    val description: String,
+    var description: String,
     val dueDate: LocalDateTime,
     val id: String,
     val isCompleted: Boolean,
     val members: List<User>?,
     val ownerId: String,
     val projectId: String,
-    val title: String
+    var title: String
 ) {
     fun toTaskWithMembersEntity() = TaskWithMembers(
         toTaskDbEntity(),

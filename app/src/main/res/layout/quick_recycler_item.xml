@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -17,30 +18,117 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <View
                 android:id="@+id/status_bar"
                 android:layout_width="150dp"
                 android:layout_height="4dp"
-                android:layout_marginStart="@dimen/fragment_elements_main_margin"
+                android:layout_marginStart="16dp"
                 android:background="@color/blue_button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/quick_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fragment_elements_main_margin"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_light_italic"
                 android:text="@string/no_info_text"
-                android:textSize="@dimen/fragment_main_text_size" />
-        </LinearLayout>
+                android:textSize="@dimen/fragment_main_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/no_info_text"
+                android:textSize="@dimen/fragment_main_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status_bar" />
+
+            <TextView
+                android:id="@+id/sdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/no_info_text"
+                android:textSize="@dimen/fragment_small_text_size"
+                app:layout_constraintStart_toEndOf="@+id/Start"
+                app:layout_constraintTop_toTopOf="@+id/Start" />
+
+            <TextView
+                android:id="@+id/Start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/start_text"
+                android:textSize="@dimen/fragment_small_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/quick_text" />
+
+            <TextView
+                android:id="@+id/start2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/end_text"
+                android:textSize="@dimen/fragment_small_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Start" />
+
+            <TextView
+                android:id="@+id/edate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/no_info_text"
+                android:textSize="@dimen/fragment_small_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/sdate"
+                app:layout_constraintTop_toBottomOf="@+id/sdate" />
+
+            <TextView
+                android:id="@+id/etime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/no_info_text"
+                android:textSize="@dimen/fragment_small_text_size"
+                app:layout_constraintStart_toStartOf="@+id/stime"
+                app:layout_constraintTop_toBottomOf="@+id/sdate" />
+
+            <TextView
+                android:id="@+id/stime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_light_italic"
+                android:text="@string/no_info_text"
+                android:textSize="@dimen/fragment_small_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.35"
+                app:layout_constraintStart_toEndOf="@+id/sdate"
+                app:layout_constraintTop_toBottomOf="@+id/quick_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.taskmanager.R
@@ -52,6 +53,7 @@ class ProfileFragment : Fragment() {
 
         viewModel.profileWorkItems.observe(viewLifecycleOwner) {
             profileAdapter.submitList(it)
+            binding.createdTaskCount.text = it[2].count.toString()
         }
 
         viewModel.profileInfo.observe(viewLifecycleOwner) {
@@ -66,13 +68,21 @@ class ProfileFragment : Fragment() {
 
         }
 
-        viewModel.currentException.onEach {
-            Toast.makeText(
-                context,
-                it,
-                Toast.LENGTH_SHORT
-            ).show()
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
+        binding.buttonAddTask3.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToStatisticFragment())
+        }
+
+        binding.logOut.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAuthNavigationGraph())
+        }
+
+//        viewModel.currentException.onEach {
+//            Toast.makeText(
+//                context,
+//                it,
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         super.onViewCreated(view, savedInstanceState)
     }

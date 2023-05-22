@@ -4,6 +4,7 @@ import com.example.taskmanager.data.settings.AppSettings
 import com.example.taskmanager.data.remote.utils.NetworkResult
 import com.example.taskmanager.data.local.room.TaskManagerDatabase
 import com.example.taskmanager.data.remote.api.TasksApi
+import com.example.taskmanager.ui.entities.Project
 import com.example.taskmanager.ui.task.entities.Task
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -24,23 +25,36 @@ class TaskRepository @Inject constructor(private val tasksApi: TasksApi, private
 
     fun getTasks(): Flow<List<Task>> {
         try {
-            val response =database.getTaskDao().getTasks(settings.getCurrentId())
+            val response = database.getTaskDao().getTasks(settings.getCurrentId())
             return response.map {
                 it.map {
                     it?.toTask() ?: throw Exception("Error")
                 }
             }
-        } catch (ex:Exception){
+        } catch (ex: Exception) {
             throw ex
         }
     }
-    fun getTaskById(id:String): Flow<Task> {
+
+    fun getTaskById(id: String): Flow<Task> {
         try {
             val response = database.getTaskDao().getTask(id)
-            return response.map { it?.toTask() ?: throw Exception("Error")  }
-        } catch (ex:Exception){
+            return response.map { it?.toTask() ?: throw Exception("Error") }
+        } catch (ex: Exception) {
             throw ex
         }
+    }
+
+    fun getProjectById(id: String): Flow<String> {
+        try {
+            val response = database.getProjectDao().getProjectName(id)
+            return response
+        } catch (ex: Exception) {
+            throw ex
+        }
+    }
+    suspend fun save(task:Task){
+        database.getTaskDao().addTask(task.toTaskDbEntity())
     }
 
 }

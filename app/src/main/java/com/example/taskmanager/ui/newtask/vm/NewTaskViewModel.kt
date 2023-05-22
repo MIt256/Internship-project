@@ -1,16 +1,18 @@
 package com.example.taskmanager.ui.newtask.vm
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.taskmanager.data.local.entities.TaskDbEntity
 import com.example.taskmanager.data.repository.NewTaskRepository
-import com.example.taskmanager.ui.entities.NewTask
+
 import com.example.taskmanager.ui.entities.Project
 import com.example.taskmanager.ui.task.entities.User
+import com.example.taskmanager.utils.DatePatterns.DATE_PATTERN
+import com.example.taskmanager.utils.DateTimeFormatterUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -48,7 +50,7 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
         _taskMemberList.value = mutableListOf()
     }
 
-    fun setDate(date: Date) {
+    fun  setDate(date: Date) {
         _date.value = date
     }
 
@@ -79,9 +81,18 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     }
 
     private fun searchMembers() {
+//        viewModelScope.launch {
+//            try {
+//                repository.searchTaskMembers(currentMemberSearch.value.toString()).collect {
+//                    _members.value = it
+//                }
+//            } catch (exception: Exception) {
+//                exception.message?.let { currentException.emit(it) }
+//            }
+//        }
         viewModelScope.launch {
             try {
-                repository.searchTaskMembers(currentMemberSearch.value.toString()).collect {
+                repository.searchTaskMembersLocal(currentMemberSearch.value.toString()).collect {
                     _members.value = it
                 }
             } catch (exception: Exception) {
@@ -91,9 +102,18 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     }
 
     private fun searchProjects() {
+//        viewModelScope.launch {
+//            try {
+//                repository.searchProjects(currentProjectSearch.value.toString()).collect {
+//                    _projects.value = it
+//                }
+//            } catch (exception: Exception) {
+//                exception.message?.let { currentException.emit(it) }
+//            }
+//        }
         viewModelScope.launch {
             try {
-                repository.searchProjects(currentProjectSearch.value.toString()).collect {
+                repository.searchProjectsLocal(currentProjectSearch.value.toString()).collect {
                     _projects.value = it
                 }
             } catch (exception: Exception) {
@@ -103,25 +123,32 @@ class NewTaskViewModel @Inject constructor(private val repository: NewTaskReposi
     }
 
     fun createTask(title: String, description: String) {
-        val task: NewTask
+        val task: TaskDbEntity
         try {
-            task = NewTask(
+            task = TaskDbEntity(
                 assignedTo = currentMember.value?.id ?: throw Exception("Member is undefined"),
                 description = description,
-                dueDate = date.value ?: throw Exception("Date is undefined"),
-                members = taskMemberList.value,
+                dueDate = SimpleDateFormat(DATE_PATTERN).format(date.value) ?: throw Exception("Date is undefined"),
                 ownerId = currentMember.value?.id ?: throw Exception("Member is undefined"),
                 projectId = currentProject.value?.id ?: throw Exception("Project is undefined"),
-                title = title
+                title = title,
+                createdAt = "2023-05-21T01:01:01.000001",
+                isCompleted = false,
+                id = kotlin.random.Random.nextInt(0, 99999999).toString()
             )
             viewModelScope.launch {
                 try {
-                    repository.createNewTask(task).collect {
-                        currentException.emit(it)
-                    }
+                    repository.createNewTaskLocal(task)
                 } catch (exception: Exception) {
                     throw exception
                 }
+//                try {
+//                    repository.createNewTask(task).collect {
+//                        currentException.emit(it)
+//                    }
+//                } catch (exception: Exception) {
+//                    throw exception
+//                }
             }
 
         } catch (e: Exception) {

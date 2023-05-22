@@ -17,6 +17,11 @@ class QuickAdapter : ListAdapter<QuickNote, QuickAdapter.QuickViewHolder>(QuickI
         private val binding = QuickRecyclerItemBinding.bind(view)
         fun bind(item: QuickNote) = with(binding) {
             quickText.text = item.description
+            title.text = item.title
+            sdate.text = item.dateStart.toString()
+            stime.text = item.timeStart.toString()
+            edate.text = item.dateEnd.toString()
+            etime.text = item.timeEnd.toString()
             statusBar.setBackgroundColor(item.color.toColorInt())
         }
     }

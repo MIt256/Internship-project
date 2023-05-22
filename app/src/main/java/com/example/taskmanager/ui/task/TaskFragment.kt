@@ -64,7 +64,7 @@ class TaskFragment : Fragment() {
             //todo event click
             val bundle = Bundle()
             bundle.putString("id", it)
-            findNavController().navigate(R.id.action_navigation_task_to_taskInfoFragment,bundle)
+            findNavController().navigate(R.id.action_navigation_task_to_taskInfoFragment, bundle)
         }
 
         viewModel.tasks.observe(this.viewLifecycleOwner) {
@@ -81,12 +81,14 @@ class TaskFragment : Fragment() {
 
     }
 
-    private fun setTasks(tasks:List<Task>){
+    private fun setTasks(tasks: List<Task>) {
         tasksAdapter.setTasks(
-            when(binding.filter.selectedTabPosition){
-                0 -> tasks.filter{ it.dueDate.dayOfMonth == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)}
-                1 -> tasks.filter{ it.dueDate.month.value == Calendar.getInstance().get(Calendar.MONTH)+1}
-                else -> {tasks}
+            when (binding.filter.selectedTabPosition) {
+                0 -> tasks.filter { it.dueDate.dayOfMonth == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) }
+                1 -> tasks.filter { it.dueDate.month.value == Calendar.getInstance().get(Calendar.MONTH) + 1 }
+                else -> {
+                    tasks
+                }
             }
         )
     }

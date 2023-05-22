@@ -17,4 +17,9 @@ class TaskViewModel @Inject constructor(private val repository: TaskRepository) 
 
     val tasks: LiveData<List<Task>> = repository.getTasks().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
 
+//    fun update(){
+//        tasks =  repository.getTasks().catch { it.message?.let { currentException.tryEmit(it) } }.asLiveData()
+//
+//    }
+
 }

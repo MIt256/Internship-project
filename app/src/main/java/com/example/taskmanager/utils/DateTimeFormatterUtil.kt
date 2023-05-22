@@ -19,4 +19,5 @@ object DatePatterns {
     const val DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
     const val SIMPLE_DATE_PATTERN = "dd MM yyyy HH:mm"
     const val SIMPLE_DATE = "dd MM yyyy"
+    const val SIMPLE_TIME = "HH:mm"
 }
